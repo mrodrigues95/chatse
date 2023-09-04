@@ -26,7 +26,6 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "baseUrl": ".",
-
     "paths": {
       "@chatse/generated/api-types": ["libs/generated/api-types/src/index.ts"]
     }
