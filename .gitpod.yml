@@ -1,0 +1,16 @@
+
+tasks:
+  - name: Setup and start
+    init: pnpm install
+
+ports:
+    - name: Web App
+      description: The main application web server
+      port: 3000
+      onOpen: open-browser
+
+vscode:
+  extensions:
+    - dbaeumer.vscode-eslint
+    - esbenp.prettier-vscode
+    - bradlc.vscode-tailwindcss
