@@ -1,13 +1,34 @@
+image:
+  file: .gitpod.Dockerfile
 
 tasks:
-  - name: Setup and start
-    init: pnpm install
+  - name: Setup
+    # before: |
+    #   npm install -g nx
+    init: |
+      dotnet dev-certs https
+      pnpm install
+      gp sync-done install
+  # - name: Run
+  #   init: gp sync-await install
+  #   command: |
+  #     nx serve web
+  #     nx serve api
+
 
 ports:
     - name: Web App
       description: The main application web server
       port: 3000
       onOpen: open-browser
+    - name: API (HTTP)
+      description: The main API server (HTTP)
+      port: 5000
+      onOpen: ignore
+    - name: API (HTTPS)
+      description: The main API server (HTTPS)
+      port: 5001
+      onOpen: ignore
 
 vscode:
   extensions:
