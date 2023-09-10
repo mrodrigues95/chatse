@@ -2,10 +2,10 @@
   "version": 1,
   "isRoot": true,
   "tools": {
-    "dotnet-format": {
-      "version": "6.4.437406",
+    "dotnet-ef": {
+      "version": "7.0.10",
       "commands": [
-        "dotnet-format"
+        "dotnet-ef"
       ]
     }
   }
