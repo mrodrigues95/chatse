@@ -18,19 +18,19 @@ jobs:
         name: Derive appropriate SHAs for base and head for `nx affected` commands
 
       - uses: pnpm/action-setup@v2.2.4
-        name: Install pnpm
+        name: Setup pnpm
         with:
           version: 8.6.3
 
       - uses: actions/setup-node@v3
-        name: Install Node
+        name: Setup Node
         with:
           node-version: '18'
           cache: 'pnpm'
 
       - run: pnpm install --frozen-lockfile
-      # - run: pnpm nx format:check
+      # - run: pnpm format:check
       - run: pnpm affected:tsc -- --parallel --max-parallel=3
-      # - run: pnpm affected:lint -- --parallel --max-parallel=3
-      # - run: pnpm exec nx affected --target=test --parallel --max-parallel=2
+      - run: pnpm affected:lint -- --parallel --max-parallel=3
+      # - run: pnpm exec nx affected --target=test --parallel --max-parallel=3
       # - run: pnpm exec nx affected --target=build --parallel --max-parallel=3

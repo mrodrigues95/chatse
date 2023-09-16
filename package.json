@@ -27,7 +27,6 @@
     "affected:lint": "nx affected:lint",
     "affected:dep-graph": "nx affected:dep-graph",
     "affected:tsc": "nx affected --target=tsc",
-    "format": "nx format:write --base=main",
     "format:write": "nx format:write",
     "format:check": "nx format:check",
     "update": "nx migrate latest",
