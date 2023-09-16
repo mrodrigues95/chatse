@@ -63,6 +63,14 @@
       "options": {
         "lintFilePatterns": ["apps/web/**/*.{ts,tsx,js,jsx}"]
       }
+    },
+    "tsc": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --noEmit --project tsconfig.json",
+        "cwd": "apps/web",
+        "forwardAllArgs": false
+      }
     }
   },
   "tags": []

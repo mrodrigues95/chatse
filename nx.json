@@ -1,11 +1,11 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "affected": {
-    "defaultBase": "master"
+    "defaultBase": "main"
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "nx-cloud",
+      "runner": "nx/tasks-runners/default",
       "options": {
         "cacheableOperations": [
           "build",
@@ -14,8 +14,7 @@
           "e2e",
           "codegen",
           "swagger"
-        ],
-        "accessToken": "YTZiN2ZhZWQtYmMyMi00ZDM1LWEyNWItYTNiZTlmNTgzNWRifHJlYWQtd3JpdGU="
+        ]
       }
     }
   },

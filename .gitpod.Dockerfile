@@ -12,7 +12,7 @@ RUN curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh |
     && bash -c ". .nvm/nvm.sh \
         && nvm install v${NODE_VERSION} \
         && nvm alias default v${NODE_VERSION} \
-        && npm install -g typescript pnpm" \
+        && npm install -g nx typescript pnpm" \
     && echo ". ~/.nvm/nvm-lazy.sh"  >> /home/gitpod/.bashrc.d/50-node
 
 COPY --chown=gitpod:gitpod scripts/nvm-lazy.sh /home/gitpod/.nvm/nvm-lazy.sh

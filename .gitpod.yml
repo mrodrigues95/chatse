@@ -12,6 +12,9 @@ tasks:
   #   command: |
   #     nx serve web
   #     nx serve api
+  #     echo 'Your environment is now ready!'
+  #     echo '[API URL]: HTTP - $(gp url 5000); HTTPS - $(gp url 5001)'
+  #     echo '[Web URL]: $(gp url 3000)'
 
 ports:
   - name: Web App
