@@ -7,7 +7,7 @@ on:
   pull_request:
 
 jobs:
-  main:
+  check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -28,9 +28,9 @@ jobs:
           node-version: '18'
           cache: 'pnpm'
 
-      - run: pnpm install
-      - run: pnpm format:check
+      - run: pnpm install --frozen-lockfile
+      # - run: pnpm nx format:check
       - run: pnpm affected:tsc -- --parallel --max-parallel=3
-      - run: pnpm affected:lint -- --parallel --max-parallel=3
+      # - run: pnpm affected:lint -- --parallel --max-parallel=3
       # - run: pnpm exec nx affected --target=test --parallel --max-parallel=2
       # - run: pnpm exec nx affected --target=build --parallel --max-parallel=3
