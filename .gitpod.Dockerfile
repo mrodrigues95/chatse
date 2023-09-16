@@ -1,10 +1,21 @@
-FROM gitpod/workspace-full:latest
+FROM gitpod/workspace-base:latest
 
 USER gitpod
+
 ENV TRIGGER_REBUILD=1
 
-# Install global dependencies
-RUN npm install -g nx
+# Install Node and other global dependencies
+# Ref: https://github.com/gitpod-io/workspace-images/blob/main/chunks/lang-node/Dockerfile
+ENV NODE_VERSION=18
+
+RUN curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | PROFILE=/dev/null bash \
+    && bash -c ". .nvm/nvm.sh \
+        && nvm install v${NODE_VERSION} \
+        && nvm alias default v${NODE_VERSION} \
+        && npm install -g typescript pnpm" \
+    && echo ". ~/.nvm/nvm-lazy.sh"  >> /home/gitpod/.bashrc.d/50-node
+
+COPY --chown=gitpod:gitpod scripts/nvm-lazy.sh /home/gitpod/.nvm/nvm-lazy.sh
 
 # Install .NET
 # Ref: https://github.com/gitpod-io/workspace-images/blob/main/chunks/tool-dotnet/Dockerfile
