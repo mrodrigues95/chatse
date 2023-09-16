@@ -30,7 +30,7 @@ jobs:
 
       - run: pnpm install
       - run: pnpm format:check
-      - run: pnpm affected:tsc -- -parallel --max-parallel=3
-      - run: pnpm affected:lint -- -parallel --max-parallel=3
+      - run: pnpm affected:tsc -- --parallel --max-parallel=3
+      - run: pnpm affected:lint -- --parallel --max-parallel=3
       # - run: pnpm exec nx affected --target=test --parallel --max-parallel=2
       # - run: pnpm exec nx affected --target=build --parallel --max-parallel=3
