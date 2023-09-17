@@ -7,26 +7,29 @@ tasks:
       dotnet dev-certs https
       pnpm install
       gp sync-done install
-  # - name: Run
-  #   init: gp sync-await install
-  #   command: |
-  #     # Wait until PostgreSQL is reachable
-  #     until mysqladmin ping; do
-  #         sleep 1
-  #     done
-
-  #     nx serve web
-  #     nx serve api
-
-  #     echo 'Your environment is now ready!'
-  #     echo '[API URL]: HTTP - $(gp url 5000); HTTPS - $(gp url 5001)'
-  #     echo '[Web URL]: $(gp url 3000)'
+  - name: API
+    init: gp sync-await install
+    command: |
+      gp ports await 5432
+      nx serve api
+      gp sync-done api
+  - name: Web
+    init: gp sync-await install
+    command: |
+      gp sync-await api
+      nx serve web
+  - name: Getting Started
+    command: |
+      echo 'Your environment is starting soon...'
+      echo 'You can view the other terminals to see the progress.'
+      echo '[API URL]: HTTP - $(gp url 5000); HTTPS - $(gp url 5001)'
+      echo '[Web URL]: $(gp url 3000)'
 
 ports:
   - name: Web App
     description: The main application web server
     port: 3000
-    onOpen: open-browser
+    onOpen: ignore
   - name: API (HTTP)
     description: The main API server (HTTP)
     port: 5000
