@@ -1,28 +1,36 @@
+using Api.Data;
+using API.Data.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Configure the database.
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<AppDbContext>(opts =>
+{
+    opts.UseNpgsql(connectionString);
+    opts.UseSnakeCaseNamingConvention();
+});
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// Configure identity.
+builder.Services.AddIdentityCore<AppUser>()
+    .AddRoles<IdentityRole<int>>()
+    .AddEntityFrameworkStores<AppDbContext>();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(opts =>
-    {
-        opts.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-    });
+    app.UseSwaggerUI();
 }
 
 // app.UseHttpsRedirection();
 
-app.UseAuthorization();
-
-app.MapControllers();
+app.Map("/", () => Results.Redirect("/swagger"));
 
 app.Run();
