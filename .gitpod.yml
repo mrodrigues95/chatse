@@ -12,18 +12,16 @@ tasks:
     command: |
       gp ports await 5432
       nx serve api
-      gp sync-done api
   - name: Web
     init: gp sync-await install
-    command: |
-      gp sync-await api
-      nx serve web
+    command: nx serve web
   - name: Getting Started
     command: |
-      echo 'Your environment is starting soon...'
-      echo 'You can view the other terminals to see the progress.'
-      echo '[API URL]: HTTP - $(gp url 5000); HTTPS - $(gp url 5001)'
-      echo '[Web URL]: $(gp url 3000)'
+      echo Your environment is starting soon...
+      echo You can view the other terminals to see the progress.
+      echo [API URL - HTTP]: "$(gp url 5000)"
+      echo [API URL - HTTPS]: "$(gp url 5001)"
+      echo [Web URL]: "$(gp url 3000)"
 
 ports:
   - name: Web App
@@ -48,3 +46,4 @@ vscode:
     - dbaeumer.vscode-eslint
     - esbenp.prettier-vscode
     - bradlc.vscode-tailwindcss
+    - muhammad-sammy.csharp
