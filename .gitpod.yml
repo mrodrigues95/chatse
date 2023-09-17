@@ -10,8 +10,14 @@ tasks:
   # - name: Run
   #   init: gp sync-await install
   #   command: |
+  #     # Wait until PostgreSQL is reachable
+  #     until mysqladmin ping; do
+  #         sleep 1
+  #     done
+
   #     nx serve web
   #     nx serve api
+
   #     echo 'Your environment is now ready!'
   #     echo '[API URL]: HTTP - $(gp url 5000); HTTPS - $(gp url 5001)'
   #     echo '[Web URL]: $(gp url 3000)'
@@ -28,6 +34,10 @@ ports:
   - name: API (HTTPS)
     description: The main API server (HTTPS)
     port: 5001
+    onOpen: ignore
+  - name: Database
+    description: The PostgreSQL database instance
+    port: 5432
     onOpen: ignore
 
 vscode:

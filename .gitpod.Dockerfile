@@ -14,8 +14,33 @@ RUN curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh |
         && nvm alias default v${NODE_VERSION} \
         && npm install -g nx typescript pnpm" \
     && echo ". ~/.nvm/nvm-lazy.sh"  >> /home/gitpod/.bashrc.d/50-node
-
 COPY --chown=gitpod:gitpod scripts/nvm-lazy.sh /home/gitpod/.nvm/nvm-lazy.sh
+
+# Install PostgreSQL
+ENV PGWORKSPACE="/workspace/.pgsql"
+ENV PGDATA="$PGWORKSPACE/data"
+
+RUN sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list' && \
+    wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add - && \
+    sudo install-packages postgresql-16 postgresql-contrib-16
+
+# Setup PostgreSQL server
+# Ref: https://github.com/gitpod-io/workspace-images/blob/main/chunks/tool-postgresql/Dockerfile
+ENV PATH="/usr/lib/postgresql/16/bin:$PATH"
+
+SHELL ["/usr/bin/bash", "-c"]
+RUN PGDATA="${PGDATA//\/workspace/$HOME}" \
+ && mkdir -p ~/.pg_ctl/bin ~/.pg_ctl/sockets $PGDATA \
+ && initdb -D $PGDATA \
+ && printf '#!/bin/bash\npg_ctl -D $PGDATA -l ~/.pg_ctl/log -o "-k ~/.pg_ctl/sockets" start\n' > ~/.pg_ctl/bin/pg_start \
+ && printf '#!/bin/bash\npg_ctl -D $PGDATA -l ~/.pg_ctl/log -o "-k ~/.pg_ctl/sockets" stop\n' > ~/.pg_ctl/bin/pg_stop \
+ && chmod +x ~/.pg_ctl/bin/*
+ENV PATH="$HOME/.pg_ctl/bin:$PATH"
+ENV DATABASE_URL="postgresql://gitpod@localhost"
+ENV PGHOSTADDR="127.0.0.1"
+ENV PGPASSWORD="postgres"
+ENV PGDATABASE="postgres"
+COPY --chown=gitpod:gitpod scripts/postgresql-hook.bash $HOME/.bashrc.d/200-postgresql-launch
 
 # Install .NET
 # Ref: https://github.com/gitpod-io/workspace-images/blob/main/chunks/tool-dotnet/Dockerfile
