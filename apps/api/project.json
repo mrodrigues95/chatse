@@ -41,6 +41,27 @@
         "output": "libs/generated/api-swagger/swagger.json"
       },
       "dependsOn": ["build"]
+    },
+    "migrations-add": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "dotnet ef migrations add",
+        "cwd": "apps/api"
+      }
+    },
+    "migrations-remove": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "dotnet ef migrations remove",
+        "cwd": "apps/api"
+      }
+    },
+    "migrations-update": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "dotnet ef database update",
+        "cwd": "apps/api"
+      }
     }
   },
   "tags": []
