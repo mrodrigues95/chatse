@@ -30,7 +30,6 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
       # - run: pnpm format:check
-      - run: pnpm affected:tsc -- --parallel --max-parallel=3
-      - run: pnpm affected:lint -- --parallel --max-parallel=3
-      # - run: pnpm exec nx affected --target=test --parallel --max-parallel=3
-      # - run: pnpm exec nx affected --target=build --parallel --max-parallel=3
+      - run: pnpm affected:tsc --parallel=3
+      - run: pnpm affected:lint --parallel=3
+      # - run: pnpm affected:build --parallel=3
