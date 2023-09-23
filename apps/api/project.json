@@ -32,7 +32,10 @@
       }
     },
     "lint": {
-      "executor": "@nx-dotnet/core:format"
+      "executor": "@nx-dotnet/core:format",
+      "options": {
+        "forwardAllArgs": false
+      }
     },
     "swagger": {
       "executor": "@nx-dotnet/core:update-swagger",
