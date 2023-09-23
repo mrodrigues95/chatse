@@ -32,14 +32,11 @@
       }
     },
     "lint": {
-      "executor": "@nx-dotnet/core:format",
-      "options": {
-        "forwardAllArgs": false
-      }
+      "executor": "@nx-dotnet/core:format"
     },
     "swagger": {
       "executor": "@nx-dotnet/core:update-swagger",
-      "outputs": ["options.output"],
+      "outputs": ["{workspaceRoot}/options.output"],
       "options": {
         "output": "libs/generated/api-swagger/swagger.json"
       },

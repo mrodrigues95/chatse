@@ -1,3 +1,5 @@
+using FastEndpoints.Swagger;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Configure the database.
@@ -13,19 +15,25 @@ builder.Services.AddIdentityCore<AppUser>()
     .AddRoles<IdentityRole<int>>()
     .AddEntityFrameworkStores<AppDbContext>();
 
+builder.Services.AddFastEndpoints();
+builder.Services.SwaggerDocument();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+app.UseFastEndpoints();
+
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    // app.UseOpenApi();
+    // app.UseSwaggerUi3();
+
+    app.UseSwaggerGen();
+    // app.UseSwagger();
+    // app.UseSwaggerUI();
 }
 
 // app.UseHttpsRedirection();
-
-app.Map("/", () => Results.Redirect("/swagger"));
 
 app.Run();
