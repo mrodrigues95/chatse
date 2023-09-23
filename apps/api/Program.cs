@@ -1,8 +1,3 @@
-using Api.Data;
-using Api.Data.Entities;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Configure the database.

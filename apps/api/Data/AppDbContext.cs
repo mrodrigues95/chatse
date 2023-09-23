@@ -1,9 +1,3 @@
-using System.Reflection;
-using Api.Data.Entities;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-
 namespace Api.Data;
 
 public class AppDbContext : IdentityDbContext<AppUser, IdentityRole<int>, int>
