@@ -3,11 +3,6 @@
   "ignorePatterns": ["**/*"],
   "extends": ["prettier", "plugin:tailwindcss/recommended"],
   "plugins": ["@nx"],
-  // "settings": {
-  //   "tailwindcss": {
-  //     "config": "tailwind.config.js"
-  //   }
-  // },
   "rules": {
     "tailwindcss/no-custom-classname": "off",
     "tailwindcss/classnames-order": "error"

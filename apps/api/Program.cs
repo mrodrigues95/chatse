@@ -26,12 +26,7 @@ app.UseFastEndpoints();
 
 if (app.Environment.IsDevelopment())
 {
-    // app.UseOpenApi();
-    // app.UseSwaggerUi3();
-
     app.UseSwaggerGen();
-    // app.UseSwagger();
-    // app.UseSwaggerUI();
 }
 
 // app.UseHttpsRedirection();

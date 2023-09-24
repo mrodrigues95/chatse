@@ -22,8 +22,7 @@
 		"^(next/(.*)$)|^(next$)",
 		"<THIRD_PARTY_MODULES>",
 		"",
-		"^~/src/(.*)$",
-		"^[./]"
+		"^[.]"
 	],
 	"importOrderParserPlugins": ["typescript", "jsx", "decorators-legacy"],
 	"overrides": [
