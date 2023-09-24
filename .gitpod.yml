@@ -40,6 +40,10 @@ ports:
     description: The PostgreSQL database instance
     port: 5432
     onOpen: ignore
+  - name: NX Graph
+    description: The NX dependency graph app
+    port: 4211
+    onOpen: ignore
 
 vscode:
   extensions:
@@ -47,6 +51,7 @@ vscode:
     - esbenp.prettier-vscode
     - bradlc.vscode-tailwindcss
     - muhammad-sammy.csharp
+    - ms-dotnettools.vscode-dotnet-runtime
 
 github:
   prebuilds:
