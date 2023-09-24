@@ -1,3 +1,3 @@
 export function generatedApiTypes(): string {
-	return 'generated-api-types';
+  return 'generated-api-types';
 }
