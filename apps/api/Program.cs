@@ -29,6 +29,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerGen();
 }
 
+app.Map("/", () => Results.Redirect("/swagger"));
+
 // app.UseHttpsRedirection();
 
 app.Run();

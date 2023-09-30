@@ -15,6 +15,9 @@ tasks:
   - name: Web
     init: gp sync-await install
     command: nx serve web
+  - name: Toolkit
+    init: gp sync-await install
+    command: nx run toolkit:storybook
   - name: Getting Started
     command: |
       echo Your environment is starting soon...
@@ -22,6 +25,7 @@ tasks:
       echo [API URL - HTTP]: "$(gp url 5000)"
       echo [API URL - HTTPS]: "$(gp url 5001)"
       echo [Web URL]: "$(gp url 3000)"
+      echo [Toolkit URL]: "$(gp url 4400)"
 
 ports:
   - name: Web App
@@ -41,8 +45,12 @@ ports:
     port: 5432
     onOpen: ignore
   - name: NX Graph
-    description: The NX dependency graph app
+    description: The NX dependency graph server
     port: 4211
+    onOpen: ignore
+  - name: Toolkit
+    description: The Storybook server
+    port: 4400
     onOpen: ignore
 
 vscode:
