@@ -27,7 +27,8 @@
     "strictNullChecks": true,
     "baseUrl": ".",
     "paths": {
-      "@chatse/generated/api-types": ["libs/generated/api-types/src/index.ts"]
+      "@chatse/generated/api-types": ["libs/generated/api-types/src/index.ts"],
+      "toolkit": ["libs/toolkit/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
