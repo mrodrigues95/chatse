@@ -1,19 +1,10 @@
+using Api.Extensions;
 using FastEndpoints.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configure the database.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<AppDbContext>(opts =>
-{
-    opts.UseNpgsql(connectionString);
-    opts.UseSnakeCaseNamingConvention();
-});
-
-// Configure identity.
-builder.Services.AddIdentityCore<AppUser>()
-    .AddRoles<IdentityRole<int>>()
-    .AddEntityFrameworkStores<AppDbContext>();
+builder.AddApplicationServices();
+builder.AddIdentityServices();
 
 builder.Services.AddFastEndpoints();
 builder.Services.SwaggerDocument();
@@ -22,14 +13,21 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+using var scope = app.Services.CreateScope();
+var seeder = scope.ServiceProvider.GetRequiredService<IAppDbContextSeeder>();
+
 app.UseFastEndpoints();
 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwaggerGen();
+    await seeder.SeedAsync();
 }
 
 app.Map("/", () => Results.Redirect("/swagger"));
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 // app.UseHttpsRedirection();
 
