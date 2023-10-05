@@ -1,6 +1,6 @@
 namespace Api.Data;
 
-public class AppDbContextSeeder : IAppDbContextSeeder
+public sealed class AppDbContextSeeder : IAppDbContextSeeder
 {
     private readonly AppDbContext _ctx;
     private readonly UserManager<AppUser> _userManager;
@@ -13,13 +13,16 @@ public class AppDbContextSeeder : IAppDbContextSeeder
 
     public async Task SeedAsync()
     {
-        await _ctx.Database.MigrateAsync();
+        if ((await _ctx.Database.GetPendingMigrationsAsync()).Any())
+        {
+            await _ctx.Database.MigrateAsync();
+        }
 
         if (!await _userManager.Users.AnyAsync())
         {
             foreach (var user in GetPreconfiguredUsers())
             {
-                await _userManager.CreateAsync(user, "pwd");
+                await _userManager.CreateAsync(user, "rootdev");
             }
 
             await _ctx.SaveChangesAsync();
