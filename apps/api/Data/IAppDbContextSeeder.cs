@@ -1,5 +1,6 @@
 namespace Api.Data;
 
-public interface IAppDbContextSeeder {
+public interface IAppDbContextSeeder
+{
     Task SeedAsync();
 }
