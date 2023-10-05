@@ -7,9 +7,7 @@
   "paths": {
     "/api/users/{id}": {
       "get": {
-        "tags": [
-          "Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
-        ],
+        "tags": ["Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"],
         "operationId": "ApiEndpointsTestQueriesGetByIdGetById",
         "responses": {
           "200": {
