@@ -7,7 +7,7 @@ builder.AddApplicationServices();
 builder.AddIdentityServices();
 
 builder.Services.AddFastEndpoints();
-builder.Services.SwaggerDocument();
+builder.Services.SwaggerDocument(opts => opts.ShortSchemaNames = true);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -24,11 +24,10 @@ if (app.Environment.IsDevelopment())
     await seeder.SeedAsync();
 }
 
-app.Map("/", () => Results.Redirect("/swagger"));
-
 app.UseAuthentication();
 app.UseAuthorization();
-
 // app.UseHttpsRedirection();
+
+app.Map("/", () => Results.Redirect("/swagger"));
 
 app.Run();

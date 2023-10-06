@@ -6,8 +6,6 @@ public static class IdentityServiceExtensions
 {
     public static WebApplicationBuilder AddIdentityServices(this WebApplicationBuilder builder)
     {
-        builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
-
         builder.Services.AddIdentityCore<AppUser>(opts =>
         {
             opts.User.RequireUniqueEmail = true;
@@ -23,17 +21,22 @@ public static class IdentityServiceExtensions
         })
         .AddRoles<IdentityRole<int>>()
         .AddEntityFrameworkStores<AppDbContext>()
-        .AddDefaultTokenProviders();
+        .AddDefaultTokenProviders()
+        .AddRoleManager<RoleManager<IdentityRole<int>>>()
+        .AddUserManager<UserManager<AppUser>>()
+        .AddSignInManager<SignInManager<AppUser>>();
 
-        builder.Services.ConfigureApplicationCookie(opts =>
+        builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie("Identity.Application", opts =>
         {
-            opts.Cookie.Name = "CHATSE_IDENTITY";
+            opts.Cookie.Name = "identity";
             opts.Cookie.HttpOnly = true;
             opts.Cookie.SameSite = SameSiteMode.Strict;
             opts.Cookie.SecurePolicy = CookieSecurePolicy.Always;
             opts.ExpireTimeSpan = TimeSpan.FromDays(7);
             opts.SlidingExpiration = true;
         });
+
+        builder.Services.AddAuthorization();
 
         return builder;
     }

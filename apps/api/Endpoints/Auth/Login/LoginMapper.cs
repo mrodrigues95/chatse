@@ -4,6 +4,8 @@ public class LoginMapper : Mapper<LoginRequest, LoginResponse, AppUser>
 {
     public override LoginResponse FromEntity(AppUser user) => new()
     {
-        Message = "test"
+        Id = user.Id,
+        Email = user.Email!,
+        IsTwoFactorEnabled = user.TwoFactorEnabled
     };
 }
