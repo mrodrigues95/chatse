@@ -6,28 +6,31 @@ public static class IdentityServiceExtensions
 {
     public static WebApplicationBuilder AddIdentityServices(this WebApplicationBuilder builder)
     {
-        builder.Services.AddIdentityCore<AppUser>(opts =>
-            {
-                opts.User.RequireUniqueEmail = true;
+        builder.Services
+            .AddIdentity<AppUser, IdentityRole<int>>(opts =>
+                {
+                    opts.User.RequireUniqueEmail = true;
 
-                opts.SignIn.RequireConfirmedEmail = false;
-                opts.SignIn.RequireConfirmedAccount = false;
+                    opts.SignIn.RequireConfirmedEmail = false;
+                    opts.SignIn.RequireConfirmedAccount = false;
 
-                opts.Password.RequireNonAlphanumeric = false;
-                opts.Password.RequireDigit = false;
-                opts.Password.RequireUppercase = false;
-                opts.Password.RequireLowercase = false;
-                opts.Password.RequiredLength = 6;
-            })
-        .AddRoles<IdentityRole<int>>()
-        .AddEntityFrameworkStores<AppDbContext>()
-        .AddDefaultTokenProviders()
-        .AddRoleManager<RoleManager<IdentityRole<int>>>()
-        .AddUserManager<UserManager<AppUser>>()
-        .AddSignInManager<SignInManager<AppUser>>();
+                    opts.Password.RequireNonAlphanumeric = false;
+                    opts.Password.RequireDigit = false;
+                    opts.Password.RequireUppercase = false;
+                    opts.Password.RequireLowercase = false;
+                    opts.Password.RequiredLength = 6;
+                })
+            .AddEntityFrameworkStores<AppDbContext>()
+            .AddDefaultTokenProviders();
 
-        builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-        .AddCookie("Identity.Application", opts =>
+
+        builder.Services
+            .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie();
+
+        builder.Services.AddAuthorization();
+
+        builder.Services.ConfigureApplicationCookie(opts =>
             {
                 opts.Cookie.Name = "identity";
                 opts.Cookie.HttpOnly = true;
@@ -35,9 +38,22 @@ public static class IdentityServiceExtensions
                 opts.Cookie.SecurePolicy = CookieSecurePolicy.Always;
                 opts.ExpireTimeSpan = TimeSpan.FromDays(7);
                 opts.SlidingExpiration = true;
-            });
 
-        builder.Services.AddAuthorization();
+                opts.Events = new CookieAuthenticationEvents()
+                {
+                    OnRedirectToLogin = (ctx) =>
+                    {
+                        ctx.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                        return Task.CompletedTask;
+                    },
+                    OnRedirectToAccessDenied = (ctx) =>
+                    {
+
+                        ctx.Response.StatusCode = StatusCodes.Status403Forbidden;
+                        return Task.CompletedTask;
+                    }
+                };
+            });
 
         return builder;
     }

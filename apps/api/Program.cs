@@ -23,17 +23,16 @@ var app = builder.Build();
 using var scope = app.Services.CreateScope();
 var seeder = scope.ServiceProvider.GetRequiredService<IAppDbContextSeeder>();
 
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseFastEndpoints();
+// app.UseHttpsRedirection();
 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwaggerGen();
     await seeder.SeedAsync();
 }
-
-app.UseAuthentication();
-app.UseAuthorization();
-// app.UseHttpsRedirection();
 
 app.Map("/", () => Results.Redirect("/swagger"));
 

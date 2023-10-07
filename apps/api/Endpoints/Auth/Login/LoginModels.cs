@@ -18,9 +18,9 @@ public class LoginEndpointSummary : Summary<LoginEndpoint>
 /// <param name="Password">The password of the user wishing to authenticate.</param>
 public record LoginRequest(string Email, string Password);
 
-/// <param name="Id">The unique identifier for the authenticated user.</param>
-/// <param name="Email">The email address for the authenticated user.</param>
-/// <param name="IsTwoFactorEnabled">If <c>true</c>, two-factor authenticated is enabled for the authenticated user.</param>
+/// <param name="Id">The unique identifier for the user.</param>
+/// <param name="Email">The email address for the user.</param>
+/// <param name="IsTwoFactorEnabled">If <c>true</c>, two-factor authenticated is enabled for the user.</param>
 public record LoginResponse(int Id, string Email, bool IsTwoFactorEnabled);
 
 public class LoginValidator : Validator<LoginRequest>
