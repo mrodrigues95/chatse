@@ -1,5 +1,5 @@
 export interface LoginResponse {
   id: number;
-  email?: string;
+  email: string;
   isTwoFactorEnabled: boolean;
 }

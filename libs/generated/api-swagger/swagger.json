@@ -20,16 +20,6 @@
           "required": true
         },
         "responses": {
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          },
           "200": {
             "description": "Success",
             "content": {
@@ -40,12 +30,22 @@
               }
             }
           },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
           "401": {
             "description": "Unauthorized",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+                  "$ref": "#/components/schemas/UnauthorizedHttpResult"
                 }
               }
             }
@@ -64,8 +64,7 @@
             "format": "int32"
           },
           "message": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "errors": {
             "type": "object",
@@ -74,8 +73,7 @@
               "items": {
                 "type": "string"
               }
-            },
-            "nullable": true
+            }
           }
         },
         "additionalProperties": false
@@ -84,12 +82,10 @@
         "type": "object",
         "properties": {
           "email": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "password": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -102,11 +98,21 @@
             "format": "int32"
           },
           "email": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "isTwoFactorEnabled": {
             "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UnauthorizedHttpResult": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
           }
         },
         "additionalProperties": false

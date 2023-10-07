@@ -7,9 +7,16 @@ builder.AddApplicationServices();
 builder.AddIdentityServices();
 
 builder.Services.AddFastEndpoints();
-builder.Services.SwaggerDocument(opts => opts.ShortSchemaNames = true);
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.SwaggerDocument(opts =>
+{
+    opts.ShortSchemaNames = true;
+
+});
+builder.Services.AddSwaggerGen(opts =>
+{
+    opts.SupportNonNullableReferenceTypes();
+});
 
 var app = builder.Build();
 
