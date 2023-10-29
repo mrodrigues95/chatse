@@ -6,11 +6,13 @@ public static class ApplicationServiceExtensions
     {
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-        builder.Services.AddDbContext<AppDbContext>(opts =>
+        builder.Services.AddDbContextPool<AppDbContext>(opts =>
         {
             opts.UseNpgsql(connectionString);
             opts.UseSnakeCaseNamingConvention();
         });
+
+        builder.Services.AddCors();
 
         builder.Services.AddScoped<IAppDbContextSeeder, AppDbContextSeeder>();
 

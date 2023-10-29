@@ -31,14 +31,6 @@
     "lint": {
       "executor": "@nx-dotnet/core:format"
     },
-    "swagger": {
-      "executor": "@nx-dotnet/core:update-swagger",
-      "outputs": ["{workspaceRoot}/options.output"],
-      "options": {
-        "output": "libs/generated/api-swagger/swagger.json"
-      },
-      "dependsOn": ["build"]
-    },
     "migrations-add": {
       "executor": "nx:run-commands",
       "options": {

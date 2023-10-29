@@ -1,39 +1,28 @@
 using Api.Extensions;
-using FastEndpoints.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddApplicationServices();
+builder.AddHotChocolateServices();
 builder.AddIdentityServices();
-
-builder.Services.AddFastEndpoints();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.SwaggerDocument(opts =>
-{
-    opts.ShortSchemaNames = true;
-
-});
-builder.Services.AddSwaggerGen(opts =>
-{
-    opts.SupportNonNullableReferenceTypes();
-});
 
 var app = builder.Build();
 
 using var scope = app.Services.CreateScope();
 var seeder = scope.ServiceProvider.GetRequiredService<IAppDbContextSeeder>();
 
+app.UseRouting();
+app.UseCors(c => c.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseFastEndpoints();
-// app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.MapGraphQL("/api/graphql");
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwaggerGen();
     await seeder.SeedAsync();
 }
 
-app.Map("/", () => Results.Redirect("/swagger"));
+app.Map("/", () => Results.Redirect("/api/graphql"));
 
-app.Run();
+app.RunWithGraphQLCommands(args);
