@@ -11,7 +11,6 @@ var app = builder.Build();
 using var scope = app.Services.CreateScope();
 var seeder = scope.ServiceProvider.GetRequiredService<IAppDbContextSeeder>();
 
-app.UseRouting();
 app.UseCors(c => c.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 app.UseAuthentication();
 app.UseAuthorization();

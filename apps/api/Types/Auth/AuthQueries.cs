@@ -1,11 +1,10 @@
 namespace Api.Types.Auth;
 
 [QueryType]
-public class AuthQueries
+public sealed class AuthQueries
 {
-    public async Task<AppUser?> GetMeAsync(
-        [GlobalState] int? userId,
-        AppDbContext ctx,
-        CancellationToken cancellationToken) =>
-        userId is null ? null : await ctx.Users.Where(x => x.Id == userId).SingleOrDefaultAsync(cancellationToken);
+    [UseSingleOrDefault]
+    [UseProjection]
+    public IQueryable<AppUser>? GetMe([GlobalState] int? userId, AppDbContext ctx) =>
+        userId is null ? null : ctx.Users.Where(x => x.Id == userId);
 }
