@@ -4,6 +4,7 @@ image:
 tasks:
   - name: Setup
     init: |
+      dotnet tool restore
       dotnet dev-certs https
       pnpm install
       gp sync-done install

@@ -28,8 +28,7 @@ public sealed class AuthMutations
 
         var user = new AppUser
         {
-            // TODO: Add name to `AppUser`.
-            // Name = input.Name,
+            Name = input.Name,
             Email = input.Email
         };
 
@@ -50,8 +49,7 @@ public sealed class AuthMutations
         return new AuthPayload(user, true);
     }
 
-
-    [Error(typeof(LoginUserException))]
+    [Error<LoginUserException>]
     public async Task<AuthPayload> LoginAsync(
         LoginInput input,
         UserManager<AppUser> userManager,

@@ -34,7 +34,8 @@ public sealed class AppDbContextSeeder : IAppDbContextSeeder
         return new List<AppUser>() {
                 new () {
                     UserName = "root@dev.com",
-                    Email = "root@dev.com"
+                    Email = "root@dev.com",
+                    Name = "Root Dev"
                 }
             };
     }

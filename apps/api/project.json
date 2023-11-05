@@ -34,7 +34,7 @@
     "migrations-add": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "dotnet ef migrations add",
+        "command": "dotnet ef migrations add --msbuildprojectextensionspath ../../dist/intermediates/apps/api/obj",
         "cwd": "apps/api"
       }
     },

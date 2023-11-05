@@ -1,9 +1,25 @@
 namespace Api.Types.User;
 
+public sealed class UserType : ObjectType<AppUser>
+{
+    protected override void Configure(IObjectTypeDescriptor<AppUser> descriptor)
+    {
+        descriptor.BindFieldsExplicitly();
+
+        descriptor
+            .Field(x => x.Email)
+            .Type<NonNullType<StringType>>();
+
+        descriptor
+            .Field(u => u.Name)
+            .Type<NonNullType<StringType>>();
+    }
+}
+
 [Node]
-[ExtendObjectType(typeof(AppUser))]
+[ExtendObjectType<UserType>]
 public sealed class UserNode
 {
     [ID]
-    public int GetId([Parent] AppUser user) => user.Id;
+    public Guid GetId([Parent] AppUser user) => user.Guid;
 }

@@ -26,7 +26,9 @@ public static class HotChocolateServiceExtensions
             .RegisterService<UserManager<AppUser>>(ServiceKind.Resolver)
             .RegisterService<SignInManager<AppUser>>(ServiceKind.Resolver)
             .RegisterDbContext<AppDbContext>()
-            .ModifyOptions(o => o.EnableDefer = true)
+            .ModifyOptions(o => {
+                o.EnableDefer = true;
+            })
             .SetPagingOptions(new PagingOptions { MaxPageSize = 100, IncludeTotalCount = false });
 
         return builder;
