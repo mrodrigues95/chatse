@@ -17,6 +17,7 @@ public static class HotChocolateServiceExtensions
             .AddAuthorization()
             .AddGlobalObjectIdentification()
             .AddMutationConventions()
+            .AddFairyBread()
             .AddHttpRequestInterceptor<CustomHttpRequestInterceptor>()
             .AddInstrumentation(o =>
                 {

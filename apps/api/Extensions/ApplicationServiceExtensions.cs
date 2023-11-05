@@ -13,6 +13,7 @@ public static class ApplicationServiceExtensions
         });
 
         builder.Services.AddCors();
+        builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 
         builder.Services.AddScoped<IAppDbContextSeeder, AppDbContextSeeder>();
 
