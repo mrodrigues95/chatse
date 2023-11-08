@@ -2,10 +2,7 @@ namespace Api.Data;
 
 public class AppDbContext : IdentityDbContext<AppUser, IdentityRole<int>, int>
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options)
-     : base(options)
-    {
-    }
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
     public override DbSet<AppUser> Users { get; set; } = default!;
 

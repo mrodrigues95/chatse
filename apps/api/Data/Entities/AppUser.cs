@@ -1,6 +1,8 @@
+using Api.Primitives;
+
 namespace Api.Data.Entities;
 
-public class AppUser : IdentityUser<int>
+public class AppUser : IdentityUser<int>, IAuditableEntity
 {
     public Guid Guid { get; set; } = Guid.NewGuid();
     public required string Name { get; set; }
