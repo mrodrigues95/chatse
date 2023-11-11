@@ -1,5 +1,4 @@
 using Api.Primitives;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Api.Data.Interceptors;
@@ -11,9 +10,7 @@ public sealed class AuditingInterceptor : SaveChangesInterceptor
         InterceptionResult<int> result,
         CancellationToken cancellationToken = default)
     {
-        var entries = eventData.Context?.ChangeTracker.Entries<IAuditableEntity>();
-        UpdateAuditableEntries(entries);
-
+        UpdateAuditableEntities(eventData.Context);
         return base.SavingChangesAsync(eventData, result, cancellationToken);
     }
 
@@ -21,29 +18,27 @@ public sealed class AuditingInterceptor : SaveChangesInterceptor
         DbContextEventData eventData,
         InterceptionResult<int> result)
     {
-        var entries = eventData.Context?.ChangeTracker.Entries<IAuditableEntity>();
-        UpdateAuditableEntries(entries);
-
+        UpdateAuditableEntities(eventData.Context);
         return base.SavingChanges(eventData, result);
     }
 
-    private void UpdateAuditableEntries(IEnumerable<EntityEntry<IAuditableEntity>>? entries)
+    private void UpdateAuditableEntities(DbContext? context)
     {
-        if (entries is null)
+        if (context is null)
         {
             return;
         }
 
-        foreach (var entry in entries)
+        foreach (var entry in context.ChangeTracker.Entries<IAuditableEntity>())
         {
             if (entry.State == EntityState.Added)
             {
-                entry.Property(x => x.CreatedAt).CurrentValue = DateTime.UtcNow;
+                entry.Entity.CreatedAt = DateTime.UtcNow;
             }
 
             if (entry.State == EntityState.Modified)
             {
-                entry.Property(x => x.UpdatedAt).CurrentValue = DateTime.UtcNow;
+                entry.Entity.UpdatedAt = DateTime.UtcNow;
             }
         }
     }

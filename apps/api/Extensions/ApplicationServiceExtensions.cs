@@ -1,4 +1,5 @@
 using Api.Data.Interceptors;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Api.Extensions;
 

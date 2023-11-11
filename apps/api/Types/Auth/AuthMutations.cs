@@ -32,17 +32,17 @@ public sealed class AuthMutations
             Email = input.Email
         };
 
-        var createUser = await userManager.CreateAsync(user, input.Password);
-        if (!createUser.Succeeded)
+        var createUserResult = await userManager.CreateAsync(user, input.Password);
+        if (!createUserResult.Succeeded)
         {
-            _logger.LogError("Unable to create new user for: {user}. Result: {result}", user, createUser);
+            _logger.LogError("Unable to create new user for: {user}. Result: {result}", user, createUserResult);
             throw new SignupNewUserException();
         }
 
-        var loginUser = await signInManager.PasswordSignInAsync(user, input.Password, true, false);
-        if (!loginUser.Succeeded)
+        var loginUserResult = await signInManager.PasswordSignInAsync(user, input.Password, true, false);
+        if (!loginUserResult.Succeeded)
         {
-            _logger.LogError("Unable to sign in user for {user}. Result: {result}", user, loginUser);
+            _logger.LogError("Unable to sign in user for {user}. Result: {result}", user, loginUserResult);
             throw new SignupNewUserException();
         }
 
