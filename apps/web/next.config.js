@@ -8,10 +8,6 @@ const { composePlugins, withNx } = require('@nx/next');
  **/
 const nextConfig = {
   reactStrictMode: true,
-  experimental: {
-    appDir: true,
-    serverActions: true,
-  },
   nx: {
     // Set this to true if you would like to to use SVGR
     // See: https://github.com/gregberge/svgr
