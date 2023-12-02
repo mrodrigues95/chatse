@@ -34,13 +34,6 @@
         "exclude": ["apps/api/Data/Migrations"]
       }
     },
-    "lint-fix": {
-      "executor": "@nx-dotnet/core:format",
-      "options": {
-        "fix": true,
-        "exclude": ["apps/api/Data/Migrations"]
-      }
-    },
     "migrations-add": {
       "executor": "nx:run-commands",
       "options": {
