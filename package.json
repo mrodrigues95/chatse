@@ -42,7 +42,7 @@
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.1.0",
     "@nrwl/js": "17.1.3",
-    "@nx-dotnet/core": "^1.22.0",
+    "@nx-dotnet/core": "^2.1.2",
     "@nx/eslint": "17.1.3",
     "@nx/eslint-plugin": "17.1.3",
     "@nx/jest": "17.1.3",
