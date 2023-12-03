@@ -30,7 +30,7 @@
           "buildTarget": "web:build:development",
           "dev": true,
           "port": 3000,
-          "turbo": true
+          "turbo": false
         },
         "production": {
           "buildTarget": "web:build:production",

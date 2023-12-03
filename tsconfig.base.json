@@ -27,7 +27,7 @@
     "strictNullChecks": true,
     "baseUrl": ".",
     "paths": {
-      "toolkit": ["libs/toolkit/src/index.ts"]
+      "@chatse/toolkit": ["libs/toolkit/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
