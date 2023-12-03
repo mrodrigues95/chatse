@@ -12,6 +12,14 @@
         "lintFilePatterns": ["libs/toolkit/**/*.{ts,tsx,js,jsx}"]
       }
     },
+    "tsc": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --noEmit --project tsconfig.json",
+        "cwd": "libs/toolkit",
+        "forwardAllArgs": false
+      }
+    },
     "build": {
       "executor": "@nx/vite:build",
       "outputs": ["{options.outputPath}"],

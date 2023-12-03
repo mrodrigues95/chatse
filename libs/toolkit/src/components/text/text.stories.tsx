@@ -19,7 +19,7 @@ const TextWithVariants = () => (
     <Text variant="h4">This is heading level 4.</Text>
     <Text variant="h5">This is heading level 5.</Text>
     <Text variant="h6">This is heading level 6.</Text>
-    <Text variant="p">This is a paragraph.</Text>
+    <Text variant="p">This is a paragraph..</Text>
   </div>
 );
 
