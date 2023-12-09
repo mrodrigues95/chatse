@@ -1,3 +1,5 @@
+'use client';
+
 import { forwardRef, HTMLAttributes } from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, VariantProps } from 'class-variance-authority';
@@ -7,7 +9,7 @@ import { cn } from '../../utils/cn';
 const textVariants = cva('text-slate-900', {
   variants: {
     variant: {
-      h1: 'text-4xl font-extrabold tracking-tight',
+      h1: 'text-4xl font-semibold tracking-tight',
       h2: 'text-3xl font-semibold tracking-tight',
       h3: 'text-2xl font-semibold tracking-tight',
       h4: 'text-xl font-semibold tracking-tight',

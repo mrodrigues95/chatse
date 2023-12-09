@@ -1,12 +1,10 @@
-'use client';
-
 import '../src/styles/globals.css';
 
 import { ReactNode } from 'react';
 import { Inter as FontSans } from 'next/font/google';
-import { useLocale } from 'react-aria';
 
 import { cn } from '@chatse/toolkit';
+import { RootProvider } from './root-provider';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -14,12 +12,10 @@ const fontSans = FontSans({
 });
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
-  const { locale, direction } = useLocale();
-
   return (
-    <html lang={locale} dir={direction}>
+    <html lang="en-US" dir="ltr">
       <body className={cn('flex min-h-screen flex-col font-sans antialiased', fontSans.variable)}>
-        {children}
+        <RootProvider>{children}</RootProvider>
       </body>
     </html>
   );

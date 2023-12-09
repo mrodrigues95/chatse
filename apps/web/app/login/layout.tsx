@@ -1,12 +1,7 @@
 import { ReactNode } from 'react';
 
-const LoginLayout = ({ children }: { children: ReactNode }) => {
-  return (
-    <main className="flex flex-1 items-center justify-center">
-      <h1 className="text-xl font-bold tracking-tight text-slate-900">Sign In</h1>
-      {children}
-    </main>
-  );
-};
+const LoginLayout = ({ children }: { children: ReactNode }) => (
+  <main className="flex flex-1 flex-col items-center justify-center">{children}</main>
+);
 
 export default LoginLayout;
