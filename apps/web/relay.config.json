@@ -1,0 +1,17 @@
+{
+  "root": ".",
+  "sources": {
+    "src": "chatse_web",
+    "app": "chatse_web"
+  },
+  "projects": {
+    "chatse_web": {
+      "language": "typescript",
+      "schema": "schema.graphql",
+      "output": "__generated__",
+      "useImportTypeSyntax": true,
+      "eagerEsModules": true,
+      "featureFlags": {}
+    }
+  }
+}

@@ -16,14 +16,16 @@
           "outputPath": "apps/web"
         },
         "production": {}
-      }
+      },
+      "dependsOn": ["relay-validate"]
     },
     "serve": {
       "executor": "@nx/next:server",
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "web:build",
-        "dev": true
+        "dev": true,
+        "command": "mkdir -p __generated__"
       },
       "configurations": {
         "development": {
@@ -36,7 +38,8 @@
           "buildTarget": "web:build:production",
           "dev": false
         }
-      }
+      },
+      "dependsOn": ["relay-watch"]
     },
     "export": {
       "executor": "@nx/next:export",
@@ -64,6 +67,20 @@
         "command": "tsc --noEmit --project tsconfig.json",
         "cwd": "apps/web",
         "forwardAllArgs": false
+      }
+    },
+    "relay-watch": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "mkdir -p __generated__ && relay-compiler --watch",
+        "cwd": "apps/web"
+      }
+    },
+    "relay-validate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "relay-compiler --validate",
+        "cwd": "apps/web"
       }
     }
   },
