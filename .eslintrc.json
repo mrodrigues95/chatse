@@ -1,8 +1,8 @@
 {
   "root": true,
   "ignorePatterns": ["**/*"],
-  "extends": ["prettier", "plugin:tailwindcss/recommended"],
-  "plugins": ["@nx"],
+  "extends": ["prettier", "plugin:tailwindcss/recommended", "plugin:relay/recommended"],
+  "plugins": ["@nx", "relay"],
   "rules": {
     "tailwindcss/no-custom-classname": "off",
     "tailwindcss/classnames-order": "error"

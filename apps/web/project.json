@@ -24,8 +24,7 @@
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "web:build",
-        "dev": true,
-        "command": "mkdir -p __generated__"
+        "dev": true
       },
       "configurations": {
         "development": {
@@ -69,18 +68,23 @@
         "forwardAllArgs": false
       }
     },
+    "relay": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "mkdir -p __generated__ && relay-compiler",
+        "cwd": "apps/web"
+      }
+    },
     "relay-watch": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "mkdir -p __generated__ && relay-compiler --watch",
-        "cwd": "apps/web"
+        "command": "nx run web:relay --watch"
       }
     },
     "relay-validate": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "relay-compiler --validate",
-        "cwd": "apps/web"
+        "command": "nx run web:relay --validate"
       }
     }
   },

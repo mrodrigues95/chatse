@@ -54,6 +54,13 @@
         "command": "dotnet ef database update",
         "cwd": "apps/api"
       }
+    },
+    "export-schema-web": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "dotnet run -- schema export --output ../../apps/web/schema.graphql",
+        "cwd": "apps/api"
+      }
     }
   },
   "tags": []
