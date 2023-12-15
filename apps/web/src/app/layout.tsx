@@ -1,4 +1,4 @@
-import '../src/styles/globals.css';
+import '../styles/globals.css';
 
 import { ReactNode } from 'react';
 import { Inter as FontSans } from 'next/font/google';

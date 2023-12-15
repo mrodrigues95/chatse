@@ -3,8 +3,8 @@
 import { commitMutation, graphql } from 'relay-runtime';
 import { z, ZodError } from 'zod';
 
-import { actionsLoginMutation } from '../../__generated__/actionsLoginMutation.graphql';
-import { getRelayEnvironment } from '../../src/relay/environment';
+import { actionsLoginMutation } from '../../../__generated__/actionsLoginMutation.graphql';
+import { getRelayEnvironment } from '../../utils/relay/environment';
 
 const schema = z.object({
   email: z.string().email(),

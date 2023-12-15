@@ -10,7 +10,7 @@ const nextConfig = {
   reactStrictMode: true,
   compiler: {
     relay: {
-      src: './',
+      src: 'src',
       language: 'typescript',
       artifactDirectory: '__generated__',
     },

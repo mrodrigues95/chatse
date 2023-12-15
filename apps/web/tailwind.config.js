@@ -6,7 +6,7 @@ const path = require('path');
 module.exports = {
   presets: [require('../../tailwind-workspace-preset.js')],
   content: [
-    path.join(__dirname, '{src,app}/**/*!(*.stories|*.spec).{js,jsx,ts,tsx,html,css}'),
+    path.join(__dirname, 'src/**/*!(*.stories|*.spec).{js,jsx,ts,tsx,html,css}'),
     ...createGlobPatternsForDependencies(__dirname),
   ],
   darkMode: 'class',

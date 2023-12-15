@@ -1,8 +1,7 @@
 {
   "root": ".",
   "sources": {
-    "src": "chatse_web",
-    "app": "chatse_web"
+    "src": "chatse_web"
   },
   "projects": {
     "chatse_web": {
