@@ -11,8 +11,10 @@ export const Form = ({ className, onSubmit, ...props }: FormProps) => (
   <AriaForm
     className={cn('space-y-4', className)}
     onSubmit={e => {
-      e.preventDefault();
-      return onSubmit?.(e);
+      if (onSubmit) {
+        e.preventDefault();
+        return onSubmit?.(e);
+      }
     }}
     {...props}
   />

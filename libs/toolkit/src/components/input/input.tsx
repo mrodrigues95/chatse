@@ -27,12 +27,10 @@ export interface InputProps extends AriaTextFieldProps {
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
-      type = 'text',
       label,
       description,
       errorMessage,
       placeholder,
-      name,
       isRequired,
       labelProps,
       inputProps,
@@ -42,7 +40,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     ref,
   ) => (
     <AriaTextField
-      type={type}
       isRequired={isRequired}
       className={cn('group flex w-full max-w-sm flex-col gap-2', className)}
       {...props}

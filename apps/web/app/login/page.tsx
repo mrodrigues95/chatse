@@ -1,16 +1,22 @@
 'use client';
 
+import { useFormState } from 'react-dom';
+
 import { Button, Form, Text } from '@chatse/toolkit';
 import { Link } from '../../src/components/link';
+import { login } from './actions';
 
 const Login = () => {
+  const [{ result, validationErrors }, formAction] = useFormState(login, {});
+
   return (
     <section className="flex flex-1 flex-col items-center justify-center">
       <div className="w-full max-w-sm">
         <Text variant="h1" className="mb-8 text-center">
           Sign In
         </Text>
-        <Form className="w-full">
+        {validationErrors || !!result?.login?.errors ? <div role="alert">test error</div> : null}
+        <Form action={formAction} className="w-full">
           <Form.Input label="Email address" name="email" type="email" isRequired />
           <Form.Input
             label="Password"

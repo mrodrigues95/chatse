@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import {
   CacheConfig,
   Environment,
@@ -10,26 +11,18 @@ import {
   Variables,
 } from 'relay-runtime';
 
-const HTTP_ENDPOINT = 'https://api.github.com/graphql';
-const IS_SERVER = typeof window === typeof undefined;
+// TODO: make this an env variable.
+const HTTP_ENDPOINT = 'http://localhost:5000/api/graphql';
 const CACHE_TTL = 5 * 1000; // 5 seconds, to resolve preloaded results
 
 export const networkFetch = async (
   request: RequestParameters,
   variables: Variables,
 ): Promise<GraphQLResponse> => {
-  const token = process.env.NEXT_PUBLIC_REACT_APP_GITHUB_AUTH_TOKEN;
-  if (token === null || token === '') {
-    throw new Error(
-      'This app requires a GitHub authentication token to be configured. See readme.md for setup details.',
-    );
-  }
-
   const resp = await fetch(HTTP_ENDPOINT, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
-      Authorization: `bearer ${token}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
@@ -37,6 +30,7 @@ export const networkFetch = async (
       variables,
     }),
   });
+
   const json = await resp.json();
 
   // GraphQL returns exceptions (for example, a missing required variable) in the "errors"
@@ -45,7 +39,7 @@ export const networkFetch = async (
   if (Array.isArray(json.errors)) {
     console.error(json.errors);
     throw new Error(
-      `Error fetching GraphQL query '${request.name}' with variables '${JSON.stringify(
+      `Error executing GraphQL query '${request.name}' with variables '${JSON.stringify(
         variables,
       )}': ${JSON.stringify(json.errors)}`,
     );
@@ -54,14 +48,7 @@ export const networkFetch = async (
   return json;
 };
 
-export const responseCache: QueryResponseCache | null = IS_SERVER
-  ? null
-  : new QueryResponseCache({
-      size: 100,
-      ttl: CACHE_TTL,
-    });
-
-const createNetwork = () => {
+const createNetwork = (responseCache: QueryResponseCache) => {
   async function fetchResponse(
     params: RequestParameters,
     variables: Variables,
@@ -84,20 +71,43 @@ const createNetwork = () => {
   return network;
 };
 
-const createEnvironment = () => {
-  return new Environment({
-    network: createNetwork(),
-    store: new Store(RecordSource.create()),
-    isServer: IS_SERVER,
+const createQueryCache = () =>
+  new QueryResponseCache({
+    size: 100,
+    ttl: CACHE_TTL,
   });
-};
 
-export const environment = createEnvironment();
+const responseCacheByEnvironment = new WeakMap<Environment, QueryResponseCache>();
 
-export const getCurrentEnvironment = () => {
-  if (IS_SERVER) {
-    return createEnvironment();
-  }
+const createEnvironment = () => {
+  const cache = createQueryCache();
+  const network = createNetwork(cache);
+  const store = new Store(RecordSource.create());
+
+  const environment = new Environment({
+    network,
+    store,
+    isServer: typeof window === 'undefined',
+  });
+
+  responseCacheByEnvironment.set(environment, cache);
 
   return environment;
 };
+
+let relayEnvironment: Environment | null = null;
+
+export const getRelayEnvironment = () => {
+  if (typeof window === 'undefined') {
+    return createEnvironment();
+  }
+
+  relayEnvironment ??= createEnvironment();
+
+  return relayEnvironment;
+};
+
+export const useEnvironment = () => useMemo(() => getRelayEnvironment(), []);
+
+export const getCacheByEnvironment = (environment: Environment) =>
+  responseCacheByEnvironment.get(environment);

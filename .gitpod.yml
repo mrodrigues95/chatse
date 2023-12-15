@@ -61,4 +61,5 @@ vscode:
     - bradlc.vscode-tailwindcss
     - muhammad-sammy.csharp
     - ms-dotnettools.vscode-dotnet-runtime
+    - graphql.vscode-graphql
     - EditorConfig.EditorConfig

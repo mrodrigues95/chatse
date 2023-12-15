@@ -37,8 +37,7 @@
           "buildTarget": "web:build:production",
           "dev": false
         }
-      },
-      "dependsOn": ["relay-watch"]
+      }
     },
     "export": {
       "executor": "@nx/next:export",
@@ -73,12 +72,6 @@
       "options": {
         "command": "mkdir -p __generated__ && relay-compiler",
         "cwd": "apps/web"
-      }
-    },
-    "relay-watch": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "nx run web:relay --watch"
       }
     },
     "relay-validate": {

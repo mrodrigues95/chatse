@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import { PreloadedQuery, PreloadFetchPolicy } from 'react-relay';
-import { ConcreteRequest, IEnvironment, OperationType } from 'relay-runtime';
+import { ConcreteRequest, Environment, OperationType } from 'relay-runtime';
 
-import { responseCache } from './environment';
+import { getCacheByEnvironment } from './environment';
 import { SerializablePreloadedQuery } from './loadSerializableQuery';
 
 // This hook convert serializable preloaded query
@@ -15,13 +15,13 @@ export const useSerializablePreloadedQuery = <
   TRequest extends ConcreteRequest,
   TQuery extends OperationType,
 >(
-  environment: IEnvironment,
+  environment: Environment,
   preloadQuery: SerializablePreloadedQuery<TRequest, TQuery>,
   fetchPolicy: PreloadFetchPolicy = 'store-or-network',
 ): PreloadedQuery<TQuery> => {
   useMemo(() => {
-    writePreloadedQueryToCache(preloadQuery);
-  }, [preloadQuery]);
+    writePreloadedQueryToCache(preloadQuery, environment);
+  }, [preloadQuery, environment]);
 
   return {
     environment,
@@ -39,7 +39,9 @@ export const useSerializablePreloadedQuery = <
 
 const writePreloadedQueryToCache = <TRequest extends ConcreteRequest, TQuery extends OperationType>(
   preloadedQueryObject: SerializablePreloadedQuery<TRequest, TQuery>,
+  environment: Environment,
 ) => {
   const cacheKey = preloadedQueryObject.params.id ?? preloadedQueryObject.params.cacheID;
+  const responseCache = getCacheByEnvironment(environment);
   responseCache?.set(cacheKey, preloadedQueryObject.variables, preloadedQueryObject.response);
 };
