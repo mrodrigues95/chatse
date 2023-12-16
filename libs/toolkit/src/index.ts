@@ -1,3 +1,4 @@
+export * from './components/alert/alert';
 export * from './components/text/text';
 export * from './components/input/input';
 export * from './components/form/form';

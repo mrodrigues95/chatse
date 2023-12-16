@@ -2,7 +2,7 @@
 
 import { useFormState } from 'react-dom';
 
-import { Button, Form, Text } from '@chatse/toolkit';
+import { Alert, Button, Form, Text } from '@chatse/toolkit';
 import { Link } from '../../components/link';
 import { login } from './actions';
 
@@ -15,8 +15,12 @@ const Login = () => {
         <Text variant="h1" className="mb-8 text-center">
           Sign In
         </Text>
-        {validationErrors || !!result?.login?.errors ? <div role="alert">test error</div> : null}
-        <Form action={formAction} className="w-full">
+        {result?.login?.errors ? (
+          <Alert variant="error" className="mb-4" autoFocus>
+            <Alert.Title className="text-sm">Invalid email or password.</Alert.Title>
+          </Alert>
+        ) : null}
+        <Form action={formAction} validationErrors={validationErrors} className="w-full">
           <Form.Input label="Email address" name="email" type="email" isRequired />
           <Form.Input
             label="Password"
