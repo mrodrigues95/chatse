@@ -6,14 +6,14 @@ const path = require('path');
 module.exports = {
   presets: [require('../../tailwind-workspace-preset.js')],
   content: [
-    path.join(__dirname, 'src/**/*!(*.stories|*.spec).{js,jsx,ts,tsx,html,css}'),
+    path.join(__dirname, './src/**/*.{js,ts,jsx,tsx}'),
     ...createGlobPatternsForDependencies(__dirname),
   ],
   darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-sans)', ...defaultTheme.fontFamily.sans],
+        sans: ['var(--font-geist-sans)', ...defaultTheme.fontFamily.sans],
       },
     },
   },
