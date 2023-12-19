@@ -20,6 +20,7 @@ const nextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: false,
   },
+  transpilePackages: ['lucide-react'],
 };
 
 const plugins = [

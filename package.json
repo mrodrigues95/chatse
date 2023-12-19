@@ -44,6 +44,8 @@
     "react-dom": "18.2.0",
     "react-relay": "^16.1.0",
     "relay-runtime": "^16.1.0",
+    "server-only": "^0.0.1",
+    "set-cookie-parser": "^2.6.0",
     "tailwind-merge": "^1.14.0",
     "tslib": "^2.3.0",
     "zod": "^3.22.4"
@@ -80,6 +82,7 @@
     "@types/react-dom": "18.2.17",
     "@types/react-relay": "^16.0.5",
     "@types/relay-runtime": "^14.1.19",
+    "@types/set-cookie-parser": "^2.4.7",
     "@typescript-eslint/eslint-plugin": "6.14.0",
     "@typescript-eslint/parser": "6.14.0",
     "@vitejs/plugin-react": "4.2.1",

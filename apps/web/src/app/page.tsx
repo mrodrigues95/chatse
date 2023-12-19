@@ -37,6 +37,8 @@
 //   },
 // };
 
+export const revalidate = 0;
+
 const Page = () => {
   return (
     <main className="relative flex min-h-screen flex-col">

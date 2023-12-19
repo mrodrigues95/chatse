@@ -1,5 +1,6 @@
 'use server';
 
+import { redirect } from 'next/navigation';
 import { commitMutation, graphql } from 'relay-runtime';
 import { z, ZodError } from 'zod';
 
@@ -28,6 +29,8 @@ export const login = async (prevState: State, formData: FormData): Promise<State
               authPayload {
                 user {
                   id
+                  email
+                  name
                 }
               }
               errors {
@@ -47,6 +50,10 @@ export const login = async (prevState: State, formData: FormData): Promise<State
         },
       });
     });
+
+    if (result.login.authPayload?.user) {
+      redirect('/home');
+    }
 
     return { result };
   } catch (err) {

@@ -1,38 +1,17 @@
-'use client';
-
-import { useFormState } from 'react-dom';
-
-import { Alert, Button, Form, Text } from '@chatse/toolkit';
+import { Button, Text } from '@chatse/toolkit';
 import { Link } from '../../components/link';
-import { login } from './actions';
+import { LoginForm } from './login-form';
+
+export const revalidate = 0;
 
 const Login = () => {
-  const [{ result, validationErrors }, formAction] = useFormState(login, {});
-
   return (
     <section className="flex flex-1 flex-col items-center justify-center">
       <div className="w-full max-w-sm">
         <Text variant="h1" className="mb-8 text-center">
           Sign In
         </Text>
-        {result?.login?.errors ? (
-          <Alert variant="error" className="mb-4" autoFocus>
-            <Alert.Title className="text-sm">Invalid email or password.</Alert.Title>
-          </Alert>
-        ) : null}
-        <Form action={formAction} validationErrors={validationErrors} className="w-full">
-          <Form.Input label="Email address" name="email" type="email" isRequired />
-          <Form.Input
-            label="Password"
-            name="password"
-            type="password"
-            autoComplete="current-password"
-            isRequired
-          />
-          <Button type="submit" className="w-full" variant="solid">
-            Sign in to account
-          </Button>
-        </Form>
+        <LoginForm />
         <Link href="/" size="xs" className="mx-auto mt-2.5 block w-max">
           Forgot password?
         </Link>

@@ -23,7 +23,7 @@ public static class IdentityServiceExtensions
 
         builder.Services.ConfigureApplicationCookie(opts =>
             {
-                opts.Cookie.Name = "identity";
+                opts.Cookie.Name = "chatse_identity";
                 opts.Cookie.HttpOnly = true;
                 opts.Cookie.SameSite = SameSiteMode.Strict;
                 opts.Cookie.SecurePolicy = CookieSecurePolicy.Always;

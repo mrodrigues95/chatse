@@ -1,3 +1,4 @@
+using System.Net;
 using System.Security.Claims;
 using HotChocolate.Execution;
 using HotChocolate.Types.Pagination;
@@ -19,6 +20,7 @@ public static class HotChocolateServiceExtensions
             .AddMutationConventions()
             .AddFairyBread()
             .AddHttpRequestInterceptor<CustomHttpRequestInterceptor>()
+            // .AddHttpResultSerializer<CustomHttpResultSerializer>()
             .AddInstrumentation(o =>
                 {
                     o.RenameRootActivity = true;
@@ -60,4 +62,26 @@ public static class HotChocolateServiceExtensions
             await base.OnCreateAsync(context, requestExecutor, requestBuilder, cancellationToken);
         }
     }
+
+    // private sealed class CustomHttpResultSerializer : DefaultHttpResultSerializer
+    // {
+    //     public override HttpStatusCode GetStatusCode(IExecutionResult result)
+    //     {
+    //         if (result is not IQueryResult { Data: null, Errors.Count: > 0 } queryResult)
+    //         {
+    //             return base.GetStatusCode(result);
+    //         }
+
+    //         return queryResult.Errors switch
+    //         {
+    //             var errors when
+    //                 errors.Any(x => x.Code == "AUTH_NOT_AUTHENTICATED") =>
+    //                 HttpStatusCode.Unauthorized,
+    //             var errors when
+    //                 errors.Any(x => x.Code == "AUTH_NOT_AUTHORIZED") =>
+    //                 HttpStatusCode.Forbidden,
+    //             _ => base.GetStatusCode(result)
+    //         };
+    //     }
+    // }
 }

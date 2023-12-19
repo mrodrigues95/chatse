@@ -39,6 +39,9 @@ testem.log
 .DS_Store
 Thumbs.db
 
+# Env files
+.env*.local
+
 # Next.js
 .next
 .nx/cache

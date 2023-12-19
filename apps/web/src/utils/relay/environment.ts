@@ -3,7 +3,9 @@ import {
   CacheConfig,
   Environment,
   GraphQLResponse,
+  GraphQLSingularResponse,
   Network,
+  PayloadError,
   QueryResponseCache,
   RecordSource,
   RequestParameters,
@@ -11,9 +13,17 @@ import {
   Variables,
 } from 'relay-runtime';
 
+import { trySetIdentityCookie } from './cookies';
+
+interface GraphQLPayloadError extends PayloadError {
+  path?: string[];
+  extensions?: Record<string, string>;
+}
+
 // TODO: make this an env variable.
 const HTTP_ENDPOINT = 'http://localhost:5000/api/graphql';
-const CACHE_TTL = 5 * 1000; // 5 seconds, to resolve preloaded results
+const IS_SERVER = typeof window === 'undefined';
+const CACHE_TTL = 5 * 1000; // 5 seconds, to resolve preloaded results.
 
 export const networkFetch = async (
   request: RequestParameters,
@@ -31,13 +41,24 @@ export const networkFetch = async (
     }),
   });
 
-  const json = await resp.json();
+  if (IS_SERVER) {
+    trySetIdentityCookie(resp);
+  }
+
+  const json: GraphQLSingularResponse = await resp.json();
 
   // GraphQL returns exceptions (for example, a missing required variable) in the "errors"
   // property of the response. If any exceptions occurred when processing the request,
   // throw an error to indicate to the developer what went wrong.
-  if (Array.isArray(json.errors)) {
-    console.error(json.errors);
+  if ('errors' in json && Array.isArray(json.errors)) {
+    const unauthorized = (json.errors as GraphQLPayloadError[]).find(
+      err => err.extensions?.code === 'AUTH_NOT_AUTHORIZED',
+    );
+
+    if (unauthorized) {
+      throw new Response('Unauthorized', { status: 401 });
+    }
+
     throw new Error(
       `Error executing GraphQL query '${request.name}' with variables '${JSON.stringify(
         variables,
@@ -87,7 +108,7 @@ const createEnvironment = () => {
   const environment = new Environment({
     network,
     store,
-    isServer: typeof window === 'undefined',
+    isServer: IS_SERVER,
   });
 
   responseCacheByEnvironment.set(environment, cache);
@@ -98,7 +119,7 @@ const createEnvironment = () => {
 let relayEnvironment: Environment | null = null;
 
 export const getRelayEnvironment = () => {
-  if (typeof window === 'undefined') {
+  if (IS_SERVER) {
     return createEnvironment();
   }
 
