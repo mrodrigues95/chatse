@@ -30,7 +30,6 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
       - run: pnpm format:check
-      - run: pnpm exec nx run web:relay
       - run: pnpm affected:tsc --parallel=3
       - run: pnpm affected:lint --parallel=3
       - run: pnpm affected:build --parallel=3

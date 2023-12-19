@@ -62,7 +62,8 @@
         "command": "tsc --noEmit --project tsconfig.json",
         "cwd": "apps/web",
         "forwardAllArgs": false
-      }
+      },
+      "dependsOn": ["relay"]
     },
     "relay": {
       "executor": "nx:run-commands",
