@@ -1,10 +1,8 @@
 import dynamic from 'next/dynamic';
 import { cva, type VariantProps } from 'class-variance-authority';
-import type { LucideProps } from 'lucide-react';
-import dynamicIconImports from 'lucide-react/dynamicIconImports';
+import type { icons, LucideProps } from 'lucide-react';
 
-import { AccessibleIcon, cn } from '@chatse/toolkit';
-import type { AccessibleIconProps } from '@chatse/toolkit';
+import { AccessibleIcon, cn, type AccessibleIconProps } from '@chatse/toolkit';
 
 const iconVariants = cva('', {
   variants: {
@@ -23,11 +21,11 @@ export interface IconProps
   extends Omit<LucideProps, 'size'>,
     VariantProps<typeof iconVariants>,
     Pick<AccessibleIconProps, 'label'> {
-  name: keyof typeof dynamicIconImports;
+  name: keyof typeof icons;
 }
 
 export const Icon = ({ name, size, className, label, ...props }: IconProps) => {
-  const LucideIcon = dynamic(dynamicIconImports[name]);
+  const LucideIcon = dynamic(() => import('lucide-react').then(mod => mod[name]));
 
   return (
     <AccessibleIcon label={label}>
