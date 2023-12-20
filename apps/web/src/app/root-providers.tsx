@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { RelayEnvironmentProvider } from 'react-relay';
 
 import { useEnvironment } from '../utils/relay/environment';

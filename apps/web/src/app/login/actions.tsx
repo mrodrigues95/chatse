@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation';
 import { commitMutation, graphql } from 'relay-runtime';
 import { z, ZodError } from 'zod';
 
-import { actionsLoginMutation } from '../../../__generated__/actionsLoginMutation.graphql';
+import { type actionsLoginMutation } from '../../../__generated__/actionsLoginMutation.graphql';
 import { getRelayEnvironment } from '../../utils/relay/environment';
 
 const schema = z.object({

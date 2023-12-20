@@ -1,8 +1,8 @@
 'use client';
 
-import { forwardRef, ReactNode } from 'react';
-import NextLink, { LinkProps as NextLinkProps } from 'next/link';
-import { VariantProps } from 'class-variance-authority';
+import { forwardRef, type ReactNode } from 'react';
+import NextLink, { type LinkProps as NextLinkProps } from 'next/link';
+import { type VariantProps } from 'class-variance-authority';
 
 import { buttonVariants, cn } from '@chatse/toolkit';
 

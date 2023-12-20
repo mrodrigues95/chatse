@@ -18,6 +18,9 @@
     },
     {
       "files": ["*.ts", "*.tsx"],
+      "parserOptions": {
+        "project": ["apps/web/tsconfig(.*)?.json"]
+      },
       "rules": {}
     },
     {
@@ -27,8 +30,5 @@
   ],
   "rules": {
     "@next/next/no-html-link-for-pages": "off"
-  },
-  "env": {
-    "jest": true
   }
 }

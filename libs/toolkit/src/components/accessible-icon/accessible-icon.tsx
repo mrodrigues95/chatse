@@ -1,4 +1,4 @@
-import { Children, cloneElement, ReactElement, ReactNode } from 'react';
+import { Children, cloneElement, type ReactElement, type ReactNode } from 'react';
 
 export interface AccessibleIconProps {
   children: ReactNode;

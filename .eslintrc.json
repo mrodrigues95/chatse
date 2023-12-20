@@ -25,7 +25,18 @@
               }
             ]
           }
+        ]
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nx/typescript"],
+      "rules": {
+        "@typescript-eslint/consistent-type-imports": [
+          "error",
+          { "fixStyle": "inline-type-imports" }
         ],
+        "@typescript-eslint/consistent-type-exports": "error",
         "@typescript-eslint/ban-ts-comment": [
           "error",
           {
@@ -35,20 +46,12 @@
       }
     },
     {
-      "files": ["*.ts", "*.tsx"],
-      "extends": ["plugin:@nx/typescript"],
-      "rules": {}
-    },
-    {
       "files": ["*.js", "*.jsx"],
       "extends": ["plugin:@nx/javascript"],
       "rules": {}
     },
     {
       "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
-      "env": {
-        "jest": true
-      },
       "rules": {}
     }
   ]

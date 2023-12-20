@@ -1,15 +1,15 @@
 'use client';
 
 import {
-  ComponentProps,
   createContext,
-  ReactNode,
   useContext,
   useEffect,
   useMemo,
   useRef,
+  type ComponentProps,
+  type ReactNode,
 } from 'react';
-import { cva, VariantProps } from 'class-variance-authority';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { AlertTriangle, CheckCircle2, Info, XCircle } from 'lucide-react';
 
 import { cn } from '../../utils/cn';

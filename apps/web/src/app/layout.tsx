@@ -1,6 +1,6 @@
 import '../styles/globals.css';
 
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { GeistSans } from 'geist/font/sans';
 
 import { cn } from '@chatse/toolkit';

@@ -1,8 +1,8 @@
 'use client';
 
 import { forwardRef } from 'react';
-import { cva, VariantProps } from 'class-variance-authority';
-import { Button as AriaButton, ButtonProps as AriaButtonProps } from 'react-aria-components';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { Button as AriaButton, type ButtonProps as AriaButtonProps } from 'react-aria-components';
 
 import { cn } from '../../utils/cn';
 

@@ -4,13 +4,13 @@ import { forwardRef } from 'react';
 import {
   FieldError as AriaFieldError,
   Input as AriaInput,
-  InputProps as AriaInputProps,
   Label as AriaLabel,
-  LabelProps as AriaLabelProps,
   Text as AriaText,
   TextField as AriaTextField,
-  TextFieldProps as AriaTextFieldProps,
-  ValidationResult,
+  type InputProps as AriaInputProps,
+  type LabelProps as AriaLabelProps,
+  type TextFieldProps as AriaTextFieldProps,
+  type ValidationResult,
 } from 'react-aria-components';
 
 import { cn } from '../../utils/cn';

@@ -1,8 +1,13 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import { GraphQLResponse, OperationType, RequestParameters, VariablesOf } from 'relay-runtime';
-import { ConcreteRequest } from 'relay-runtime/lib/util/RelayConcreteNode';
+import {
+  type GraphQLResponse,
+  type OperationType,
+  type RequestParameters,
+  type VariablesOf,
+} from 'relay-runtime';
+import { type ConcreteRequest } from 'relay-runtime/lib/util/RelayConcreteNode';
 
 import { tryRemoveIdentityCookie } from './cookies';
 import { networkFetch } from './environment';

@@ -1,16 +1,16 @@
 import { useMemo } from 'react';
 import {
-  CacheConfig,
   Environment,
-  GraphQLResponse,
-  GraphQLSingularResponse,
   Network,
-  PayloadError,
   QueryResponseCache,
   RecordSource,
-  RequestParameters,
   Store,
-  Variables,
+  type CacheConfig,
+  type GraphQLResponse,
+  type GraphQLSingularResponse,
+  type PayloadError,
+  type RequestParameters,
+  type Variables,
 } from 'relay-runtime';
 
 import { trySetIdentityCookie } from './cookies';
