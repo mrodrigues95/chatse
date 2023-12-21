@@ -24,4 +24,4 @@ if (app.Environment.IsDevelopment())
 
 app.Map("/", () => Results.Redirect("/api/graphql"));
 
-app.RunWithGraphQLCommands(args);
+await app.RunWithGraphQLCommandsAsync(args);

@@ -29,7 +29,7 @@ public sealed class AppDbContextSeeder : IAppDbContextSeeder
         }
     }
 
-    private IEnumerable<AppUser> GetPreconfiguredUsers()
+    private static IEnumerable<AppUser> GetPreconfiguredUsers()
     {
         return new List<AppUser>() {
                 new () {

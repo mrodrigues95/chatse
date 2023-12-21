@@ -1,4 +1,3 @@
-using Api.Primitives;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Api.Data.Interceptors;
@@ -22,7 +21,7 @@ public sealed class AuditingInterceptor : SaveChangesInterceptor
         return base.SavingChanges(eventData, result);
     }
 
-    private void UpdateAuditableEntities(DbContext? context)
+    private static void UpdateAuditableEntities(DbContext? context)
     {
         if (context is null)
         {

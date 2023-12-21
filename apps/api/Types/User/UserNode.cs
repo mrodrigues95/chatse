@@ -21,5 +21,5 @@ public sealed class UserType : ObjectType<AppUser>
 public sealed class UserNode
 {
     [ID]
-    public Guid GetId([Parent] AppUser user) => user.Guid;
+    public string GetId([Parent] AppUser user) => user.PublicId.Value;
 }

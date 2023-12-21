@@ -1,6 +1,8 @@
 global using System.Reflection;
+global using Api.Common;
 global using Api.Data;
 global using Api.Data.Entities;
+global using Api.Primitives;
 global using FluentValidation;
 global using HotChocolate.AspNetCore;
 global using Microsoft.AspNetCore.Identity;

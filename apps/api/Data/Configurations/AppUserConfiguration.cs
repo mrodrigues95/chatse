@@ -8,7 +8,12 @@ public class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
     {
         builder.HasKey(u => u.Id);
 
-        builder.Property(u => u.Guid)
+        builder.Property(u => u.PublicId)
+            .HasMaxLength(PublicIdGenerator.DefaultSize)
+            .HasConversion(
+                val => val.WithoutPrefix,
+                val => new PublicId("usr_")
+            )
             .IsRequired();
 
         builder.Property(u => u.Name)
@@ -29,7 +34,7 @@ public class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
             .IsRequired();
 
         builder
-            .HasIndex(u => u.Guid)
+            .HasIndex(u => u.PublicId)
             .IsUnique();
     }
 }
