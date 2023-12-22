@@ -8,19 +8,11 @@ builder.AddIdentityServices();
 
 var app = builder.Build();
 
-using var scope = app.Services.CreateScope();
-var seeder = scope.ServiceProvider.GetRequiredService<IAppDbContextSeeder>();
-
 app.UseCors(c => c.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseStaticFiles();
 app.MapGraphQL("/api/graphql");
-
-if (app.Environment.IsDevelopment())
-{
-    await seeder.SeedAsync();
-}
 
 app.Map("/", () => Results.Redirect("/api/graphql"));
 

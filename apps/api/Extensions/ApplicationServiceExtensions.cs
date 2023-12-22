@@ -9,11 +9,6 @@ public static class ApplicationServiceExtensions
         builder.Services.AddCors();
         builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 
-        builder.Services.AddScoped<IAppDbContextSeeder, AppDbContextSeeder>();
-
-        builder.Services.AddSingleton<AuditingInterceptor>();
-        builder.Services.AddSingleton<PublicIdInterceptor>();
-
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
         builder.Services.AddDbContextPool<AppDbContext>((sp, opts) =>
         {
@@ -24,6 +19,12 @@ public static class ApplicationServiceExtensions
                 sp.GetRequiredService<PublicIdInterceptor>()
             );
         });
+
+        builder.Services.AddSingleton<AppDbContextInitializer>();
+        builder.Services.AddSingleton<AuditingInterceptor>();
+        builder.Services.AddSingleton<PublicIdInterceptor>();
+
+        builder.Services.AddHostedService(sp => sp.GetRequiredService<AppDbContextInitializer>());
 
         return builder;
     }
