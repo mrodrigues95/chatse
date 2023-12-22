@@ -44,7 +44,7 @@ COPY --chown=gitpod:gitpod scripts/postgresql-hook.bash $HOME/.bashrc.d/200-post
 
 # Install .NET
 # Ref: https://github.com/gitpod-io/workspace-images/blob/main/chunks/tool-dotnet/Dockerfile
-RUN mkdir -p /home/gitpod/dotnet && curl -fsSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --version 7.0.400 --install-dir /home/gitpod/dotnet
+RUN mkdir -p /home/gitpod/dotnet && curl -fsSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --version 8.0.100 --install-dir /home/gitpod/dotnet
 ENV DOTNET_ROOT=/home/gitpod/dotnet
 ENV PATH=/home/gitpod/dotnet:$PATH
 

@@ -61,14 +61,13 @@ public sealed class AppDbContextInitializer : BackgroundService
         }
 
         static List<AppUser> GetPreconfiguredUsers()
-        {
-            return new List<AppUser>() {
-                new () {
+            => [
+              new () {
                     UserName = "root@dev.com",
                     Email = "root@dev.com",
                     Name = "Root Dev"
                 }
-            };
-        }
+                ];
+
     }
 }
