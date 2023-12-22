@@ -6,9 +6,9 @@ ENV TRIGGER_REBUILD=1
 
 # Install Node and other global dependencies
 # Ref: https://github.com/gitpod-io/workspace-images/blob/main/chunks/lang-node/Dockerfile
-ENV NODE_VERSION=18
+ENV NODE_VERSION=20
 
-RUN curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | PROFILE=/dev/null bash \
+RUN curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | PROFILE=/dev/null bash \
     && bash -c ". .nvm/nvm.sh \
         && nvm install v${NODE_VERSION} \
         && nvm alias default v${NODE_VERSION} \
