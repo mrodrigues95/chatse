@@ -1,19 +1,11 @@
 namespace Api.Primitives;
 
-public abstract class BaseEntity : BaseEntity<int>
+public abstract class BaseEntity(string publicIdPrefix) : BaseEntity<int>(publicIdPrefix)
 {
-    protected BaseEntity(string publicIdPrefix) : base(publicIdPrefix)
-    {
-    }
 }
 
-public abstract class BaseEntity<TId> : IEntity<TId>
+public abstract class BaseEntity<TId>(string publicIdPrefix) : IEntity<TId>
 {
     public TId Id { get; protected set; } = default!;
-    public PublicId PublicId { get; } = default!;
-
-    protected BaseEntity(string publicIdPrefix)
-    {
-        PublicId = new(publicIdPrefix);
-    }
+    public PublicId PublicId { get; } = new PublicId(publicIdPrefix);
 }

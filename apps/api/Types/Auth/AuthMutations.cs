@@ -5,15 +5,8 @@ using Api.Types.Auth.Payloads;
 namespace Api.Types.Auth;
 
 [MutationType]
-public sealed class AuthMutations
+public sealed class AuthMutations(ILogger<AuthMutations> logger)
 {
-    private readonly ILogger<AuthMutations> _logger;
-
-    public AuthMutations(ILogger<AuthMutations> logger)
-    {
-        _logger = logger;
-    }
-
     [Error<SignupNewUserException>]
     public async Task<AuthPayload> SignUpAsync(
         SignupInput input,
@@ -35,14 +28,14 @@ public sealed class AuthMutations
         var createUserResult = await userManager.CreateAsync(user, input.Password);
         if (!createUserResult.Succeeded)
         {
-            _logger.LogError("Unable to create new user for: {user}. Result: {result}", user, createUserResult);
+            logger.LogError("Unable to create new user for: {user}. Result: {result}", user, createUserResult);
             throw new SignupNewUserException();
         }
 
         var loginUserResult = await signInManager.PasswordSignInAsync(user, input.Password, true, false);
         if (!loginUserResult.Succeeded)
         {
-            _logger.LogError("Unable to sign in user for {user}. Result: {result}", user, loginUserResult);
+            logger.LogError("Unable to sign in user for {user}. Result: {result}", user, loginUserResult);
             throw new SignupNewUserException();
         }
 

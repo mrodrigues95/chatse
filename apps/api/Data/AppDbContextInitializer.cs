@@ -2,20 +2,13 @@ using System.Diagnostics;
 
 namespace Api.Data;
 
-public sealed class AppDbContextInitializer : BackgroundService
+internal sealed class AppDbContextInitializer(
+    IServiceProvider serviceProvider,
+    ILogger<AppDbContextInitializer> logger) : BackgroundService
 {
-    private readonly IServiceProvider _serviceProvider;
-    private readonly ILogger<AppDbContextInitializer> _logger;
-
-    public AppDbContextInitializer(IServiceProvider serviceProvider, ILogger<AppDbContextInitializer> logger)
-    {
-        _serviceProvider = serviceProvider;
-        _logger = logger;
-    }
-
     protected override async Task ExecuteAsync(CancellationToken cancellationToken)
     {
-        using var scope = _serviceProvider.CreateScope();
+        using var scope = serviceProvider.CreateScope();
         var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
         var userManager = scope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
 
@@ -34,7 +27,7 @@ public sealed class AppDbContextInitializer : BackgroundService
 
         await SeedAsync(dbContext, userManager, cancellationToken);
 
-        _logger.LogInformation(
+        logger.LogInformation(
             "Database initialization completed after {time}ms.", sw.ElapsedMilliseconds);
     }
 
@@ -43,13 +36,13 @@ public sealed class AppDbContextInitializer : BackgroundService
         UserManager<AppUser> userManager,
         CancellationToken cancellationToken)
     {
-        _logger.LogInformation("Seeding database.");
+        logger.LogInformation("Seeding database.");
 
         if (!userManager.Users.Any())
         {
             var users = GetPreconfiguredUsers();
 
-            _logger.LogInformation("Seeding {count} application users.", users.Count);
+            logger.LogInformation("Seeding {count} application users.", users.Count);
 
             foreach (var user in users)
             {

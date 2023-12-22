@@ -1,9 +1,8 @@
 namespace Api.Data;
 
-public class AppDbContext : IdentityDbContext<AppUser, IdentityRole<int>, int>
+public sealed class AppDbContext(DbContextOptions<AppDbContext> options) :
+    IdentityDbContext<AppUser, IdentityRole<int>, int>(options)
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
-
     public override DbSet<AppUser> Users { get; set; } = default!;
 
     protected override void OnModelCreating(ModelBuilder builder)
