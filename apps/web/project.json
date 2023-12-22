@@ -37,7 +37,8 @@
           "buildTarget": "web:build:production",
           "dev": false
         }
-      }
+      },
+      "dependsOn": ["relay"]
     },
     "export": {
       "executor": "@nx/next:export",
