@@ -21,7 +21,6 @@ public sealed class AuthMutations(ILogger<AuthMutations> logger)
 
         var user = new AppUser
         {
-            UserName = input.Name,
             Name = input.Name,
             Email = input.Email
         };
@@ -42,7 +41,7 @@ public sealed class AuthMutations(ILogger<AuthMutations> logger)
             throw new SignUpNewUserException();
         }
 
-        return new AuthPayload(user, true);
+        return new(user, true);
     }
 
     [Error<LoginUserException>]
@@ -60,13 +59,13 @@ public sealed class AuthMutations(ILogger<AuthMutations> logger)
             throw new LoginUserException();
         }
 
-        return new AuthPayload(user, true);
+        return new(user, true);
 
     }
 
     public async Task<AuthPayload> LogoutAsync(SignInManager<AppUser> signInManager)
     {
         await signInManager.SignOutAsync();
-        return new AuthPayload(false);
+        return new(false);
     }
 }
