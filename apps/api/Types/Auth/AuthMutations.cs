@@ -7,20 +7,21 @@ namespace Api.Types.Auth;
 [MutationType]
 public sealed class AuthMutations(ILogger<AuthMutations> logger)
 {
-    [Error<SignupNewUserException>]
+    [Error<SignUpNewUserException>]
     public async Task<AuthPayload> SignUpAsync(
-        SignupInput input,
+        SignUpInput input,
         UserManager<AppUser> userManager,
         SignInManager<AppUser> signInManager)
     {
         var emailAlreadyExists = await userManager.FindByEmailAsync(input.Email);
         if (emailAlreadyExists is not null)
         {
-            throw new SignupNewUserException();
+            throw new SignUpNewUserException();
         }
 
         var user = new AppUser
         {
+            UserName = input.Name,
             Name = input.Name,
             Email = input.Email
         };
@@ -28,15 +29,17 @@ public sealed class AuthMutations(ILogger<AuthMutations> logger)
         var createUserResult = await userManager.CreateAsync(user, input.Password);
         if (!createUserResult.Succeeded)
         {
-            logger.LogError("Unable to create new user for: {user}. Result: {result}", user, createUserResult);
-            throw new SignupNewUserException();
+            logger.LogError("Unable to create new user -> name: {name}, email: {email}. Result: {result}",
+                input.Name, input.Email, createUserResult);
+            throw new SignUpNewUserException();
         }
 
         var loginUserResult = await signInManager.PasswordSignInAsync(user, input.Password, true, false);
         if (!loginUserResult.Succeeded)
         {
-            logger.LogError("Unable to sign in user for {user}. Result: {result}", user, loginUserResult);
-            throw new SignupNewUserException();
+            logger.LogError("Unable to login new user -> name: {name}, email: {email}. Result: {result}",
+                input.Name, input.Email, loginUserResult);
+            throw new SignUpNewUserException();
         }
 
         return new AuthPayload(user, true);

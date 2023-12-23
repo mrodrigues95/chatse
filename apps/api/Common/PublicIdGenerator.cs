@@ -3,6 +3,12 @@ using NanoidDotNet;
 
 namespace Api.Common;
 
+/// <summary>
+/// Base class used for generating a <see cref="PublicId" />.
+/// </summary>
+/// <remarks>
+/// Inspired by https://planetscale.com/blog/why-we-chose-nanoids-for-planetscales-api
+/// </remarks>
 public static class PublicIdGenerator
 {
     public const string DefaultAlphabet = "0123456789abcdefghijklmnopqrstuvwxyz";

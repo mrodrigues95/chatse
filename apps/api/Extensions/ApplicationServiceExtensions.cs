@@ -14,15 +14,11 @@ public static class ApplicationServiceExtensions
         {
             opts.UseNpgsql(connectionString);
             opts.UseSnakeCaseNamingConvention();
-            opts.AddInterceptors(
-                sp.GetRequiredService<AuditingInterceptor>(),
-                sp.GetRequiredService<PublicIdInterceptor>()
-            );
+            opts.AddInterceptors(sp.GetRequiredService<AuditingInterceptor>());
         });
 
         builder.Services.AddSingleton<AppDbContextInitializer>();
         builder.Services.AddSingleton<AuditingInterceptor>();
-        builder.Services.AddSingleton<PublicIdInterceptor>();
 
         builder.Services.AddHostedService(sp => sp.GetRequiredService<AppDbContextInitializer>());
 

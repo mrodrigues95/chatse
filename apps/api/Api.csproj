@@ -7,6 +7,11 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <!-- TODO: Remove this on next release, see https://github.com/dotnet/aspnetcore/issues/50836#issuecomment-1819612514 -->
+    <NoWarn>$(NoWarn);AD0001</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="EFCore.NamingConventions" Version="8.0.0-rc.2" />
     <PackageReference Include="FairyBread" Version="10.0.0" />

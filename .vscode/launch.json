@@ -10,7 +10,7 @@
       "request": "launch",
       "preLaunchTask": "build",
       // If you have changed target frameworks, make sure to update the program path.
-      "program": "${workspaceFolder}/dist/apps/api/net7.0/Api.dll",
+      "program": "${workspaceFolder}/dist/apps/api/net8.0/Api.dll",
       "args": [],
       "cwd": "${workspaceFolder}/apps/api",
       "stopAtEntry": false,
@@ -29,7 +29,8 @@
     {
       "name": ".NET Core Attach",
       "type": "coreclr",
-      "request": "attach"
+      "request": "attach",
+      "processId": "${command:pickProcess}"
     }
   ]
 }

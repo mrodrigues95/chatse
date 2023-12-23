@@ -50,18 +50,18 @@ type Query {
   me: AppUser
 }
 
+type SignUpNewUserError implements Error {
+  message: String!
+}
+
 type SignUpPayload {
   authPayload: AuthPayload
   errors: [SignUpError!]
 }
 
-type SignupNewUserError implements Error {
-  message: String!
-}
-
 union LoginError = LoginUserError
 
-union SignUpError = SignupNewUserError
+union SignUpError = SignUpNewUserError
 
 input LoginInput {
   email: String!
@@ -69,10 +69,6 @@ input LoginInput {
 }
 
 input SignUpInput {
-  input: SignupInput!
-}
-
-input SignupInput {
   name: String!
   email: String!
   password: String!
@@ -84,17 +80,6 @@ enum ApplyPolicy {
   VALIDATION
 }
 
-directive @allowAnonymous repeatable on FIELD_DEFINITION
-
-directive @authorize(
-  "The name of the authorization policy that determines access to the annotated resource."
-  policy: String
-  "Roles that are allowed to access the annotated resource."
-  roles: [String!]
-  "Defines when when the authorize directive shall be applied.By default the authorize directives are applied during the validation phase."
-  apply: ApplyPolicy! = BEFORE_RESOLVER
-) repeatable on OBJECT | FIELD_DEFINITION
-
 "The `@defer` directive may be provided for fragment spreads and inline fragments to inform the executor to delay the execution of the current fragment to indicate deprioritization of the current fragment. A query with `@defer` directive will cause the request to potentially return multiple responses, where non-deferred data is delivered in the initial response and data deferred is delivered in a subsequent response. `@include` and `@skip` take precedence over `@defer`."
 directive @defer(
   "If this argument label has a value other than null, it will be passed on to the result of this defer directive. This label is intended to give client applications a way to identify to which fragment a deferred result belongs to."
@@ -102,7 +87,3 @@ directive @defer(
   "Deferred when true."
   if: Boolean
 ) on FRAGMENT_SPREAD | INLINE_FRAGMENT
-
-directive @tag(
-  name: String!
-) repeatable on SCHEMA | SCALAR | OBJECT | FIELD_DEFINITION | ARGUMENT_DEFINITION | INTERFACE | UNION | ENUM | ENUM_VALUE | INPUT_OBJECT | INPUT_FIELD_DEFINITION

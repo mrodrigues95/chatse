@@ -1,5 +1,7 @@
 namespace Api.Primitives;
 
+// TODO: Intercept `SaveChangesAsync()` when a collision occurs and attempt to regenerate a new id.
+// The likely hood of this happening is really low but it's still something we can prevent.
 public class PublicId : IPublicId
 {
     public string Value { get; private set; } = default!;
