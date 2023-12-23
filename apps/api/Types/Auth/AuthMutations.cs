@@ -13,6 +13,7 @@ public sealed class AuthMutations(ILogger<AuthMutations> logger)
         UserManager<AppUser> userManager,
         SignInManager<AppUser> signInManager)
     {
+        // TODO: When the email confirmation flow is implemented, this should be moved to the appropriate methods.
         var emailAlreadyExists = await userManager.FindByEmailAsync(input.Email);
         if (emailAlreadyExists is not null)
         {
@@ -22,6 +23,7 @@ public sealed class AuthMutations(ILogger<AuthMutations> logger)
         var user = new AppUser
         {
             Name = input.Name,
+            UserName = input.Email,
             Email = input.Email
         };
 

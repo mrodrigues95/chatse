@@ -1,21 +1,10 @@
 'use client';
 
-import { useFormState, useFormStatus } from 'react-dom';
+import { useFormState } from 'react-dom';
 
-import { Alert, Button, Form } from '@chatse/toolkit';
-import { Spinner } from '../../components/spinner';
-import { login } from './actions';
-
-const SubmitButton = () => {
-  const { pending } = useFormStatus();
-
-  return (
-    <Button type="submit" className="w-full" variant="solid" isDisabled={pending}>
-      {pending && <Spinner />}
-      Sign in to account
-    </Button>
-  );
-};
+import { Alert, Form } from '@chatse/toolkit';
+import { SubmitButton } from '../../../components/submit-button';
+import { login } from '../actions';
 
 export const LoginForm = () => {
   const [{ result, validationErrors }, formAction] = useFormState(login, {});
@@ -37,7 +26,9 @@ export const LoginForm = () => {
           minLength={6}
           isRequired
         />
-        <SubmitButton />
+        <SubmitButton className="w-full" variant="solid">
+          Sign in to account
+        </SubmitButton>
       </Form>
     </>
   );
