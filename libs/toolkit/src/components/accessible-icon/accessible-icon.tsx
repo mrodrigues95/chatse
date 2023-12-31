@@ -2,7 +2,7 @@ import { Children, cloneElement, type ReactElement, type ReactNode } from 'react
 
 export interface AccessibleIconProps {
   children: ReactNode;
-  label: string;
+  label?: string;
 }
 
 export const AccessibleIcon = ({ children, label }: AccessibleIconProps) => {
@@ -11,9 +11,9 @@ export const AccessibleIcon = ({ children, label }: AccessibleIconProps) => {
     <>
       {cloneElement(child as ReactElement, {
         'aria-hidden': 'true',
-        'aria-label': label,
         focusable: 'false',
       })}
+      {label && <span className="sr-only">{label}</span>}
     </>
   );
 };
