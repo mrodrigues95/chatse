@@ -2,18 +2,21 @@ import { Children, cloneElement, type ReactElement, type ReactNode } from 'react
 
 export interface AccessibleIconProps {
   children: ReactNode;
-  label?: string;
+  title?: string;
+  description?: string;
 }
 
-export const AccessibleIcon = ({ children, label }: AccessibleIconProps) => {
+export const AccessibleIcon = ({ children, title, description }: AccessibleIconProps) => {
   const child = Children.only(children);
-  return (
-    <>
-      {cloneElement(child as ReactElement, {
-        'aria-hidden': 'true',
-        focusable: 'false',
-      })}
-      {label && <span className="sr-only">{label}</span>}
-    </>
+  return cloneElement(
+    child as ReactElement,
+    {
+      'aria-hidden': title ? undefined : true,
+      role: title ? 'img' : undefined,
+      focusable: false,
+    },
+    // TODO: slot this.
+    // ...Children.toArray(child),
+    // title && <title>{title}</title>,
   );
 };

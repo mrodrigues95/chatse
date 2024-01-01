@@ -18,17 +18,17 @@ const iconVariants = cva('', {
 });
 
 export interface IconProps
-  extends Omit<LucideProps, 'size'>,
+  extends Omit<LucideProps, 'size' | 'aria-label' | 'aria-labelledby'>,
     VariantProps<typeof iconVariants>,
-    Pick<AccessibleIconProps, 'label'> {
+    Pick<AccessibleIconProps, 'title'> {
   name: keyof typeof icons;
 }
 
-export const Icon = ({ name, size, className, label, ...props }: IconProps) => {
+export const Icon = ({ name, size, className, title, ...props }: IconProps) => {
   const LucideIcon = dynamic(() => import('lucide-react').then(mod => mod[name]));
 
   return (
-    <AccessibleIcon label={label}>
+    <AccessibleIcon title={title}>
       <LucideIcon className={cn(iconVariants({ size, className }))} {...props} />
     </AccessibleIcon>
   );

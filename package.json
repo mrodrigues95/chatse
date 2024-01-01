@@ -38,6 +38,7 @@
     "geist": "^1.2.0",
     "lucide-react": "^0.298.0",
     "next": "canary",
+    "nextjs-toploader": "^1.6.4",
     "react": "18.2.0",
     "react-aria": "^3.30.0",
     "react-aria-components": "1.0.0-rc.0",

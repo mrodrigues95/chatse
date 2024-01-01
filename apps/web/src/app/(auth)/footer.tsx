@@ -17,7 +17,7 @@ export const Footer = () => {
     return null;
   }
 
-  const key = segmentMap[segment as 'login' | 'signup'];
+  const key = segmentMap[segment as keyof typeof segmentMap];
 
   return (
     <>
