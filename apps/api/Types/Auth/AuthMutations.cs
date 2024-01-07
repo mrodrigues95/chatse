@@ -52,7 +52,7 @@ public sealed class AuthMutations(ILogger<AuthMutations> logger)
         UserManager<AppUser> userManager,
         SignInManager<AppUser> signInManager)
     {
-        var user = await userManager.FindByEmailAsync(input.Email) ?? throw new LoginUserException();
+        var user = (await userManager.FindByEmailAsync(input.Email)) ?? throw new LoginUserException();
 
         var result = await signInManager.PasswordSignInAsync(user, input.Password, true, false);
         if (!result.Succeeded)
