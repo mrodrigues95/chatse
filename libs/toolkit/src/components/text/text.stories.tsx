@@ -13,13 +13,11 @@ type Story = StoryObj<typeof Text>;
 
 const TextWithVariants = () => (
   <div className="flex flex-col">
-    <Text variant="h1">This is heading level 1.</Text>
-    <Text variant="h2">This is heading level 2.</Text>
-    <Text variant="h3">This is heading level 3.</Text>
-    <Text variant="h4">This is heading level 4.</Text>
-    <Text variant="h5">This is heading level 5.</Text>
-    <Text variant="h6">This is heading level 6.</Text>
-    <Text variant="p">This is a paragraph..</Text>
+    <Text variant="hero">hero</Text>
+    <Text variant="title">title</Text>
+    <Text variant="subtitle">subtitle</Text>
+    <Text variant="body">body</Text>
+    <Text variant="muted">muted</Text>
   </div>
 );
 

@@ -21,9 +21,7 @@ export const Footer = () => {
 
   return (
     <>
-      <Text variant="p" as="span" className="text-sm font-semibold">
-        {key.text}
-      </Text>
+      <Text className="font-medium">{key.text}</Text>
       <Link variant="outline" href={key.actionHref}>
         {key.actionText}
       </Link>

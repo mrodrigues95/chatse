@@ -28,27 +28,27 @@ const HomeLayout = ({ children }: { children: ReactNode }) => {
               >
                 <path
                   fill="#3A724F"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M19.87 4.567 22.507 0l7.476 4.317-2.636 4.566c-.463.801.23 1.775 1.138 1.6l5.052-.975 1.635 8.477-5.052.974c-8.172 1.576-14.411-7.184-10.25-14.392Z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
                 <path
                   fill="#DC8E43"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M15.302 35.433 12.665 40l-7.477-4.316 2.637-4.567c.463-.801-.23-1.775-1.139-1.6l-5.051.974L0 22.015l5.052-.974c8.172-1.576 14.41 7.184 10.25 14.392Z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
                 <path
                   fill="#14424C"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M15.53 4.567 12.894 0 5.417 4.317l2.637 4.566c.462.801-.23 1.775-1.139 1.6l-5.052-.975L.23 17.985l5.051.974c8.173 1.576 14.412-7.184 10.25-14.392Z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
                 <path
                   fill="#C85D1B"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M19.65 35.433 22.285 40l7.477-4.316-2.637-4.567c-.462-.801.23-1.775 1.139-1.6l5.051.974 1.635-8.476-5.052-.974c-8.172-1.576-14.41 7.184-10.25 14.392Z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
                 <path
                   fill="#14424C"
@@ -80,8 +80,8 @@ const HomeLayout = ({ children }: { children: ReactNode }) => {
             <nav className="px-6 py-4">
               <ul>
                 <li>
-                  <Text as="h5" className="mb-2 text-sm font-semibold uppercase text-slate-900">
-                    General
+                  <Text className="mb-2 text-xs font-semibold uppercase text-slate-900" asChild>
+                    <h5>General</h5>
                   </Text>
                   <ul className="space-y-2 border-l border-slate-100">
                     <li>
@@ -120,7 +120,7 @@ const HomeLayout = ({ children }: { children: ReactNode }) => {
             </nav>
           </aside>
           <section className="flex-1 bg-slate-50 px-6 py-4">
-            <Text variant="h1">Home</Text>
+            <Text variant="title">Home</Text>
             {children}
           </section>
         </main>

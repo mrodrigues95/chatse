@@ -6,7 +6,7 @@ export const revalidate = 0;
 
 const Login = () => (
   <>
-    <Text variant="h1" className="mb-8 text-center">
+    <Text variant="title" className="mb-8 text-center">
       Sign In
     </Text>
     <LoginForm />

@@ -1,3 +1,6 @@
 {
-  "*": ["nx affected:lint --fix --files", "nx format:write --fix --files"]
+  "*": [
+    "nx affected:lint --uncommitted=true --fix=true",
+    "nx format:write --uncommitted=true --fix=true"
+  ]
 }
