@@ -1,5 +1,5 @@
 import { Button, Text } from '@chatse/toolkit';
-import { Link } from '../../../components/link';
+import { Link } from '../../../components';
 import { LoginForm } from './form';
 
 export const revalidate = 0;

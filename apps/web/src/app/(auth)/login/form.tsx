@@ -3,7 +3,7 @@
 import { useFormState } from 'react-dom';
 
 import { Alert, Form } from '@chatse/toolkit';
-import { SubmitButton } from '../../../components/submit-button';
+import { SubmitButton } from '../../../components';
 import { login } from '../actions';
 
 export const LoginForm = () => {

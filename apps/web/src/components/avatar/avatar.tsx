@@ -5,7 +5,7 @@ import Image, { type ImageProps } from 'next/image';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@chatse/toolkit';
-import { Icon } from './icon';
+import { Icon } from '../icon/icon';
 
 export const avatarVariants = cva(
   'relative inline-flex min-w-0 shrink-0 items-center justify-center overflow-hidden border-transparent text-center font-semibold uppercase',

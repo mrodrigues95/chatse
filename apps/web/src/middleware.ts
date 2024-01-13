@@ -5,12 +5,13 @@ const publicRoutes = ['/', '/login', '/signup'];
 
 export const middleware = (request: NextRequest) => {
   const identityCookie = request.cookies.get('chatse_identity');
+  const currentRoute = request.nextUrl.pathname;
 
-  if (identityCookie && publicRoutes.includes(request.nextUrl.pathname)) {
-    return NextResponse.redirect(new URL('/home', request.url));
+  if (identityCookie && publicRoutes.includes(currentRoute)) {
+    return NextResponse.redirect(new URL('/clubs', request.url));
   }
 
-  if (!identityCookie && !publicRoutes.includes(request.nextUrl.pathname)) {
+  if (!identityCookie && !publicRoutes.includes(currentRoute)) {
     return NextResponse.redirect(new URL('/login', request.url));
   }
 };

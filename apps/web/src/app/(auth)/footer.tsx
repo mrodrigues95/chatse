@@ -3,7 +3,7 @@
 import { useSelectedLayoutSegment } from 'next/navigation';
 
 import { Text } from '@chatse/toolkit';
-import { Link } from '../../components/link';
+import { Link } from '../../components';
 
 const segmentMap = {
   login: { text: 'New to Chatse?', actionText: 'Create an account', actionHref: '/signup' },

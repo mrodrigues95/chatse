@@ -1,7 +1,9 @@
+'use client';
+
 import { useFormStatus } from 'react-dom';
 
 import { Button, type ButtonProps } from '@chatse/toolkit';
-import { Spinner } from './spinner';
+import { Spinner } from '../spinner/spinner';
 
 interface SubmitButtonProps extends ButtonProps {}
 

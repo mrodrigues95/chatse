@@ -36,7 +36,7 @@ const ICONS = {
   success: { component: <CheckCircle2 className="text-emerald-400" />, label: 'Success' },
   error: { component: <XCircle className="text-red-400" />, label: 'Error' },
   warning: { component: <AlertTriangle className="text-amber-400" />, label: 'Warning' },
-};
+} as const;
 
 export interface AlertProps extends ComponentProps<'div'>, VariantProps<typeof alertVariants> {}
 
@@ -70,7 +70,7 @@ export const Alert = ({
         ref={divRef}
       >
         <span className="self-baseline">
-          {icon && <AccessibleIcon label={icon.label}>{icon.component}</AccessibleIcon>}
+          {icon && <AccessibleIcon title={icon.label}>{icon.component}</AccessibleIcon>}
         </span>
         <div className="flex-1 space-y-1 break-words">{children}</div>
       </div>

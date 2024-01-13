@@ -3,7 +3,7 @@
 import { useFormState } from 'react-dom';
 
 import { Alert, Form } from '@chatse/toolkit';
-import { SubmitButton } from '../../../components/submit-button';
+import { SubmitButton } from '../../../components';
 import { signup } from '../actions';
 
 // TODO: Remove name/password fields when the email confirmation flow is finished.

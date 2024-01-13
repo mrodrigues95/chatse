@@ -44,7 +44,7 @@ export const login = async (prevState: LoginState, formData: FormData): Promise<
     });
 
     if (result.login.authPayload?.user) {
-      redirect('/home');
+      redirect('/clubs');
     }
 
     return { result };
@@ -89,7 +89,7 @@ export const signup = async (prevState: SignUpState, formData: FormData): Promis
     });
 
     if (result.signUp.authPayload?.user) {
-      redirect('/home');
+      redirect('/clubs');
     }
 
     return { result };
