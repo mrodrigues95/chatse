@@ -3,6 +3,7 @@
 import { useEffect, useState, type ComponentProps } from 'react';
 import Image, { type ImageProps } from 'next/image';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { LucideUser } from 'lucide-react';
 
 import { cn } from '@chatse/toolkit';
 import { Icon } from '../icon/icon';
@@ -47,7 +48,11 @@ interface BaseAvatarProps {
 }
 
 const AvatarPlaceholderIcon = () => {
-  return <Icon name="User" />;
+  return (
+    <Icon>
+      <LucideUser />
+    </Icon>
+  );
 };
 
 const getInitials = (name: string) => {

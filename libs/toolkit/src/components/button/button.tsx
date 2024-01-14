@@ -23,7 +23,7 @@ export const buttonVariants = cva(
           'data-[focus-visible=true]:bg-red-100 data-[focus-visible=true]:ring-red-600',
         ],
         outline: [
-          'border-2 border-slate-200 bg-transparent text-slate-700',
+          'border-2 border-slate-200 bg-transparent text-slate-700 shadow-sm',
           'hover:bg-slate-100 hover:text-slate-900',
         ],
         ghost: ['bg-transparent text-slate-500', 'hover:bg-slate-100 hover:text-slate-900'],

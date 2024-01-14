@@ -9,9 +9,9 @@ import { cn } from '../../utils/cn';
 const textVariants = cva([], {
   variants: {
     variant: {
-      hero: 'text-4xl font-semibold tracking-tight text-slate-900',
-      title: 'text-3xl font-semibold tracking-tight text-slate-900',
-      subtitle: 'text-xl font-bold tracking-tight text-slate-700',
+      hero: 'text-5xl font-semibold tracking-tight text-slate-900',
+      title: 'text-4xl font-semibold tracking-tight text-slate-900',
+      subtitle: 'text-lg font-medium tracking-tight text-slate-700',
       body: 'text-base font-normal text-slate-700',
       muted: 'text-base font-normal text-slate-500',
     },

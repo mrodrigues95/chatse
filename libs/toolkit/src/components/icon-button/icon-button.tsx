@@ -3,9 +3,10 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '../../utils/cn';
+import { AccessibleIcon } from '../accessible-icon/accessible-icon';
 import { Button, type ButtonProps } from '../button/button';
 
-export const iconButtonVariants = cva('p-1', {
+export const iconButtonVariants = cva('p-2', {
   variants: {
     size: {
       sm: 'h-6 w-6',
@@ -30,6 +31,10 @@ export interface IconButtonProps
   'aria-label': string;
 }
 
-export const IconButton = ({ size, className, ...props }: IconButtonProps) => (
-  <Button size={size} className={cn(iconButtonVariants({ size, className }))} {...props} />
+export const IconButton = ({ size, className, children, ...props }: IconButtonProps) => (
+  <Button size={size} className={cn(iconButtonVariants({ size, className }))} {...props}>
+    {props => (
+      <AccessibleIcon>{typeof children === 'function' ? children(props) : children}</AccessibleIcon>
+    )}
+  </Button>
 );

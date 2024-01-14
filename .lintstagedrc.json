@@ -1,6 +1,6 @@
 {
   "*": [
-    "nx affected:lint --uncommitted=true --fix=true",
-    "nx format:write --uncommitted=true --fix=true"
+    "pnpm exec nx affected:lint --uncommitted --fix=true",
+    "pnpm exec nx format:write --uncommitted"
   ]
 }

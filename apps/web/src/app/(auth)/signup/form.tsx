@@ -21,9 +21,9 @@ export const SignUpForm = () => {
         </Alert>
       ) : null}
       <Form action={formAction} validationErrors={validationErrors} className="w-full">
-        <Form.Input label="Name" name="name" maxLength={70} isRequired />
-        <Form.Input label="Email address" name="email" type="email" isRequired />
-        <Form.Input
+        <Form.TextField label="Name" name="name" maxLength={70} isRequired />
+        <Form.TextField label="Email address" name="email" type="email" isRequired />
+        <Form.TextField
           label="Password"
           name="password"
           type="password"

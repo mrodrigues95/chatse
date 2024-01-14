@@ -1,3 +1,5 @@
+import { LucideBell, LucideSearch } from 'lucide-react';
+
 import { AccessibleIcon, Button, IconButton } from '@chatse/toolkit';
 import { Avatar } from '../avatar/avatar';
 import { Icon } from '../icon/icon';
@@ -51,14 +53,18 @@ export const Header = () => (
         variant="outline"
         className="mx-auto gap-0 font-medium text-slate-500 hover:text-slate-700"
       >
-        <Icon name="Search" className="mr-2" />
+        <Icon className="mr-2">
+          <LucideSearch />
+        </Icon>
         Quick search...
         <kbd className="ml-8 rounded-md border border-slate-200 bg-white px-2 py-1 text-xs font-semibold text-slate-700 shadow-sm">
           Ctrl K
         </kbd>
       </Button>
       <IconButton aria-label="Notifications" variant="ghost">
-        <Icon name="Bell" />
+        <Icon>
+          <LucideBell />
+        </Icon>
       </IconButton>
       <Avatar size="md" scheme="green" radius="full" name="John Doe" />
     </div>

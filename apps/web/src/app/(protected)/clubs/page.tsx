@@ -1,14 +1,44 @@
-import { type ReactNode } from 'react';
+'use client';
 
-import { Text } from '@chatse/toolkit';
+import { useState } from 'react';
+import { LucideFilter, LucideSearch } from 'lucide-react';
 
-export const revalidate = 0;
+import { IconButton, Input, Seperator, Text } from '@chatse/toolkit';
 
-const ClubsPage = async ({ children }: { children: ReactNode }) => {
+// export const revalidate = 0;
+
+const ClubsPage = () => {
+  const [search, setSearch] = useState('');
+  const [showSearch, setShowSearch] = useState(false);
+
   return (
     <section className="flex-1 bg-slate-50 px-6 py-4">
       <Text variant="title">Clubs</Text>
-      {children}
+      <div className="flex h-8 items-center justify-end gap-1.5">
+        {showSearch ? (
+          <Input
+            type="search"
+            aria-label="Search for clubs"
+            onBlur={() => {
+              if (!search) {
+                setShowSearch(false);
+              }
+            }}
+            onChange={e => setSearch(e.target.value)}
+            density="compact"
+            className="w-64"
+            autoFocus
+          />
+        ) : (
+          <IconButton aria-label="Begin searching for clubs" onPress={() => setShowSearch(true)}>
+            <LucideSearch />
+          </IconButton>
+        )}
+        <IconButton aria-label="Filter your clubs">
+          <LucideFilter />
+        </IconButton>
+      </div>
+      <Seperator />
     </section>
   );
 };

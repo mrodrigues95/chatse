@@ -1,14 +1,7 @@
-import { type ReactNode } from 'react';
-
 export const revalidate = 0;
 
-const CommunityPage = ({ children }: { children: ReactNode }) => {
-  return (
-    <div>
-      community
-      {children}
-    </div>
-  );
+const CommunityPage = () => {
+  return <div>community</div>;
 };
 
 export default CommunityPage;

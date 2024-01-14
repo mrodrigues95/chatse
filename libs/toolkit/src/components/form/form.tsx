@@ -3,7 +3,7 @@
 import { Form as AriaForm, type FormProps as AriaFormProps } from 'react-aria-components';
 
 import { cn } from '../../utils/cn';
-import { Input } from '../input/input';
+import { TextField } from '../text-field/text-field';
 
 export interface FormProps extends AriaFormProps {}
 
@@ -20,4 +20,4 @@ export const Form = ({ className, onSubmit, ...props }: FormProps) => (
   />
 );
 
-Form.Input = Input;
+Form.TextField = TextField;

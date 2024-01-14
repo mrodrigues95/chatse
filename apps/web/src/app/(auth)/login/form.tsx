@@ -17,8 +17,8 @@ export const LoginForm = () => {
         </Alert>
       ) : null}
       <Form action={formAction} validationErrors={validationErrors} className="w-full">
-        <Form.Input label="Email address" name="email" type="email" isRequired />
-        <Form.Input
+        <Form.TextField label="Email address" name="email" type="email" isRequired />
+        <Form.TextField
           label="Password"
           name="password"
           type="password"

@@ -1,6 +1,7 @@
 'use client';
 
 import { useSelectedLayoutSegment } from 'next/navigation';
+import { LucideHome, LucideUsersRound } from 'lucide-react';
 
 import { cn, Text } from '@chatse/toolkit';
 import { Icon } from '../icon/icon';
@@ -17,7 +18,7 @@ export const Nav = () => {
             <Text className="mb-2 text-xs font-semibold uppercase text-slate-900" asChild>
               <h5>General</h5>
             </Text>
-            <ul className="space-y-2 border-l border-slate-100">
+            <ul className="ml-2 space-y-2 border-l border-slate-100">
               <li>
                 <Link
                   href="/clubs"
@@ -29,7 +30,9 @@ export const Nav = () => {
                     segment === 'clubs' && 'border-l-blue-500 text-blue-700',
                   )}
                 >
-                  <Icon name="Home" />
+                  <Icon>
+                    <LucideHome />
+                  </Icon>
                   Clubs
                 </Link>
               </li>
@@ -44,7 +47,9 @@ export const Nav = () => {
                     segment === 'community' && 'border-l-blue-900 text-blue-700',
                   )}
                 >
-                  <Icon name="UsersRound" />
+                  <Icon>
+                    <LucideUsersRound />
+                  </Icon>
                   Community
                 </Link>
               </li>
