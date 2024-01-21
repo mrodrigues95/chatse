@@ -9,7 +9,7 @@ module.exports = {
     });
 
     return [
-      `nx affected:lint --exclude=api`,
+      `nx affected:lint --exclude=api --fix --uncomitted`,
       `git add ${files.join(' ')}`,
     ];
   },
