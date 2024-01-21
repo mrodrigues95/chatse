@@ -1,15 +1,23 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useFormState } from 'react-dom';
 
 import { Alert, Form } from '@chatse/toolkit';
-import { SubmitButton } from '../../../components';
+import { SubmitButton, useToast } from '../../../components';
 import { signup } from '../actions';
 
 // TODO: Remove name/password fields when the email confirmation flow is finished.
 // Those two fields will be part of the confirmation page instead (after the user checks their email for a link).
 export const SignUpForm = () => {
-  const [{ result, validationErrors }, formAction] = useFormState(signup, {});
+  const [{ result, validationErrors, serverError }, submit] = useFormState(signup, {});
+  const { toast } = useToast();
+
+  useEffect(() => {
+    if (serverError) {
+      toast.add({ variant: 'error' });
+    }
+  }, [serverError, toast]);
 
   return (
     <>
@@ -20,7 +28,7 @@ export const SignUpForm = () => {
           </Alert.Title>
         </Alert>
       ) : null}
-      <Form action={formAction} validationErrors={validationErrors} className="w-full">
+      <Form action={submit} validationErrors={validationErrors} className="w-full">
         <Form.TextField label="Name" name="name" maxLength={70} isRequired />
         <Form.TextField label="Email address" name="email" type="email" isRequired />
         <Form.TextField

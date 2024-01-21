@@ -2,7 +2,7 @@
 
 import { redirect } from 'next/navigation';
 import { graphql } from 'relay-runtime';
-import { z, ZodError } from 'zod';
+import { z } from 'zod';
 
 import { type actionsLoginMutation } from '../../../__generated__/actionsLoginMutation.graphql';
 import { type actionsSignUpMutation } from '../../../__generated__/actionsSignUpMutation.graphql';
@@ -16,14 +16,19 @@ const loginSchema = z.object({
 
 interface LoginState {
   result?: actionsLoginMutation['response'];
-  validationErrors?: Partial<z.infer<typeof loginSchema>>;
+  validationErrors?: z.inferFlattenedErrors<typeof loginSchema>['fieldErrors'];
+  serverError?: unknown
 }
 
 export const login = async (prevState: LoginState, formData: FormData): Promise<LoginState> => {
-  try {
-    const payload = loginSchema.parse(Object.fromEntries(formData.entries()));
+  const validationResult = loginSchema.safeParse(Object.fromEntries(formData.entries()));
+  if (!validationResult.success) {
+    return { validationErrors: validationResult.error.flatten().fieldErrors };
+  }
 
-    const result = await commitMutationAsync<actionsLoginMutation>(getRelayEnvironment(), {
+  let result: actionsLoginMutation['response'];
+  try {
+    result = await commitMutationAsync<actionsLoginMutation>(getRelayEnvironment(), {
       mutation: graphql`
         mutation actionsLoginMutation($input: LoginInput!) {
           login(input: $input) {
@@ -40,35 +45,33 @@ export const login = async (prevState: LoginState, formData: FormData): Promise<
           }
         }
       `,
-      variables: { input: payload },
+      variables: { input: validationResult.data },
     });
-
-    if (result.login.authPayload?.user) {
-      redirect('/clubs');
-    }
-
-    return { result };
   } catch (err) {
-    if (err instanceof ZodError) {
-      return { validationErrors: err.flatten().fieldErrors };
-    }
-
-    throw err;
+    return { serverError: { message: (err as Error).message } }
   }
+
+  return result.login.authPayload?.user ? redirect('/') : { result }
 };
 
 const signUpSchema = loginSchema.extend({ name: z.string().trim().min(1).max(70) });
 
 interface SignUpState {
   result?: actionsSignUpMutation['response'];
-  validationErrors?: Partial<z.infer<typeof signUpSchema>>;
+  validationErrors?: z.inferFlattenedErrors<typeof signUpSchema>['fieldErrors'];
+  serverError?: unknown
 }
 
 export const signup = async (prevState: SignUpState, formData: FormData): Promise<SignUpState> => {
-  try {
-    const payload = signUpSchema.parse(Object.fromEntries(formData.entries()));
+  const validationResult = signUpSchema.safeParse(Object.fromEntries(formData.entries()));
+  if (!validationResult.success) {
+    return { validationErrors: validationResult.error.flatten().fieldErrors };
+  }
 
-    const result = await commitMutationAsync<actionsSignUpMutation>(getRelayEnvironment(), {
+  let result: actionsSignUpMutation['response'];
+  try {
+
+    result = await commitMutationAsync<actionsSignUpMutation>(getRelayEnvironment(), {
       mutation: graphql`
         mutation actionsSignUpMutation($input: SignUpInput!) {
           signUp(input: $input) {
@@ -85,19 +88,11 @@ export const signup = async (prevState: SignUpState, formData: FormData): Promis
           }
         }
       `,
-      variables: { input: payload },
+      variables: { input: validationResult.data },
     });
-
-    if (result.signUp.authPayload?.user) {
-      redirect('/clubs');
-    }
-
-    return { result };
   } catch (err) {
-    if (err instanceof ZodError) {
-      return { validationErrors: err.flatten().fieldErrors };
-    }
-
-    throw err;
+    return { serverError: { message: (err as Error).message } }
   }
+
+  return result.signUp.authPayload?.user ? redirect('/clubs') : { result }
 };

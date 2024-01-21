@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { User2 } from 'lucide-react';
 
-import { AccessibleIcon } from '../accessible-icon/accessible-icon';
 import { IconButton } from './icon-button';
 
 const meta = {
@@ -15,11 +14,7 @@ type Story = StoryObj<typeof IconButton>;
 
 export const Primary: Story = {
   args: {
-    children: (
-      <AccessibleIcon>
-        <User2 />
-      </AccessibleIcon>
-    ),
+    children: <User2 />,
     'aria-label': 'User',
     variant: 'ghost',
   },

@@ -8,5 +8,6 @@ export * from './components/button/button';
 export * from './components/icon-button/icon-button';
 export * from './components/link/link';
 export * from './components/seperator/seperator';
+export * from './components/toast/toast';
 
 export { cn } from './utils/cn';
