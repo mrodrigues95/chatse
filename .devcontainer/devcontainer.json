@@ -1,0 +1,51 @@
+{
+  "name": "Chatse",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    }
+  },
+  "postCreateCommand": ["npm install -g nx typescript", "dotnet tool restore"],
+  "postStartCommand": "pnpm i",
+  "forwardPorts": [3000, 4400, 5000, 5001, 5432],
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "graphql.vscode-graphql-syntax",
+        "EditorConfig.EditorConfig",
+        "ms-dotnettools.csharp"
+      ]
+    }
+  },
+  "portsAttributes": {
+    "3000": {
+      "label": "Next.js",
+      "onAutoForward": "silent"
+    },
+    "4400": {
+      "label": "Storybook",
+      "onAutoForward": "silent"
+    },
+    "5000": {
+      "label": "API (HTTP)",
+      "onAutoForward": "silent"
+    },
+    "5001": {
+      "label": "API (HTTPS)",
+      "onAutoForward": "silent"
+    },
+    "5432": {
+      "label": "PostgreSQL database",
+      "onAutoForward": "silent"
+    }
+  }
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  // "remoteUser": "root"
+}
