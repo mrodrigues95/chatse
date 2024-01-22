@@ -1,36 +1,34 @@
 {
   "version": "2.0.0",
+  "presentation": {
+    "echo": false,
+    "reveal": "always",
+    "focus": false,
+    "panel": "dedicated",
+    "showReuseMessage": true
+  },
   "tasks": [
     {
-      "label": "build",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "build",
-        "${workspaceFolder}/apps/api/Api.csproj",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary"
-      ],
-      "problemMatcher": "$msCompile"
+      "label": "Launch dev terminals",
+      "dependsOn": ["Web App(3000)", "API (5000/5001)"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
     },
     {
-      "label": "publish",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "publish",
-        "${workspaceFolder}/apps/api/Api.csproj",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary"
-      ],
-      "problemMatcher": "$msCompile"
+      "label": "Web App (3000)",
+      "type": "shell",
+      "command": "nx serve web",
+      "isBackground": false,
+      "problemMatcher": []
     },
     {
-      "label": "watch",
-      "command": "dotnet",
-      "type": "process",
-      "args": ["watch", "run", "--project", "${workspaceFolder}/apps/api/Api.csproj"],
-      "problemMatcher": "$msCompile"
+      "label": "API (5000/5001)",
+      "type": "shell",
+      "command": "nx serve api",
+      "isBackground": false,
+      "problemMatcher": []
     }
   ]
 }
