@@ -1,6 +1,3 @@
 module.exports = {
-  '*': [
-    'nx affected:lint --exclude=api --fix --uncomitted',
-    'nx format:write --exclude=api --uncomitted',
-  ],
+  '*': ['nx affected:lint --exclude=api --fix --uncomitted', 'pnpm run format:write'],
 };

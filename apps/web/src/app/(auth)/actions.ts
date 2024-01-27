@@ -17,7 +17,7 @@ const loginSchema = z.object({
 interface LoginState {
   result?: actionsLoginMutation['response'];
   validationErrors?: z.inferFlattenedErrors<typeof loginSchema>['fieldErrors'];
-  serverError?: unknown
+  serverError?: unknown;
 }
 
 export const login = async (prevState: LoginState, formData: FormData): Promise<LoginState> => {
@@ -48,10 +48,10 @@ export const login = async (prevState: LoginState, formData: FormData): Promise<
       variables: { input: validationResult.data },
     });
   } catch (err) {
-    return { serverError: { message: (err as Error).message } }
+    return { serverError: { message: (err as Error).message } };
   }
 
-  return result.login.authPayload?.user ? redirect('/') : { result }
+  return result.login.authPayload?.user ? redirect('/') : { result };
 };
 
 const signUpSchema = loginSchema.extend({ name: z.string().trim().min(1).max(70) });
@@ -59,7 +59,7 @@ const signUpSchema = loginSchema.extend({ name: z.string().trim().min(1).max(70)
 interface SignUpState {
   result?: actionsSignUpMutation['response'];
   validationErrors?: z.inferFlattenedErrors<typeof signUpSchema>['fieldErrors'];
-  serverError?: unknown
+  serverError?: unknown;
 }
 
 export const signup = async (prevState: SignUpState, formData: FormData): Promise<SignUpState> => {
@@ -70,7 +70,6 @@ export const signup = async (prevState: SignUpState, formData: FormData): Promis
 
   let result: actionsSignUpMutation['response'];
   try {
-
     result = await commitMutationAsync<actionsSignUpMutation>(getRelayEnvironment(), {
       mutation: graphql`
         mutation actionsSignUpMutation($input: SignUpInput!) {
@@ -91,8 +90,8 @@ export const signup = async (prevState: SignUpState, formData: FormData): Promis
       variables: { input: validationResult.data },
     });
   } catch (err) {
-    return { serverError: { message: (err as Error).message } }
+    return { serverError: { message: (err as Error).message } };
   }
 
-  return result.signUp.authPayload?.user ? redirect('/clubs') : { result }
+  return result.signUp.authPayload?.user ? redirect('/clubs') : { result };
 };

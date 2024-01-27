@@ -26,8 +26,8 @@
     "affected:test": "nx affected:test",
     "affected:lint": "nx affected:lint",
     "affected:tsc": "nx affected --target=tsc",
-    "format:write": "nx format:write --all",
-    "format:check": "nx format:check --all",
+    "format:write": "prettier --write .",
+    "format:check": "prettier --check .",
     "dotnet:restore": "nx g @nx-dotnet/core:restore"
   },
   "dependencies": {

@@ -16,7 +16,7 @@ export const commitMutationAsync = <TMutation extends MutationParameters>(
         console.error('Error while comitting async mutation', err);
         reject(err);
       },
-      onCompleted: (response) => {
+      onCompleted: response => {
         // Payload errors are re-thrown within `environment.ts` and should
         // be handled above.
         resolve(response);
