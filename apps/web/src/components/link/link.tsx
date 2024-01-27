@@ -6,7 +6,7 @@ import { type VariantProps } from 'class-variance-authority';
 
 import { buttonVariants, cn } from '@chatse/toolkit';
 
-interface LinkProps extends NextLinkProps, VariantProps<typeof buttonVariants> {
+export interface LinkProps extends NextLinkProps, VariantProps<typeof buttonVariants> {
   className?: string;
   children?: ReactNode;
 }

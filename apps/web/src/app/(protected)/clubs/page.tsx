@@ -12,7 +12,7 @@ const ClubsPage = () => {
   const [showSearch, setShowSearch] = useState(false);
 
   return (
-    <section className="flex-1 bg-slate-50 px-6 py-4">
+    <section className="flex-1 px-6 py-4">
       <Text variant="title">Clubs</Text>
       <div className="flex h-8 items-center justify-end gap-1.5">
         {showSearch ? (

@@ -10,7 +10,7 @@
   "tasks": [
     {
       "label": "Launch dev terminals",
-      "dependsOn": ["Web App", "API", "Storybook"],
+      "dependsOn": ["Web App", "API"],
       "group": {
         "kind": "build",
         "isDefault": true
@@ -27,13 +27,6 @@
       "label": "API",
       "type": "shell",
       "command": "nx serve api",
-      "isBackground": true,
-      "problemMatcher": []
-    },
-    {
-      "label": "Storybook",
-      "type": "shell",
-      "command": "nx serve toolkit:storybook",
       "isBackground": true,
       "problemMatcher": []
     }
