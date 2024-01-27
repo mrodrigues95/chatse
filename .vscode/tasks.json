@@ -1,33 +1,40 @@
 {
   "version": "2.0.0",
   "presentation": {
-    "echo": false,
+    "echo": true,
     "reveal": "always",
-    "focus": false,
+    "focus": true,
     "panel": "dedicated",
     "showReuseMessage": true
   },
   "tasks": [
     {
       "label": "Launch dev terminals",
-      "dependsOn": ["Web App(3000)", "API (5000/5001)"],
+      "dependsOn": ["Web App", "API", "Storybook"],
       "group": {
         "kind": "build",
         "isDefault": true
       }
     },
     {
-      "label": "Web App (3000)",
+      "label": "Web App",
       "type": "shell",
       "command": "nx serve web",
-      "isBackground": false,
+      "isBackground": true,
       "problemMatcher": []
     },
     {
-      "label": "API (5000/5001)",
+      "label": "API",
       "type": "shell",
       "command": "nx serve api",
-      "isBackground": false,
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Storybook",
+      "type": "shell",
+      "command": "nx serve toolkit:storybook",
+      "isBackground": true,
       "problemMatcher": []
     }
   ]
