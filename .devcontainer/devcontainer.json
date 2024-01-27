@@ -13,7 +13,7 @@
     "install": "pnpm i",
     "certs": "dotnet dev-certs https"
   },
-  "forwardPorts": [3000, 4400, 5000, 5001, 5432],
+  "forwardPorts": [3000, 4400, 5000, 5001, 5432, 8080],
   "customizations": {
     "vscode": {
       "settings": {},
@@ -46,6 +46,10 @@
     },
     "5432": {
       "label": "Database",
+      "onAutoForward": "silent"
+    },
+    "8080": {
+      "label": "Database Tools",
       "onAutoForward": "silent"
     }
   },
