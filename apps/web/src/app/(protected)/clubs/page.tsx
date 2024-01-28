@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { LucideFilter, LucideSearch } from 'lucide-react';
 
 import { IconButton, Input, Seperator, Text } from '@chatse/toolkit';
+import { BreadCrumbsForPath } from '../../../../src/components';
 
 // export const revalidate = 0;
 
@@ -12,7 +13,8 @@ const ClubsPage = () => {
   const [showSearch, setShowSearch] = useState(false);
 
   return (
-    <section className="flex-1 px-6 py-4">
+    <div className="flex-1 px-6 py-4">
+      <BreadCrumbsForPath className="mb-4" />
       <Text variant="title">Clubs</Text>
       <div className="flex h-8 items-center justify-end gap-1.5">
         {showSearch ? (
@@ -39,7 +41,7 @@ const ClubsPage = () => {
         </IconButton>
       </div>
       <Seperator />
-    </section>
+    </div>
   );
 };
 
