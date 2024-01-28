@@ -15,7 +15,7 @@
     "node": ">=20.0.0"
   },
   "scripts": {
-    "prepare": "pnpm dotnet:restore && husky install",
+    "prepare": "pnpm dotnet:restore",
     "build:all": "nx run-many --target=build",
     "lint:all": "nx run-many --target=lint",
     "test:all": "nx run-many --target=test",
@@ -28,7 +28,8 @@
     "affected:tsc": "nx affected --target=tsc",
     "format:write": "prettier --write .",
     "format:check": "prettier --check .",
-    "dotnet:restore": "nx g @nx-dotnet/core:restore"
+    "dotnet:restore": "nx g @nx-dotnet/core:restore",
+    "prettify": "pnpm run affected:lint --fix && pnpm run format:write"
   },
   "dependencies": {
     "@nx/next": "17.2.7",
@@ -93,9 +94,7 @@
     "eslint-config-prettier": "9.0.0",
     "eslint-plugin-relay": "^1.8.3",
     "eslint-plugin-tailwindcss": "^3.13.0",
-    "husky": "^8.0.0",
     "jsdom": "~22.1.0",
-    "lint-staged": "^15.2.0",
     "nx": "17.2.7",
     "postcss": "^8.4.30",
     "prettier": "^3.1.0",
