@@ -18,7 +18,11 @@ export interface ToastRegionProps<T> extends AriaToastRegionProps, ComponentProp
   state: ToastState<T>;
 }
 
-export const ToastRegion = <T,>({ state, className, ...props }: ToastRegionProps<T>) => {
+export const ToastRegion = <T extends object>({
+  state,
+  className,
+  ...props
+}: ToastRegionProps<T>) => {
   const ref = useRef(null);
   const { regionProps } = useToastRegion(props, state, ref);
 
@@ -101,7 +105,7 @@ export interface ToasterProps<T> {
   children: (state: ToastState<T>) => ReactNode;
 }
 
-export const ToastProvider = <T,>({ queue, children }: ToasterProps<T>) => {
+export const ToastProvider = <T extends object>({ queue, children }: ToasterProps<T>) => {
   const state = useToastQueue(queue);
   return state.visibleToasts.length > 0 ? createPortal(children(state), document.body) : null;
 };

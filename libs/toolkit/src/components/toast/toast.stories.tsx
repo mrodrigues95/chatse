@@ -3,6 +3,7 @@ import { ToastQueue } from '@react-stately/toast';
 import type { Meta, StoryObj } from '@storybook/react';
 import { X } from 'lucide-react';
 
+import { cn } from '../../utils/cn';
 import { Button } from '../button/button';
 import { Toast, ToastProvider, ToastRegion } from './toast';
 
@@ -30,7 +31,21 @@ const Toaster = () => (
     {state => (
       <ToastRegion state={state}>
         {state.visibleToasts.map(toast => (
-          <Toast key={toast.key} toast={toast} state={state}>
+          <Toast
+            key={toast.key}
+            toast={toast}
+            state={state}
+            data-animation={toast.animation}
+            onAnimationEnd={() => {
+              if (toast.animation === 'exiting') {
+                state.remove(toast.key);
+              }
+            }}
+            className={cn(
+              'data-[animation=entering]:animate-in data-[animation=entering]:slide-in-from-top-full data-[animation=entering]:sm:slide-in-from-bottom-full',
+              'data-[animation=exiting]:animate-out data-[animation=exiting]:fade-out-80 data-[animation=exiting]:slide-out-to-right-full',
+            )}
+          >
             {({ titleProps, descriptionProps, closeButtonProps }) => (
               <>
                 <div className="grid gap-1">
