@@ -5,6 +5,8 @@ import { Seperator } from './seperator';
 const meta = {
   component: Seperator,
   title: 'Seperator',
+  tags: ['autodocs'],
+  parameters: { controls: { include: ['orientation'] } },
 } satisfies Meta<typeof Seperator>;
 
 export default meta;

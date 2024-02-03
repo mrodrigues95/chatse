@@ -2,11 +2,9 @@
 
 import { forwardRef, type HTMLAttributes } from 'react';
 import { Slot } from '@radix-ui/react-slot';
-import { cva, type VariantProps } from 'class-variance-authority';
+import { tv, type VariantProps } from 'tailwind-variants';
 
-import { cn } from '../../utils/cn';
-
-const textVariants = cva([], {
+const textVariants = tv({
   variants: {
     variant: {
       hero: 'text-5xl font-semibold tracking-tight text-slate-900',
@@ -38,6 +36,6 @@ export interface TextProps extends HTMLAttributes<HTMLElement>, VariantProps<typ
 export const Text = forwardRef<HTMLElement, TextProps>(
   ({ className, variant = 'body', asChild, ...props }, ref) => {
     const Component = asChild ? Slot : variant ? variantElementMap[variant] : 'span';
-    return <Component className={cn(textVariants({ variant, className }))} ref={ref} {...props} />;
+    return <Component className={textVariants({ variant, className })} ref={ref} {...props} />;
   },
 );

@@ -11,6 +11,20 @@ const config: StorybookConfig = {
       },
     },
   },
+  docs: {
+    autodocs: 'tag',
+  },
+  typescript: {
+    reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      compilerOptions: {
+        allowSyntheticDefaultImports: false,
+        esModuleInterop: false,
+      },
+      propFilter: prop => !prop.name.startsWith('aria-'),
+    },
+  },
 };
 
 export default config;

@@ -1,24 +1,8 @@
 'use client';
 
 import { type ComponentProps } from 'react';
-import { cva } from 'class-variance-authority';
 
-import { cn } from '../../utils/cn';
-import { useAlert } from './alert';
-
-export const alertContentVariants = cva('', {
-  variants: {
-    variant: {
-      info: 'text-sky-700',
-      warning: 'text-amber-700',
-      success: 'text-emerald-700',
-      error: 'text-red-700',
-    },
-  },
-  defaultVariants: {
-    variant: 'info',
-  },
-});
+import { alertVariants, useAlert } from './alert';
 
 interface AlertContentProps extends ComponentProps<'section'> {}
 
@@ -30,9 +14,10 @@ export const AlertContent = ({ className, children, ...props }: AlertContentProp
   }
 
   const { variant } = ctx;
+  const { content } = alertVariants({ variant, className });
 
   return (
-    <section className={cn(alertContentVariants({ variant, className }))} {...props}>
+    <section className={content()} {...props}>
       {children}
     </section>
   );

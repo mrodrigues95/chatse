@@ -1,16 +1,26 @@
 'use client';
 
-import { forwardRef } from 'react';
-import { type VariantProps } from 'class-variance-authority';
-import { Link as AriaLink, type LinkProps as AriaLinkProps } from 'react-aria-components';
+import {
+  Link as AriaLink,
+  composeRenderProps,
+  type LinkProps as AriaLinkProps,
+} from 'react-aria-components';
+import { tv, type VariantProps } from 'tailwind-variants';
 
-import { cn } from '../../utils/cn';
 import { buttonVariants } from '../button/button';
 
-export interface LinkProps extends AriaLinkProps, VariantProps<typeof buttonVariants> {}
+export const linkVariants = tv({
+  extend: buttonVariants,
+  defaultVariants: { variant: 'link' },
+});
 
-export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
-  ({ variant = 'link', size, className, ...props }, ref) => (
-    <AriaLink className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props} />
-  ),
+export interface LinkProps extends AriaLinkProps, VariantProps<typeof linkVariants> {}
+
+export const Link = ({ variant, size, ...props }: LinkProps) => (
+  <AriaLink
+    {...props}
+    className={composeRenderProps(props.className, (className, renderProps) =>
+      linkVariants({ ...renderProps, variant, size, className }),
+    )}
+  />
 );

@@ -1,8 +1,8 @@
-import { cva, type VariantProps } from 'class-variance-authority';
+import { tv, type VariantProps } from 'tailwind-variants';
 
-import { AccessibleIcon, cn, type AccessibleIconProps } from '@chatse/toolkit';
+import { AccessibleIcon, type AccessibleIconProps } from '@chatse/toolkit';
 
-const iconVariants = cva('', {
+const iconVariants = tv({
   variants: {
     size: {
       sm: 'h-4 w-4',
@@ -18,5 +18,5 @@ const iconVariants = cva('', {
 export interface IconProps extends VariantProps<typeof iconVariants>, AccessibleIconProps {}
 
 export const Icon = ({ size, className, ...props }: IconProps) => (
-  <AccessibleIcon className={cn(iconVariants({ size, className }))} {...props} />
+  <AccessibleIcon className={iconVariants({ size, className })} {...props} />
 );

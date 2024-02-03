@@ -9,6 +9,8 @@ import { Toast, ToastProvider, ToastRegion } from './toast';
 const meta = {
   component: Toast,
   title: 'Toast',
+  tags: ['autodocs'],
+  parameters: { controls: { include: [] } },
 } satisfies Meta<typeof Toast>;
 
 export default meta;

@@ -5,6 +5,9 @@ import { Button } from './button';
 const meta = {
   component: Button,
   title: 'Button',
+  tags: ['autodocs'],
+  args: { children: 'Press me!' },
+  parameters: { controls: { include: ['children', 'variant', 'size', 'isDisabled'] } },
 } satisfies Meta<typeof Button>;
 
 export default meta;
@@ -12,11 +15,10 @@ export default meta;
 type Story = StoryObj<typeof Button>;
 
 export const Primary: Story = {
-  args: { children: 'Press me!' },
+  args: {},
 };
 
 export const Variants: Story = {
-  ...Primary,
   args: {},
   render: () => (
     <div className="flex items-center space-x-2">

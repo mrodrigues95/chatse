@@ -9,21 +9,25 @@ import {
   type ComponentProps,
   type ReactNode,
 } from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
 import { AlertTriangle, CheckCircle2, Info, XCircle } from 'lucide-react';
+import { tv, type VariantProps } from 'tailwind-variants';
 
-import { cn } from '../../utils/cn';
 import { AccessibleIcon } from '../accessible-icon/accessible-icon';
 import { AlertContent } from './alert-content';
 import { AlertTitle } from './alert-title';
 
-export const alertVariants = cva('relative flex items-center space-x-3 rounded-lg p-4', {
+export const alertVariants = tv({
+  slots: {
+    base: 'relative flex items-center space-x-3 rounded-lg p-4',
+    title: 'font-semibold',
+    content: '',
+  },
   variants: {
     variant: {
-      info: 'bg-sky-50',
-      warning: 'bg-amber-50',
-      success: 'bg-emerald-50',
-      error: 'bg-red-50',
+      info: { base: 'bg-sky-50', title: 'text-sky-800', content: 'text-sky-700' },
+      warning: { base: 'bg-amber-50', title: 'text-amber-800', content: 'text-amber-700' },
+      success: { base: 'bg-emerald-50', title: 'text-emerald-800', content: 'text-emerald-700' },
+      error: { base: 'bg-red-50', title: 'text-red-800', content: 'text-red-700' },
     },
   },
   defaultVariants: {
@@ -58,6 +62,7 @@ export const Alert = ({
   }, [autoFocus]);
 
   const icon = variant && ICONS[variant];
+  const { base } = alertVariants({ variant, className });
 
   return (
     <AlertProvider variant={variant}>
@@ -66,7 +71,7 @@ export const Alert = ({
         tabIndex={autoFocus ? -1 : undefined}
         autoFocus={autoFocus}
         role="alert"
-        className={cn(alertVariants({ variant, className }))}
+        className={base()}
         ref={divRef}
       >
         <span className="self-baseline">

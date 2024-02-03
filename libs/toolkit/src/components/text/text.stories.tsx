@@ -5,23 +5,33 @@ import { Text } from './text';
 const meta = {
   component: Text,
   title: 'Text',
+  tags: ['autodocs'],
+  parameters: { controls: { include: [] } },
 } satisfies Meta<typeof Text>;
 
 export default meta;
 
 type Story = StoryObj<typeof Text>;
 
-const TextWithVariants = () => (
-  <div className="flex flex-col">
-    <Text variant="hero">hero</Text>
-    <Text variant="title">title</Text>
-    <Text variant="subtitle">subtitle</Text>
-    <Text variant="body">body</Text>
-    <Text variant="muted">muted</Text>
-  </div>
-);
-
 export const Primary: Story = {
   args: {},
-  render: TextWithVariants,
+  render: props => (
+    <div className="flex flex-col">
+      <Text variant="hero" {...props}>
+        hero
+      </Text>
+      <Text variant="title" {...props}>
+        title
+      </Text>
+      <Text variant="subtitle" {...props}>
+        subtitle
+      </Text>
+      <Text variant="body" {...props}>
+        body
+      </Text>
+      <Text variant="muted" {...props}>
+        muted
+      </Text>
+    </div>
+  ),
 };

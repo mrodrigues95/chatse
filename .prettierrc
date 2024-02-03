@@ -34,6 +34,6 @@
       }
     }
   ],
-  "tailwindFunctions": ["cn", "cva"],
+  "tailwindFunctions": ["cn", "cva", "tv"],
   "plugins": ["@ianvs/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"]
 }

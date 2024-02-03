@@ -5,6 +5,20 @@ import { TextField } from './text-field';
 const meta = {
   component: TextField,
   title: 'TextField',
+  tags: ['autodocs'],
+  parameters: {
+    controls: {
+      include: [
+        'isDisabled',
+        'isInvalid',
+        'isReadOnly',
+        'isRequired',
+        'placeholder',
+        'label',
+        'description',
+      ],
+    },
+  },
 } satisfies Meta<typeof TextField>;
 
 export default meta;

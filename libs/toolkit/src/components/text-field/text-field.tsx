@@ -9,7 +9,7 @@ import {
   type ValidationResult,
 } from 'react-aria-components';
 
-import { cn } from '../../utils/cn';
+import { composeTwRenderProps } from '../../utils/cn';
 import { Input, type InputProps } from '../input/input';
 import { Label, type LabelProps } from '../label/label';
 
@@ -25,23 +25,13 @@ export interface TextFieldProps extends AriaTextFieldProps {
 // TODO: Make generic <Field /> component, use :has() selectors to style data-[invalid] error states.
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
   (
-    {
-      label,
-      description,
-      errorMessage,
-      placeholder,
-      isRequired,
-      labelProps,
-      inputProps,
-      className,
-      ...props
-    },
+    { label, description, errorMessage, placeholder, isRequired, labelProps, inputProps, ...props },
     ref,
   ) => (
     <AriaTextField
       isRequired={isRequired}
-      className={cn('group flex w-full max-w-sm flex-col gap-2', className)}
       {...props}
+      className={composeTwRenderProps('group flex w-full max-w-sm flex-col gap-2', props.className)}
       ref={ref}
     >
       <Label {...labelProps}>

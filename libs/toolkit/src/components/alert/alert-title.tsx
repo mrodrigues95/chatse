@@ -1,24 +1,8 @@
 'use client';
 
 import { type ComponentProps } from 'react';
-import { cva } from 'class-variance-authority';
 
-import { cn } from '../../utils/cn';
-import { useAlert } from './alert';
-
-export const alertTitleVariants = cva('font-semibold', {
-  variants: {
-    variant: {
-      info: 'text-sky-800',
-      warning: 'text-amber-800',
-      success: 'text-emerald-800',
-      error: 'text-red-800',
-    },
-  },
-  defaultVariants: {
-    variant: 'info',
-  },
-});
+import { alertVariants, useAlert } from './alert';
 
 interface AlertTitleProps extends ComponentProps<'h3'> {}
 
@@ -30,9 +14,10 @@ export const AlertTitle = ({ className, children, ...props }: AlertTitleProps) =
   }
 
   const { variant } = ctx;
+  const { title } = alertVariants({ variant, className });
 
   return (
-    <h3 className={cn(alertTitleVariants({ variant, className }))} {...props}>
+    <h3 className={title()} {...props}>
       {children}
     </h3>
   );

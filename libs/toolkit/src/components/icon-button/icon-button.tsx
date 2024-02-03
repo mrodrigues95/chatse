@@ -1,12 +1,13 @@
 'use client';
 
-import { cva, type VariantProps } from 'class-variance-authority';
+import { composeRenderProps } from 'react-aria-components';
+import { tv, type VariantProps } from 'tailwind-variants';
 
-import { cn } from '../../utils/cn';
 import { AccessibleIcon } from '../accessible-icon/accessible-icon';
 import { Button, type ButtonProps } from '../button/button';
 
-export const iconButtonVariants = cva('p-2', {
+export const iconButtonVariants = tv({
+  base: 'p-2',
   variants: {
     size: {
       sm: 'h-6 w-6',
@@ -31,8 +32,13 @@ export interface IconButtonProps
   'aria-label': string;
 }
 
-export const IconButton = ({ size, className, children, ...props }: IconButtonProps) => (
-  <Button size={size} className={cn(iconButtonVariants({ size, className }))} {...props}>
+export const IconButton = ({ size, radius, children, ...props }: IconButtonProps) => (
+  <Button
+    {...props}
+    className={composeRenderProps(props.className, (className, renderProps) =>
+      iconButtonVariants({ ...renderProps, size, radius, className }),
+    )}
+  >
     {props => (
       <AccessibleIcon>{typeof children === 'function' ? children(props) : children}</AccessibleIcon>
     )}

@@ -2,46 +2,44 @@
 
 import { useEffect, useState, type ComponentProps } from 'react';
 import Image, { type ImageProps } from 'next/image';
-import { cva, type VariantProps } from 'class-variance-authority';
 import { LucideUser } from 'lucide-react';
+import { tv, type VariantProps } from 'tailwind-variants';
 
 import { cn } from '@chatse/toolkit';
 import { Icon } from '../icon/icon';
 
-export const avatarVariants = cva(
-  'relative inline-flex min-w-0 shrink-0 items-center justify-center overflow-hidden border-transparent text-center font-semibold uppercase',
-  {
-    variants: {
-      scheme: {
-        sky: 'bg-sky-100 text-sky-600',
-        pink: 'bg-pink-100 text-pink-600',
-        green: 'bg-emerald-100 text-emerald-600',
-        purple: 'bg-violet-100 text-violet-600',
-        rose: 'bg-rose-100 text-rose-600',
-        gray: 'bg-gray-100 text-gray-600',
-        orange: 'bg-orange-100 text-orange-600',
-      },
-      size: {
-        xs: 'h-4 w-4 text-[0.4rem]',
-        sm: 'h-6 w-6 text-[0.6rem]',
-        md: 'h-8 w-8 text-[0.8rem]',
-        lg: 'h-12 w-12 text-[1.2rem]',
-        xl: 'h-16 w-16 text-[1.6rem]',
-        xxl: 'h-24 w-24 text-[2.4rem]',
-      },
-      radius: {
-        none: 'rounded-none',
-        md: 'rounded-md',
-        full: 'rounded-full',
-      },
+export const avatarVariants = tv({
+  base: 'relative inline-flex min-w-0 shrink-0 items-center justify-center overflow-hidden border-transparent text-center font-semibold uppercase',
+  variants: {
+    scheme: {
+      sky: 'bg-sky-100 text-sky-600',
+      pink: 'bg-pink-100 text-pink-600',
+      green: 'bg-emerald-100 text-emerald-600',
+      purple: 'bg-violet-100 text-violet-600',
+      rose: 'bg-rose-100 text-rose-600',
+      gray: 'bg-gray-100 text-gray-600',
+      orange: 'bg-orange-100 text-orange-600',
     },
-    defaultVariants: {
-      scheme: 'sky',
-      size: 'sm',
-      radius: 'md',
+    size: {
+      xs: 'h-4 w-4 text-[0.4rem]',
+      sm: 'h-6 w-6 text-[0.6rem]',
+      md: 'h-8 w-8 text-[0.8rem]',
+      lg: 'h-12 w-12 text-[1.2rem]',
+      xl: 'h-16 w-16 text-[1.6rem]',
+      xxl: 'h-24 w-24 text-[2.4rem]',
+    },
+    radius: {
+      none: 'rounded-none',
+      md: 'rounded-md',
+      full: 'rounded-full',
     },
   },
-);
+  defaultVariants: {
+    scheme: 'sky',
+    size: 'sm',
+    radius: 'md',
+  },
+});
 
 interface BaseAvatarProps {
   name?: string;
@@ -109,7 +107,7 @@ export const Avatar = ({
   ) : null;
 
   return (
-    <span className={cn(avatarVariants({ scheme, size, radius, className }))} {...props}>
+    <span className={avatarVariants({ scheme, size, radius, className })} {...props}>
       {error ? ErrorFallbackComponent : ImageComponent}
     </span>
   );

@@ -5,6 +5,8 @@ import { Input } from './input';
 const meta = {
   component: Input,
   title: 'Input',
+  tags: ['autodocs'],
+  parameters: { controls: { include: ['disabled', 'density', 'placeholder'] } },
 } satisfies Meta<typeof Input>;
 
 export default meta;

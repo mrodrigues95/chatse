@@ -11,7 +11,7 @@ import {
 import { useToastQueue, type ToastQueue, type ToastState } from '@react-stately/toast';
 import { createPortal } from 'react-dom';
 
-import { cn } from '../../utils/cn';
+import { cn, composeTwRenderProps } from '../../utils/cn';
 import { IconButton, type IconButtonProps } from '../icon-button/icon-button';
 
 export interface ToastRegionProps<T> extends AriaToastRegionProps, ComponentProps<'ul'> {
@@ -37,21 +37,16 @@ export const ToastRegion = <T,>({ state, className, ...props }: ToastRegionProps
 
 export interface ToastCloseButtonProps extends IconButtonProps {}
 
-const ToastCloseButton = ({
-  className,
-  size = 'sm',
-  variant = 'ghost',
-  ...props
-}: ToastCloseButtonProps) => (
+const ToastCloseButton = ({ size = 'sm', variant = 'ghost', ...props }: ToastCloseButtonProps) => (
   <IconButton
     size={size}
     variant={variant}
-    className={cn(
+    {...props}
+    className={composeTwRenderProps(
+      props.className,
       'absolute right-2 top-2 rounded-md p-0 opacity-0 transition-opacity',
       'focus:opacity-100 group-hover:opacity-100',
-      className,
     )}
-    {...props}
   />
 );
 

@@ -5,6 +5,8 @@ import { Alert } from './alert';
 const meta = {
   component: Alert,
   title: 'Alert',
+  tags: ['autodocs'],
+  parameters: { controls: { include: ['variant'] } },
 } satisfies Meta<typeof Alert>;
 
 export default meta;

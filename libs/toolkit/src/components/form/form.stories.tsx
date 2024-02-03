@@ -6,6 +6,7 @@ import { Form } from './form';
 const meta = {
   component: Form,
   title: 'Form',
+  tags: ['autodocs'],
   argTypes: { onSubmit: { action: 'submit' } },
 } satisfies Meta<typeof Form>;
 
