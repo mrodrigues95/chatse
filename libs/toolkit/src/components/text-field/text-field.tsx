@@ -1,51 +1,55 @@
 'use client';
 
-import { forwardRef } from 'react';
 import {
-  FieldError as AriaFieldError,
-  Text as AriaText,
   TextField as AriaTextField,
   type TextFieldProps as AriaTextFieldProps,
   type ValidationResult,
 } from 'react-aria-components';
 
 import { composeTwRenderProps } from '../../utils/cn';
+import {
+  Description,
+  FieldError,
+  Label,
+  type DescriptionProps,
+  type FieldErrorProps,
+  type LabelProps,
+} from '../field/field';
 import { Input, type InputProps } from '../input/input';
-import { Label, type LabelProps } from '../label/label';
 
 export interface TextFieldProps extends AriaTextFieldProps {
   label: string;
   description?: string;
   errorMessage?: string | ((validation: ValidationResult) => string);
-  placeholder?: string;
+  placeholder?: InputProps['placeholder'];
   labelProps?: LabelProps;
   inputProps?: InputProps;
+  descriptionProps?: DescriptionProps;
+  fieldErrorProps?: FieldErrorProps;
 }
 
-// TODO: Make generic <Field /> component, use :has() selectors to style data-[invalid] error states.
-export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
-  (
-    { label, description, errorMessage, placeholder, isRequired, labelProps, inputProps, ...props },
-    ref,
-  ) => (
-    <AriaTextField
-      isRequired={isRequired}
-      {...props}
-      className={composeTwRenderProps('group flex w-full max-w-sm flex-col gap-2', props.className)}
-      ref={ref}
-    >
-      <Label {...labelProps}>
-        {label} {isRequired && <i aria-hidden>*</i>}
-      </Label>
-      <Input placeholder={placeholder} {...inputProps} />
-      {description && (
-        <AriaText className="text-sm leading-none" slot="description">
-          {description}
-        </AriaText>
-      )}
-      <AriaFieldError className="text-sm leading-none group-data-[invalid]:text-red-500">
-        {errorMessage}
-      </AriaFieldError>
-    </AriaTextField>
-  ),
+export const TextField = ({
+  label,
+  description,
+  errorMessage,
+  placeholder,
+  isRequired,
+  labelProps,
+  inputProps,
+  descriptionProps,
+  fieldErrorProps,
+  ...props
+}: TextFieldProps) => (
+  <AriaTextField
+    isRequired={isRequired}
+    {...props}
+    className={composeTwRenderProps('group flex w-full max-w-sm flex-col gap-2', props.className)}
+  >
+    <Label {...labelProps}>
+      {label} {isRequired && <i aria-hidden="true">*</i>}
+    </Label>
+    <Input {...inputProps} placeholder={placeholder} />
+    {description && <Description {...descriptionProps}>{description}</Description>}
+    <FieldError {...fieldErrorProps}>{errorMessage}</FieldError>
+  </AriaTextField>
 );

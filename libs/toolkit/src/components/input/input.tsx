@@ -1,6 +1,5 @@
 'use client';
 
-import { forwardRef } from 'react';
 import {
   Input as AriaInput,
   composeRenderProps,
@@ -21,7 +20,7 @@ export const inputVariants = tv({
     },
     isInvalid: {
       false: 'focus:border-blue-400 focus:ring-4 focus:ring-blue-200',
-      true: 'focus:border-red-400 focus:ring-4 focus:ring-red-200',
+      true: 'border-red-400 focus:border-red-400 focus:ring-4 focus:ring-red-200',
     },
   },
   defaultVariants: {
@@ -31,14 +30,11 @@ export const inputVariants = tv({
 
 export interface InputProps extends AriaInputProps, VariantProps<typeof inputVariants> {}
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ density = 'compact', ...props }, ref) => (
-    <AriaInput
-      {...props}
-      className={composeRenderProps(props.className, (className, renderProps) =>
-        inputVariants({ ...renderProps, density, className }),
-      )}
-      ref={ref}
-    />
-  ),
+export const Input = ({ density = 'compact', ...props }: InputProps) => (
+  <AriaInput
+    {...props}
+    className={composeRenderProps(props.className, (className, renderProps) =>
+      inputVariants({ ...renderProps, density, className }),
+    )}
+  />
 );
