@@ -9,5 +9,7 @@ export * from './components/icon-button/icon-button';
 export * from './components/link/link';
 export * from './components/seperator/seperator';
 export * from './components/toast/toast';
+export * from './components/dialog/dialog';
+export * from './components/popover/popover';
 
 export { cn } from './utils/cn';

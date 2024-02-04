@@ -8,6 +8,7 @@ const API_COOKIE = 'chatse_identity';
 export const trySetIdentityCookie = (response: Response) => {
   const cookies = setCookie.parse(response.headers.getSetCookie(), { map: true });
   if (API_COOKIE in cookies) {
+    console.log('Setting identity cookie', cookies[API_COOKIE]);
     // @ts-expect-error: Next isn't exporting `ResponseCookie`.
     nextCookies().set({ ...cookies[API_COOKIE] });
   }

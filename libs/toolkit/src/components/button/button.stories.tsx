@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { ChevronDown } from 'lucide-react';
 
 import { Button } from './button';
 
@@ -27,6 +28,7 @@ export const Variants: Story = {
       <Button variant="default">Default</Button>
       <Button variant="outline">Outline</Button>
       <Button variant="solid">Solid</Button>
+      <Button variant="solidBlue">Solid Blue</Button>
       <Button variant="link">Link</Button>
     </div>
   ),

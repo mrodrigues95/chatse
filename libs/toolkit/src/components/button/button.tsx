@@ -9,7 +9,7 @@ import { tv, type VariantProps } from 'tailwind-variants';
 
 export const buttonVariants = tv({
   base: [
-    'inline-flex select-none items-center justify-center gap-2 rounded-lg text-sm font-semibold outline-none ring-offset-white transition duration-150',
+    'inline-flex select-none items-center justify-center gap-2 rounded-md text-sm font-semibold outline-none ring-offset-white transition duration-150',
     'disabled:pointer-events-none disabled:opacity-50',
     'focus-visible:outline-none focus-visible:ring',
   ],
@@ -17,6 +17,7 @@ export const buttonVariants = tv({
     variant: {
       default: ['bg-slate-100 text-slate-700', 'hover:bg-slate-200 hover:text-slate-900'],
       solid: ['bg-slate-900 text-white', 'hover:bg-slate-700'],
+      solidBlue: ['bg-blue-700 text-white', 'hover:bg-blue-900'],
       danger: [
         'text-red-600 hover:bg-red-100',
         'focus-visible:bg-red-100 focus-visible:ring-red-600',
