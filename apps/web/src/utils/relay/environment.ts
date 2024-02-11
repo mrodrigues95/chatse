@@ -30,6 +30,7 @@ export const networkFetch = async (
   variables: Variables,
 ): Promise<GraphQLResponse> => {
   const resp = await fetch(HTTP_ENDPOINT, {
+    cache: 'no-store',
     method: 'POST',
     headers: {
       Accept: 'application/json',

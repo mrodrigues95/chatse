@@ -10,6 +10,7 @@ export const iconButtonVariants = tv({
   base: 'p-2',
   variants: {
     size: {
+      xs: 'h-4 w-4',
       sm: 'h-6 w-6',
       md: 'h-8 w-8',
       lg: 'h-10 w-10',

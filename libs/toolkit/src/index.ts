@@ -11,5 +11,6 @@ export * from './components/seperator/seperator';
 export * from './components/toast/toast';
 export * from './components/dialog/dialog';
 export * from './components/popover/popover';
+export * from './components/field/field';
 
 export { cn } from './utils/cn';

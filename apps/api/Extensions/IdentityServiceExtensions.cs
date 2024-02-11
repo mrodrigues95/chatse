@@ -27,7 +27,7 @@ public static class IdentityServiceExtensions
                 opts.Cookie.HttpOnly = true;
                 opts.Cookie.SameSite = SameSiteMode.Strict;
                 opts.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-                opts.ExpireTimeSpan = TimeSpan.FromDays(7);
+                opts.ExpireTimeSpan = TimeSpan.FromDays(14);
                 opts.SlidingExpiration = true;
             });
 

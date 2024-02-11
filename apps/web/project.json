@@ -62,7 +62,7 @@
     "relay": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "mkdir -p __generated__ && relay-compiler",
+        "command": "relay-compiler",
         "cwd": "apps/web"
       }
     },

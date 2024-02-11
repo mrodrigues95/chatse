@@ -57,7 +57,7 @@ public sealed class AuthMutations(ILogger<AuthMutations> logger)
         var result = await signInManager.PasswordSignInAsync(user, input.Password, true, false);
         if (!result.Succeeded)
         {
-
+            logger.LogError("Unable to login new user -> email: {email}. Result: {result}", input.Email, result);
             throw new LoginUserException();
         }
 

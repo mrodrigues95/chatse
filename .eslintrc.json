@@ -37,6 +37,7 @@
           { "fixStyle": "inline-type-imports" }
         ],
         "@typescript-eslint/consistent-type-exports": "error",
+        "@typescript-eslint/no-empty-interface": "off",
         "@typescript-eslint/ban-ts-comment": [
           "error",
           {
