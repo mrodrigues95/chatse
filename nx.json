@@ -12,10 +12,6 @@
     "test": {
       "cache": true
     },
-    "lint": {
-      "inputs": ["default", "{workspaceRoot}/.eslintrc.json", "{workspaceRoot}/.eslintignore"],
-      "cache": true
-    },
     "build-storybook": {
       "inputs": [
         "default",
@@ -26,6 +22,10 @@
       "cache": true
     },
     "tsc": {
+      "cache": true
+    },
+    "@nx/eslint:lint": {
+      "inputs": ["default", "{workspaceRoot}/.eslintrc.json", "{workspaceRoot}/.eslintignore"],
       "cache": true
     }
   },
