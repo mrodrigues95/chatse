@@ -12,5 +12,6 @@ export * from './components/toast/toast';
 export * from './components/dialog/dialog';
 export * from './components/popover/popover';
 export * from './components/field/field';
+export * from './components/checkbox/checkbox';
 
 export { cn } from './utils/cn';

@@ -27,11 +27,15 @@ export const ActionBar = () => {
           autoFocus
         />
       ) : (
-        <IconButton aria-label="Begin searching for clubs" onPress={() => setShowSearch(true)}>
+        <IconButton
+          aria-label="Begin searching for clubs"
+          onPress={() => setShowSearch(true)}
+          variant="outline"
+        >
           <LucideSearch />
         </IconButton>
       )}
-      <IconButton aria-label="Filter your clubs">
+      <IconButton aria-label="Filter your clubs" variant="outline">
         <LucideFilter />
       </IconButton>
     </section>

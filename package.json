@@ -67,6 +67,7 @@
     "@nx/web": "18.0.4",
     "@nx/workspace": "18.0.4",
     "@storybook/addon-a11y": "^7.6.4",
+    "@storybook/addon-actions": "^7.6.16",
     "@storybook/addon-essentials": "7.5.3",
     "@storybook/core-server": "7.5.3",
     "@storybook/react": "7.5.3",

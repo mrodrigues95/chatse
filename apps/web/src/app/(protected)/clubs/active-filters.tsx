@@ -1,9 +1,9 @@
 'use client';
 
 import { ChevronDown, MapPin, X } from 'lucide-react';
-import { composeRenderProps, DialogTrigger, Group } from 'react-aria-components';
+import { Checkbox, CheckboxGroup, composeRenderProps, DialogTrigger, Group } from 'react-aria-components';
 
-import { Button, buttonVariants, Dialog, IconButton, Popover, Text } from '@chatse/toolkit';
+import { Button, buttonVariants, Dialog, IconButton, Label, Popover, Text } from '@chatse/toolkit';
 import { Icon } from '../../../components/icon/icon';
 
 export const ActiveFilters = () => {
@@ -39,7 +39,12 @@ export const ActiveFilters = () => {
               </Icon>
             </Button>
             <Popover placement="bottom right" offset={10}>
-              <Dialog className="p-2 [[data-placement]>&]:p-2">asd</Dialog>
+              <Dialog className="p-2 [[data-placement]>&]:p-2">
+                <CheckboxGroup>
+                  <Label className="font-medium">Location</Label>
+                  <Checkbox value="online">Online</Checkbox>
+                </CheckboxGroup>
+              </Dialog>
             </Popover>
           </DialogTrigger>
           <IconButton
