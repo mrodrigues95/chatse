@@ -41,22 +41,24 @@
     ],
     "sharedGlobals": []
   },
-  "generators": {
-    "@nx/react": {
-      "application": {
-        "babel": true
-      },
-      "library": {
-        "unitTestRunner": "vitest"
+  "plugins": [
+    "@nx-dotnet/core",
+    {
+      "plugin": "@nx/vite/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "previewTargetName": "preview",
+        "testTargetName": "test",
+        "serveTargetName": "serve",
+        "serveStaticTargetName": "serve-static"
       }
     },
-    "@nx/next": {
-      "application": {
-        "style": "css",
-        "linter": "eslint"
+    {
+      "plugin": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
       }
     }
-  },
-  "plugins": ["@nx-dotnet/core"],
+  ],
   "defaultBase": "main"
 }

@@ -1,17 +1,29 @@
-/// <reference types="vitest" />
+/// <reference types='vitest' />
+import { join } from 'path';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
+import { TanStackRouterVite } from '@tanstack/router-vite-plugin';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
   root: __dirname,
-  cacheDir: '../../node_modules/.vite/toolkit',
+  cacheDir: '../../node_modules/.vite/apps/webv2',
+  server: {
+    port: 4200,
+    host: 'localhost',
+  },
   plugins: [
     react(),
     nxViteTsPaths(),
+    TanStackRouterVite({
+      routesDirectory: join(__dirname, 'src/routes'),
+      generatedRouteTree: join(__dirname, 'src/routeTree.gen.ts'),
+      routeFileIgnorePrefix: '-',
+      quoteStyle: 'single',
+    }),
   ],
   build: {
-    outDir: '../../dist/libs/toolkit',
+    outDir: '../../dist/apps/webv2',
     reportCompressedSize: true,
     commonjsOptions: {
       transformMixedEsModules: true,
@@ -27,7 +39,7 @@ export default defineConfig({
 
     reporters: ['default'],
     coverage: {
-      reportsDirectory: '../../coverage/libs/toolkit',
+      reportsDirectory: '../../coverage/apps/webv2',
       provider: 'v8',
     },
   },

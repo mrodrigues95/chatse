@@ -1,0 +1,13 @@
+{
+  "root": ".",
+  "sources": {
+    "src": "chatse_webv2"
+  },
+  "projects": {
+    "chatse_webv2": {
+      "language": "typescript",
+      "schema": "schema.graphql",
+      "output": "__generated__"
+    }
+  }
+}

@@ -1,7 +1,11 @@
 {
   "root": true,
   "ignorePatterns": ["**/*"],
-  "extends": ["prettier", "plugin:tailwindcss/recommended", "plugin:relay/recommended"],
+  "extends": [
+    "prettier",
+    "plugin:tailwindcss/recommended",
+    "plugin:relay/recommended"
+  ],
   "plugins": ["@nx", "relay"],
   "rules": {
     "tailwindcss/no-custom-classname": "off",
@@ -38,6 +42,7 @@
         ],
         "@typescript-eslint/consistent-type-exports": "error",
         "@typescript-eslint/no-empty-interface": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
         "@typescript-eslint/ban-ts-comment": [
           "error",
           {
