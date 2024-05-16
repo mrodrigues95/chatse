@@ -1,0 +1,15 @@
+{
+  "name": "@chatse/api",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "restore": "dotnet restore",
+    "build": "dotnet build",
+    "format": "dotnet format",
+    "watch": "dotnet watch run --project Api",
+    "migrations:add": "dotnet ef migrations add --project Api",
+    "migrations:remove": "dotnet ef migrations remove --project Api",
+    "migrations:apply": "dotnet ef database update --project Api",
+    "schema:export": "dotnet run --project Api -- schema export --output ../../webv2/schema.graphql"
+  }
+}

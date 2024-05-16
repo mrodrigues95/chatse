@@ -42,9 +42,5 @@ Thumbs.db
 # Env files
 .env*.local
 
-# Next.js
-.next
-.nx/cache
-
 # Relay
 __generated__

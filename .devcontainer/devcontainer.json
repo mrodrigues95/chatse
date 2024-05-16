@@ -9,7 +9,7 @@
     }
   },
   "postCreateCommand": {
-    "globals": "npm install -g nx typescript",
+    "globals": "npm install -g typescript",
     "install": "pnpm i",
     "certs": "dotnet dev-certs https"
   },

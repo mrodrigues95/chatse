@@ -1,7 +1,13 @@
 'use client';
 
 import { ChevronDown, MapPin, X } from 'lucide-react';
-import { Checkbox, CheckboxGroup, composeRenderProps, DialogTrigger, Group } from 'react-aria-components';
+import {
+  Checkbox,
+  CheckboxGroup,
+  composeRenderProps,
+  DialogTrigger,
+  Group,
+} from 'react-aria-components';
 
 import { Button, buttonVariants, Dialog, IconButton, Label, Popover, Text } from '@chatse/toolkit';
 import { Icon } from '../../../components/icon/icon';

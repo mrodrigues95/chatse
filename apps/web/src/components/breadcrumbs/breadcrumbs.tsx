@@ -9,8 +9,8 @@ import {
   type ReactElement,
   type ReactNode,
 } from 'react';
-import { usePathname } from 'next/navigation';
 import { LucideChevronRight, LucideHome } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 import {
   useBreadcrumbItem,
   useBreadcrumbs,

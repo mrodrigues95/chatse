@@ -1,16 +1,11 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
 const path = require('path');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [path.join(__dirname, './src/**/*.{js,ts,jsx,tsx}')],
+  content: [path.join(__dirname, './src/**/*!(*.stories|*.spec).{js,jsx,ts,tsx,html,css}')],
   darkMode: 'class',
   theme: {
-    extend: {
-      fontFamily: {
-        sans: ['var(--font-geist-sans)', ...defaultTheme.fontFamily.sans],
-      },
-    },
+    extend: {},
   },
   variants: {
     extend: {},

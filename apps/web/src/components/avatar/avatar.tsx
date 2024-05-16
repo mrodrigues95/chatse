@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState, type ComponentProps } from 'react';
-import Image, { type ImageProps } from 'next/image';
 import { LucideUser } from 'lucide-react';
+import Image, { type ImageProps } from 'next/image';
 import { tv, type VariantProps } from 'tailwind-variants';
 
 import { cn } from '@chatse/toolkit';

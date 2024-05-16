@@ -5,9 +5,7 @@ import { Icon } from '../icon/icon';
 
 const iconStyles = 'w-4 h-4 text-white group-disabled:text-slate-400';
 
-interface CheckboxProps extends TKCheckboxProps {
-
-}
+interface CheckboxProps extends TKCheckboxProps {}
 
 export const Checkbox = (props: CheckboxProps) => (
   <TKCheckbox
