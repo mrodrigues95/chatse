@@ -5,7 +5,8 @@
   "scripts": {
     "restore": "dotnet restore",
     "build": "dotnet build",
-    "format": "dotnet format",
+    "format": "dotnet format --no-restore",
+    "format:check": "dotnet format --verify-no-changes --no-restore --verbosity diagnostic",
     "watch": "dotnet watch run --project Api",
     "migrations:add": "dotnet ef migrations add --project Api",
     "migrations:remove": "dotnet ef migrations remove --project Api",
