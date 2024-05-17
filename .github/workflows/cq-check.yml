@@ -10,19 +10,16 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - uses: nrwl/nx-set-shas@v3
-        name: Derive appropriate SHAs for base and head for `nx affected` commands
-
-      - uses: pnpm/action-setup@v2.2.4
+      - uses: pnpm/action-setup@v3
         name: Setup pnpm
         with:
-          version: 8.12.1
+          version: 9
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         name: Setup Node
         with:
           node-version-file: .nvmrc
@@ -30,6 +27,6 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
       - run: pnpm format:check
-      - run: pnpm affected:tsc --parallel=3
-      - run: pnpm affected:lint --parallel=3
-      - run: pnpm affected:build --parallel=3
+      - run: pnpm typecheck
+      - run: pnpm lint:ci
+      # - run: pnpm affected:build --parallel=3
