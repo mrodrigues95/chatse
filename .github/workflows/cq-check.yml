@@ -25,6 +25,11 @@ jobs:
           node-version-file: .nvmrc
           cache: pnpm
 
+      - uses: actions/setup-dotnet@v4
+        name: Setup .NET
+        with:
+          dotnet-version: 8.x
+
       - run: pnpm install --frozen-lockfile
       - run: pnpm format:check
       - run: pnpm typecheck
