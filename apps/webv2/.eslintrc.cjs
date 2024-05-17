@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['../../.eslintrc.js'],
+  extends: ['../../.eslintrc.js', 'plugin:@tanstack/eslint-plugin-query/recommended'],
   parserOptions: {
     tsconfigRootDir: __dirname,
     project: './tsconfig.json',

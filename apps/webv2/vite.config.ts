@@ -1,4 +1,3 @@
-import { join } from 'path';
 import { TanStackRouterVite } from '@tanstack/router-vite-plugin';
 import react from '@vitejs/plugin-react';
 import unfonts from 'unplugin-fonts/vite';
@@ -19,12 +18,7 @@ export default defineConfig({
       },
     }),
     tsconfigPaths(),
-    TanStackRouterVite({
-      routesDirectory: join(__dirname, 'src/routes'),
-      generatedRouteTree: join(__dirname, 'src/routeTree.gen.ts'),
-      routeFileIgnorePrefix: '-',
-      quoteStyle: 'single',
-    }),
+    TanStackRouterVite(),
     unfonts({
       custom: {
         families: [
