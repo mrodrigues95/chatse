@@ -5,13 +5,19 @@ import unfonts from 'unplugin-fonts/vite';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
+const ReactCompilerConfig = {};
+
 export default defineConfig({
   server: {
     port: 4200,
     host: 'localhost',
   },
   plugins: [
-    react(),
+    react({
+      babel: {
+        plugins: [['babel-plugin-react-compiler', ReactCompilerConfig]],
+      },
+    }),
     tsconfigPaths(),
     TanStackRouterVite({
       routesDirectory: join(__dirname, 'src/routes'),
