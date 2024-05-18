@@ -1,5 +1,3 @@
-'use client';
-
 import { Dialog as AriaDialog, type DialogProps as AriaDialogProps } from 'react-aria-components';
 
 import { cn } from '../../utils/cn';

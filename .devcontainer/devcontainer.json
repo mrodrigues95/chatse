@@ -13,7 +13,7 @@
     "install": "pnpm i",
     "certs": "dotnet dev-certs https"
   },
-  "forwardPorts": [3000, 4400, 5000, 5001, 5432, 8080],
+  "forwardPorts": [4200, 4400, 5000, 5001, 5432, 8080],
   "customizations": {
     "vscode": {
       "settings": {},
@@ -28,7 +28,7 @@
     }
   },
   "portsAttributes": {
-    "3000": {
+    "4200": {
       "label": "Web App",
       "onAutoForward": "silent"
     },

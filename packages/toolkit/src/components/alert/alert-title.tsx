@@ -1,5 +1,3 @@
-'use client';
-
 import { type ComponentProps } from 'react';
 
 import { alertVariants, useAlert } from './alert';

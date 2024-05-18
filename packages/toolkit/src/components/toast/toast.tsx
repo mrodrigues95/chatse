@@ -1,5 +1,3 @@
-'use client';
-
 import { useRef, type ComponentProps, type ReactNode } from 'react';
 import {
   useToast,

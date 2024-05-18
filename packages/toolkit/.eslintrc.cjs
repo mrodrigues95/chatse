@@ -6,7 +6,7 @@ module.exports = {
   },
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['plugin:tailwindcss/recommended', 'eslint-plugin-react-compiler'],
+  plugins: ['plugin:tailwindcss/recommended'],
   settings: {
     tailwindcss: {
       config: 'tailwind.config.js',
@@ -15,6 +15,5 @@ module.exports = {
   rules: {
     'tailwindcss/no-custom-classname': 'off',
     'tailwindcss/classnames-order': 'error',
-    'react-compiler/react-compiler': 'error',
   },
 };
