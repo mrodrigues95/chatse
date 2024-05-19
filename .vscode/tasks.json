@@ -19,14 +19,14 @@
     {
       "label": "Web App",
       "type": "shell",
-      "command": "nx serve web",
+      "command": "pnpm webv2 dev",
       "isBackground": true,
       "problemMatcher": []
     },
     {
       "label": "API",
       "type": "shell",
-      "command": "nx serve api",
+      "command": "pnpm api watch",
       "isBackground": true,
       "problemMatcher": []
     }

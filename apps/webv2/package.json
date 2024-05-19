@@ -10,13 +10,14 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@chatse/toolkit": "workspace:^",
     "@tanstack/react-query": "^5.36.2",
     "@tanstack/react-query-devtools": "^5.36.2",
     "@tanstack/react-router": "^1.32.13",
-    "@chatse/toolkit": "workspace:^",
     "geist": "^1.3.0",
     "react": "19.0.0-beta-26f2496093-20240514",
-    "react-dom": "19.0.0-beta-26f2496093-20240514"
+    "react-dom": "19.0.0-beta-26f2496093-20240514",
+    "tailwind-variants": "^0.2.1"
   },
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "^5.35.6",

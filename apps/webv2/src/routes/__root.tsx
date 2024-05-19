@@ -4,11 +4,11 @@ import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/router-devtools';
 
 const Root = () => (
-  <>
+  <div className="flex min-h-screen flex-col">
     <Outlet />
     <TanStackRouterDevtools position="bottom-left" />
     <ReactQueryDevtools buttonPosition="bottom-right" />
-  </>
+  </div>
 );
 
 export const Route = createRootRouteWithContext<{
