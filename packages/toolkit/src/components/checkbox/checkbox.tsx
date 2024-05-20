@@ -42,7 +42,7 @@ const checkboxStyles = tv({
 });
 
 const boxStyles = tv({
-  base: ['flex h-5 w-5 flex-shrink-0 items-center justify-center rounded border-2 transition'],
+  base: ['flex size-5 flex-shrink-0 items-center justify-center rounded border-2 transition'],
   variants: {
     isFocusVisible: {
       true: 'outline-none ring ring-offset-2 ring-offset-white',

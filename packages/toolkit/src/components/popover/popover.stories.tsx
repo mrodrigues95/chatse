@@ -22,7 +22,7 @@ export const Primary: Story = {
   render: props => (
     <DialogTrigger>
       <IconButton aria-label="Help">
-        <HelpCircle className="h-4 w-4" />
+        <HelpCircle className="size-4" />
       </IconButton>
       <Popover {...props}>
         <Dialog>

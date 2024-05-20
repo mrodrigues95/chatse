@@ -3,5 +3,9 @@ dist
 node_modules
 build
 pnpm-lock.yaml
+
+**/*.cs
+**/*.csproj
+**/*.sln
 [Bb]in/
 [Oo]bj/

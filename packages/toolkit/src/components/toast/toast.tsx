@@ -12,6 +12,8 @@ import { createPortal } from 'react-dom';
 import { cn, composeTwRenderProps } from '../../utils/cn';
 import { IconButton, type IconButtonProps } from '../icon-button/icon-button';
 
+export { ToastQueue } from '@react-stately/toast';
+
 export interface ToastRegionProps<T> extends AriaToastRegionProps, ComponentProps<'ul'> {
   state: ToastState<T>;
 }

@@ -1,4 +1,4 @@
-import { ComponentProps, forwardRef, type ReactNode } from 'react';
+import { forwardRef, type ComponentProps, type ReactNode } from 'react';
 import { createLink, Link as TanstackLink } from '@tanstack/react-router';
 import { type VariantProps } from 'tailwind-variants';
 
@@ -14,6 +14,8 @@ const BaseLink = forwardRef<HTMLAnchorElement, BaseLinkProps>(
     <TanstackLink {...props} className={linkVariants({ variant, size, className })} ref={ref} />
   ),
 );
+
+BaseLink.displayName = 'BaseLink';
 
 export const Link = createLink(BaseLink);
 

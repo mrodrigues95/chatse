@@ -1,4 +1,4 @@
-import './styles/globals.css';
+import '@chatse/toolkit/styles/styles.css';
 
 import { StrictMode } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';

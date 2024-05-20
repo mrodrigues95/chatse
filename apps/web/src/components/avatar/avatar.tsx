@@ -21,12 +21,12 @@ export const avatarVariants = tv({
       orange: 'bg-orange-100 text-orange-600',
     },
     size: {
-      xs: 'h-4 w-4 text-[0.4rem]',
-      sm: 'h-6 w-6 text-[0.6rem]',
-      md: 'h-8 w-8 text-[0.8rem]',
-      lg: 'h-12 w-12 text-[1.2rem]',
-      xl: 'h-16 w-16 text-[1.6rem]',
-      xxl: 'h-24 w-24 text-[2.4rem]',
+      xs: 'size-4 text-[0.4rem]',
+      sm: 'size-6 text-[0.6rem]',
+      md: 'size-8 text-[0.8rem]',
+      lg: 'size-12 text-[1.2rem]',
+      xl: 'size-16 text-[1.6rem]',
+      xxl: 'size-24 text-[2.4rem]',
     },
     radius: {
       none: 'rounded-none',

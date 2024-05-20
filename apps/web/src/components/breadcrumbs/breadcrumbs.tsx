@@ -51,7 +51,7 @@ const Breadcrumb = ({ href, separator, ...props }: BreadcrumbProps) => {
       >
         {props.children}
       </Component>
-      {!props.isCurrent && (separator ?? <LucideChevronRight className="h-4 w-4 text-slate-500" />)}
+      {!props.isCurrent && (separator ?? <LucideChevronRight className="size-4 text-slate-500" />)}
     </li>
   );
 };
@@ -88,7 +88,7 @@ export const BreadCrumbsForPath = (props: Omit<BreadcrumbsProps, 'children'>) =>
   return (
     <Breadcrumbs {...props}>
       <Breadcrumb isDisabled>
-        <LucideHome className="h-4 w-4" />
+        <LucideHome className="size-4" />
       </Breadcrumb>
       {paths.map((path, idx) => {
         const href = `/${paths.slice(0, idx + 1).join('/')}`;

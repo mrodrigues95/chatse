@@ -37,3 +37,5 @@ export const Text = forwardRef<HTMLElement, TextProps>(
     return <Component className={textVariants({ variant, className })} ref={ref} {...props} />;
   },
 );
+
+Text.displayName = 'Text';
