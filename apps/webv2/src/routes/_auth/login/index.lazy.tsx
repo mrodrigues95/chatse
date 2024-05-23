@@ -1,14 +1,15 @@
 import { createLazyFileRoute } from '@tanstack/react-router';
-import { Link } from 'src/components';
 
 import { Button, Text } from '@chatse/toolkit';
+import { Link } from '../../../components';
+import { LoginForm } from './-form';
 
 const Login = () => (
   <>
     <Text variant="title" className="mb-8 text-center">
       Sign In
     </Text>
-    {/* <LoginForm /> */}
+    <LoginForm />
     <Link to="/" size="xs" className="mx-auto mt-2.5 block w-max">
       Forgot password?
     </Link>

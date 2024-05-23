@@ -1,13 +1,11 @@
 import '@chatse/toolkit/styles/styles.css';
 
 import { StrictMode } from 'react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createRouter, ErrorComponent, RouterProvider } from '@tanstack/react-router';
 import ReactDOM from 'react-dom/client';
 
+import { AppProviders, queryClient } from './app-providers';
 import { routeTree } from './routeTree.gen';
-
-const queryClient = new QueryClient();
 
 const router = createRouter({
   routeTree,
@@ -30,9 +28,9 @@ if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <StrictMode>
-      <QueryClientProvider client={queryClient}>
+      <AppProviders>
         <RouterProvider router={router} />
-      </QueryClientProvider>
+      </AppProviders>
     </StrictMode>,
   );
 }

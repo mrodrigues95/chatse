@@ -1,0 +1,13 @@
+{
+  "src": "./src",
+  "language": "typescript",
+  "schema": "./schema.graphql",
+  "artifactDirectory": "./src/__generated__",
+  "eagerEsModules": true,
+  "customScalarTypes": {
+    "DateTime": "string",
+    "URL": "string",
+    "Short": "number",
+    "Long": "number"
+  }
+}
