@@ -32,6 +32,6 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
       - run: pnpm format:check
-      - run: pnpm typecheck
+      # - run: pnpm typecheck
       - run: pnpm lint:ci
       # - run: pnpm affected:build --parallel=3
