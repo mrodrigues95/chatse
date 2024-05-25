@@ -11,6 +11,8 @@ public static class ApplicationServiceExtensions
         {
             opts.AddPolicy("dev", policy =>
             {
+                string[] origins = ["http://localhost", "http://127.0.0.1"];
+
                 policy
                     .AllowCredentials()
                     .WithMethods("POST")
@@ -18,7 +20,7 @@ public static class ApplicationServiceExtensions
                         HeaderNames.Accept,
                         HeaderNames.ContentType)
                     .SetIsOriginAllowed((origin) =>
-                        origin.StartsWith("http://localhost", StringComparison.OrdinalIgnoreCase));
+                        origins.Any((o) => origin.StartsWith(o, StringComparison.OrdinalIgnoreCase)));
             });
         });
 
