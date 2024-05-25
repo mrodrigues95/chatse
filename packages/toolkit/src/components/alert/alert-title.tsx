@@ -12,10 +12,10 @@ export const AlertTitle = ({ className, children, ...props }: AlertTitleProps) =
   }
 
   const { variant } = ctx;
-  const { title } = alertVariants({ variant, className });
+  const { title } = alertVariants({ variant });
 
   return (
-    <h3 className={title()} {...props}>
+    <h3 className={title({ className })} {...props}>
       {children}
     </h3>
   );

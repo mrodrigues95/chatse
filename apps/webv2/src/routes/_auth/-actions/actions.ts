@@ -1,10 +1,9 @@
-import { useCallback } from 'react';
 import { useNavigate } from '@tanstack/react-router';
-import { useMutation } from 'react-relay';
 import { graphql } from 'relay-runtime';
 import { z } from 'zod';
 
 import { type actionsLoginMutation } from '../../../__generated__/actionsLoginMutation.graphql';
+import { type actionsSignUpMutation } from '../../../__generated__/actionsSignUpMutation.graphql';
 import { useMutationAsync } from '../../../utils/relay/useAsyncMutation';
 
 const loginSchema = z.object({
@@ -56,78 +55,48 @@ export const useLoginAction = () => {
   };
 };
 
-// export const login = async (prevState: LoginState, formData: FormData): Promise<LoginState> => {
-//   const validationResult = loginSchema.safeParse(Object.fromEntries(formData.entries()));
-//   if (!validationResult.success) {
-//     return { validationErrors: validationResult.error.flatten().fieldErrors };
-//   }
+const signUpSchema = loginSchema.extend({ name: z.string().trim().min(1).max(70) });
 
-//   let result: actionsLoginMutation['response'];
-//   try {
-//     result = await commitMutationAsync<actionsLoginMutation>(getRelayEnvironment(), {
-//       mutation: graphql`
-//         mutation actionsLoginMutation($input: LoginInput!) {
-//           login(input: $input) {
-//             authPayload {
-//               user {
-//                 id
-//               }
-//             }
-//             errors {
-//               ... on Error {
-//                 message
-//               }
-//             }
-//           }
-//         }
-//       `,
-//       variables: { input: validationResult.data },
-//     });
-//   } catch (err) {
-//     return { serverError: { message: (err as Error).message } };
-//   }
+export interface SignUpState {
+  result?: actionsSignUpMutation['response'];
+  validationErrors?: z.inferFlattenedErrors<typeof signUpSchema>['fieldErrors'];
+  serverError?: unknown;
+}
 
-//   return result.login.authPayload?.user ? redirect('/') : { result };
-// };
+export const useSignUpAction = () => {
+  const navigate = useNavigate();
+  const [commitAsync] = useMutationAsync<actionsSignUpMutation>(graphql`
+    mutation actionsSignUpMutation($input: SignUpInput!) {
+      signUp(input: $input) {
+        authPayload {
+          user {
+            id
+          }
+        }
+        errors {
+          ... on Error {
+            message
+          }
+        }
+      }
+    }
+  `);
 
-// const signUpSchema = loginSchema.extend({ name: z.string().trim().min(1).max(70) });
+  return async (prevState: SignUpState, formData: FormData) => {
+    const validationResult = signUpSchema.safeParse(Object.fromEntries(formData.entries()));
+    if (!validationResult.success) {
+      return { validationErrors: validationResult.error.flatten().fieldErrors };
+    }
 
-// interface SignUpState {
-//   result?: actionsSignUpMutation['response'];
-//   validationErrors?: z.inferFlattenedErrors<typeof signUpSchema>['fieldErrors'];
-//   serverError?: unknown;
-// }
+    try {
+      const result = await commitAsync({ variables: { input: validationResult.data } });
+      if (result.signUp.authPayload?.user) {
+        await navigate({ to: '/about' });
+      }
 
-// export const signup = async (prevState: SignUpState, formData: FormData): Promise<SignUpState> => {
-//   const validationResult = signUpSchema.safeParse(Object.fromEntries(formData.entries()));
-//   if (!validationResult.success) {
-//     return { validationErrors: validationResult.error.flatten().fieldErrors };
-//   }
-
-//   let result: actionsSignUpMutation['response'];
-//   try {
-//     result = await commitMutationAsync<actionsSignUpMutation>(getRelayEnvironment(), {
-//       mutation: graphql`
-//         mutation actionsSignUpMutation($input: SignUpInput!) {
-//           signUp(input: $input) {
-//             authPayload {
-//               user {
-//                 id
-//               }
-//             }
-//             errors {
-//               ... on Error {
-//                 message
-//               }
-//             }
-//           }
-//         }
-//       `,
-//       variables: { input: validationResult.data },
-//     });
-//   } catch (err) {
-//     return { serverError: { message: (err as Error).message } };
-//   }
-
-//   return result.signUp.authPayload?.user ? redirect('/clubs') : { result };
-// };
+      return { result };
+    } catch (err) {
+      return { serverError: { message: (err as Error).message } };
+    }
+  };
+};

@@ -11,7 +11,7 @@ public static class ApplicationServiceExtensions
         {
             opts.AddPolicy("dev", policy =>
             {
-                string[] origins = ["http://localhost", "http://127.0.0.1"];
+                string[] origins = ["http://localhost"];
 
                 policy
                     .AllowCredentials()

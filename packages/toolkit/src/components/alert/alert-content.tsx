@@ -12,10 +12,10 @@ export const AlertContent = ({ className, children, ...props }: AlertContentProp
   }
 
   const { variant } = ctx;
-  const { content } = alertVariants({ variant, className });
+  const { content } = alertVariants({ variant });
 
   return (
-    <section className={content()} {...props}>
+    <section className={content({ className })} {...props}>
       {children}
     </section>
   );

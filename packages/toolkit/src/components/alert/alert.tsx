@@ -60,7 +60,7 @@ export const Alert = ({
   }, [autoFocus]);
 
   const icon = variant && ICONS[variant];
-  const { base } = alertVariants({ variant, className });
+  const { base } = alertVariants({ variant });
 
   return (
     <AlertProvider variant={variant}>
@@ -69,7 +69,7 @@ export const Alert = ({
         tabIndex={autoFocus ? -1 : undefined}
         autoFocus={autoFocus}
         role="alert"
-        className={base()}
+        className={base({ className })}
         ref={divRef}
       >
         <span className="w-10 self-baseline">
