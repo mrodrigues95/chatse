@@ -29,6 +29,7 @@ export const networkFetch = async (
   const resp = await fetch(HTTP_ENDPOINT, {
     cache: 'no-store',
     method: 'POST',
+    credentials: 'include',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',

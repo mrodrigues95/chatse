@@ -1,4 +1,5 @@
 using Api.Data.Interceptors;
+using Microsoft.Net.Http.Headers;
 
 namespace Api.Extensions;
 
@@ -6,7 +7,21 @@ public static class ApplicationServiceExtensions
 {
     public static WebApplicationBuilder AddApplicationServices(this WebApplicationBuilder builder)
     {
-        builder.Services.AddCors();
+        builder.Services.AddCors(opts =>
+        {
+            opts.AddPolicy("dev", policy =>
+            {
+                policy
+                    .AllowCredentials()
+                    .WithMethods("POST")
+                    .WithHeaders(
+                        HeaderNames.Accept,
+                        HeaderNames.ContentType)
+                    .SetIsOriginAllowed((origin) =>
+                        origin.StartsWith("http://localhost", StringComparison.OrdinalIgnoreCase));
+            });
+        });
+
         builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");

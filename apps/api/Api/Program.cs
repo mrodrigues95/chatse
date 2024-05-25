@@ -8,7 +8,8 @@ builder.AddIdentityServices();
 
 var app = builder.Build();
 
-app.UseCors(c => c.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+app.UseCors("dev");
+
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseStaticFiles();
