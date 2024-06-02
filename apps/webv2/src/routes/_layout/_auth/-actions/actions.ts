@@ -1,10 +1,10 @@
-import { useNavigate } from '@tanstack/react-router';
+import { useNavigate, useRouter, useSearch } from '@tanstack/react-router';
 import { graphql } from 'relay-runtime';
 import { z } from 'zod';
 
-import { type actionsLoginMutation } from '../../../__generated__/actionsLoginMutation.graphql';
-import { type actionsSignUpMutation } from '../../../__generated__/actionsSignUpMutation.graphql';
-import { useMutationAsync } from '../../../utils/relay/useAsyncMutation';
+import { type actionsLoginMutation } from '../../../../__generated__/actionsLoginMutation.graphql';
+import { type actionsSignUpMutation } from '../../../../__generated__/actionsSignUpMutation.graphql';
+import { useMutationAsync } from '../../../../utils/relay/useAsyncMutation';
 
 const loginSchema = z.object({
   email: z.string().trim().email(),
@@ -19,6 +19,8 @@ export interface LoginState {
 
 export const useLoginAction = () => {
   const navigate = useNavigate();
+  const router = useRouter();
+  const search = useSearch({ from: '/_layout/_auth/login/' });
   const [commitAsync] = useMutationAsync<actionsLoginMutation>(graphql`
     mutation actionsLoginMutation($input: LoginInput!) {
       login(input: $input) {
@@ -45,7 +47,8 @@ export const useLoginAction = () => {
     try {
       const result = await commitAsync({ variables: { input: validationResult.data } });
       if (result.login.authPayload?.user) {
-        await navigate({ to: '/about' });
+        await router.invalidate();
+        await navigate({ to: search.redirect || '/about' });
       }
 
       return { result };
@@ -65,6 +68,8 @@ export interface SignUpState {
 
 export const useSignUpAction = () => {
   const navigate = useNavigate();
+  const router = useRouter();
+  const search = useSearch({ from: '/_layout/_auth/login/' });
   const [commitAsync] = useMutationAsync<actionsSignUpMutation>(graphql`
     mutation actionsSignUpMutation($input: SignUpInput!) {
       signUp(input: $input) {
@@ -91,7 +96,8 @@ export const useSignUpAction = () => {
     try {
       const result = await commitAsync({ variables: { input: validationResult.data } });
       if (result.signUp.authPayload?.user) {
-        await navigate({ to: '/about' });
+        await router.invalidate();
+        await navigate({ to: search.redirect || '/about' });
       }
 
       return { result };

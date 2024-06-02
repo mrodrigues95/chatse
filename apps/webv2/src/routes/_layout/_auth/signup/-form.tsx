@@ -2,7 +2,7 @@ import { useActionState, useEffect } from 'react';
 
 import { Alert, Form } from '@chatse/toolkit';
 import { useSignUpAction, type SignUpState } from '../-actions/actions';
-import { SubmitButton, useToast } from '../../../components';
+import { SubmitButton, useToast } from '../../../../components';
 
 // TODO: Remove name/password fields when the email confirmation flow is finished.
 // Those two fields will be part of the confirmation page instead (after the user checks their email for a link).

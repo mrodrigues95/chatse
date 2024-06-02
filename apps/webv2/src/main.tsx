@@ -4,15 +4,16 @@ import { StrictMode } from 'react';
 import { createRouter, ErrorComponent, RouterProvider } from '@tanstack/react-router';
 import ReactDOM from 'react-dom/client';
 
-import { AppProviders, queryClient } from './app-providers';
 import { routeTree } from './routeTree.gen';
+import { relayEnvironment } from './utils/relay/environment';
 
 const router = createRouter({
   routeTree,
+  // TODO: Create a more suitable fallback error component for general errors.
   defaultErrorComponent: ({ error }) => <ErrorComponent error={error} />,
-  context: { queryClient },
+  context: { relay: relayEnvironment },
   defaultPreload: 'intent',
-  // Since we're using React Query, we don't want loader calls to ever be stale.
+  // Since we're using Relay, we don't want loader calls to ever be stale.
   // This will ensure that the loader is always called when the route is preloaded or visited.
   defaultPreloadStaleTime: 0,
 });
@@ -28,9 +29,7 @@ if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <StrictMode>
-      <AppProviders>
-        <RouterProvider router={router} />
-      </AppProviders>
+      <RouterProvider router={router} />
     </StrictMode>,
   );
 }

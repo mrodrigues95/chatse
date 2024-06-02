@@ -2,7 +2,7 @@ import { useActionState, useEffect } from 'react';
 
 import { Alert, Form } from '@chatse/toolkit';
 import { useLoginAction, type LoginState } from '../-actions/actions';
-import { SubmitButton, useToast } from '../../../components';
+import { SubmitButton, useToast } from '../../../../components';
 
 export const LoginForm = () => {
   const { toast } = useToast();

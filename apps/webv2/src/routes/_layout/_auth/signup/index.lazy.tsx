@@ -12,6 +12,6 @@ const SignUp = () => (
   </>
 );
 
-export const Route = createLazyFileRoute('/_auth/signup/')({
+export const Route = createLazyFileRoute('/_layout/_auth/signup/')({
   component: SignUp,
 });

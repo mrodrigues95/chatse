@@ -1,4 +1,4 @@
-import { createLazyFileRoute } from '@tanstack/react-router';
+import { createFileRoute } from '@tanstack/react-router';
 
 const Index = () => (
   <main className="relative flex min-h-screen flex-col">
@@ -9,6 +9,6 @@ const Index = () => (
   </main>
 );
 
-export const Route = createLazyFileRoute('/')({
+export const Route = createFileRoute('/')({
   component: Index,
 });

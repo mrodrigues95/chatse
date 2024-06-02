@@ -1,11 +1,8 @@
-import { useMemo } from 'react';
 import {
   Environment,
   Network,
-  QueryResponseCache,
   RecordSource,
   Store,
-  type CacheConfig,
   type GraphQLResponse,
   type GraphQLSingularResponse,
   type PayloadError,
@@ -20,9 +17,8 @@ interface GraphQLPayloadError extends PayloadError {
 
 // TODO: make this an env variable.
 const HTTP_ENDPOINT = 'http://localhost:5000/api/graphql';
-const CACHE_TTL = 5 * 1000; // 5 seconds, to resolve preloaded results.
 
-export const networkFetch = async (
+const networkFetch = async (
   request: RequestParameters,
   variables: Variables,
 ): Promise<GraphQLResponse> => {
@@ -64,54 +60,10 @@ export const networkFetch = async (
   return json;
 };
 
-const createNetwork = (responseCache: QueryResponseCache) => {
-  async function fetchResponse(
-    params: RequestParameters,
-    variables: Variables,
-    cacheConfig: CacheConfig,
-  ) {
-    const isQuery = params.operationKind === 'query';
-    const cacheKey = params.id ?? params.cacheID;
-    const forceFetch = cacheConfig && cacheConfig.force;
-    if (responseCache !== null && isQuery && !forceFetch) {
-      const fromCache = responseCache.get(cacheKey, variables);
-      if (fromCache !== null) {
-        return Promise.resolve(fromCache);
-      }
-    }
-
-    return networkFetch(params, variables);
-  }
-
-  const network = Network.create(fetchResponse);
-  return network;
-};
-
-const createQueryCache = () =>
-  new QueryResponseCache({
-    size: 100,
-    ttl: CACHE_TTL,
-  });
-
 const createEnvironment = () => {
-  const cache = createQueryCache();
-  const network = createNetwork(cache);
-  const store = new Store(RecordSource.create(), { gcReleaseBufferSize: 10 });
-
-  const environment = new Environment({
-    network,
-    store,
-    isServer: false,
-  });
-
-  return environment;
+  const network = Network.create(networkFetch);
+  const store = new Store(new RecordSource(), { gcReleaseBufferSize: 10 });
+  return new Environment({ store, network });
 };
 
-let relayEnvironment: Environment | null = null;
-
-export const getRelayEnvironment = () => {
-  relayEnvironment ??= createEnvironment();
-  return relayEnvironment;
-};
-
-export const useEnvironment = () => useMemo(() => getRelayEnvironment(), []);
+export const relayEnvironment = createEnvironment();

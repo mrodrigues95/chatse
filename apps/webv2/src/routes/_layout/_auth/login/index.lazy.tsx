@@ -1,7 +1,7 @@
 import { createLazyFileRoute } from '@tanstack/react-router';
 
 import { Button, Text } from '@chatse/toolkit';
-import { Link } from '../../../components';
+import { Link } from '../../../../components';
 import { LoginForm } from './-form';
 
 const Login = () => (
@@ -34,6 +34,6 @@ const Login = () => (
   </>
 );
 
-export const Route = createLazyFileRoute('/_auth/login/')({
+export const Route = createLazyFileRoute('/_layout/_auth/login/')({
   component: Login,
 });

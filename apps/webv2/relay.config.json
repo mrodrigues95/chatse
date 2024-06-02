@@ -4,6 +4,7 @@
   "schema": "./schema.graphql",
   "artifactDirectory": "./src/__generated__",
   "eagerEsModules": true,
+  "excludes": ["**/node_modules/**/*", "**/__generated__/**/*", "**/dist/**/*"],
   "customScalarTypes": {
     "DateTime": "string",
     "URL": "string",

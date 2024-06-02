@@ -1,7 +1,7 @@
 import { useChildMatches } from '@tanstack/react-router';
 
 import { Text } from '@chatse/toolkit';
-import { Link } from '../../components';
+import { Link } from '../../../components';
 
 interface SegmentMap {
   text: string;
