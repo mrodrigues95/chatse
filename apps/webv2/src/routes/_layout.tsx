@@ -6,7 +6,7 @@ import { type LayoutMeQuery } from '../__generated__/LayoutMeQuery.graphql';
 const query = graphql`
   query LayoutMeQuery {
     me {
-      id
+      __typename
     }
   }
 `;
@@ -19,7 +19,7 @@ export const Route = createFileRoute('/_layout')({
       {},
       { fetchPolicy: 'store-or-network' },
     ).toPromise();
-    return { user: result?.me ? { id: result.me.id } : null };
+    return { auth: { isLoggedIn: !!result?.me } };
   },
   component: () => <Outlet />,
 });

@@ -15,11 +15,12 @@ import { createFileRoute } from '@tanstack/react-router';
 import { Route as rootRoute } from './routes/__root';
 import { Route as LayoutImport } from './routes/_layout';
 import { Route as LayoutAuthImport } from './routes/_layout/_auth';
-import { Route as LayoutAboutIndexImport } from './routes/_layout/about/index';
-import { Route as IndexImport } from './routes/index';
+import { Route as LayoutProtectedImport } from './routes/_layout/_protected';
+import { Route as LayoutIndexImport } from './routes/_layout/index';
 
 // Create Virtual Routes
 
+const LayoutProtectedClubsIndexLazyImport = createFileRoute('/_layout/_protected/clubs/')();
 const LayoutAuthSignupIndexLazyImport = createFileRoute('/_layout/_auth/signup/')();
 const LayoutAuthLoginIndexLazyImport = createFileRoute('/_layout/_auth/login/')();
 
@@ -30,9 +31,14 @@ const LayoutRoute = LayoutImport.update({
   getParentRoute: () => rootRoute,
 } as any);
 
-const IndexRoute = IndexImport.update({
+const LayoutIndexRoute = LayoutIndexImport.update({
   path: '/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => LayoutRoute,
+} as any);
+
+const LayoutProtectedRoute = LayoutProtectedImport.update({
+  id: '/_protected',
+  getParentRoute: () => LayoutRoute,
 } as any);
 
 const LayoutAuthRoute = LayoutAuthImport.update({
@@ -40,10 +46,10 @@ const LayoutAuthRoute = LayoutAuthImport.update({
   getParentRoute: () => LayoutRoute,
 } as any);
 
-const LayoutAboutIndexRoute = LayoutAboutIndexImport.update({
-  path: '/about/',
-  getParentRoute: () => LayoutRoute,
-} as any);
+const LayoutProtectedClubsIndexLazyRoute = LayoutProtectedClubsIndexLazyImport.update({
+  path: '/clubs/',
+  getParentRoute: () => LayoutProtectedRoute,
+} as any).lazy(() => import('./routes/_layout/_protected/clubs/index.lazy').then(d => d.Route));
 
 const LayoutAuthSignupIndexLazyRoute = LayoutAuthSignupIndexLazyImport.update({
   path: '/signup/',
@@ -59,13 +65,6 @@ const LayoutAuthLoginIndexLazyRoute = LayoutAuthLoginIndexLazyImport.update({
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/';
-      path: '/';
-      fullPath: '/';
-      preLoaderRoute: typeof IndexImport;
-      parentRoute: typeof rootRoute;
-    };
     '/_layout': {
       id: '/_layout';
       path: '';
@@ -80,11 +79,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutAuthImport;
       parentRoute: typeof LayoutImport;
     };
-    '/_layout/about/': {
-      id: '/_layout/about/';
-      path: '/about';
-      fullPath: '/about';
-      preLoaderRoute: typeof LayoutAboutIndexImport;
+    '/_layout/_protected': {
+      id: '/_layout/_protected';
+      path: '';
+      fullPath: '';
+      preLoaderRoute: typeof LayoutProtectedImport;
+      parentRoute: typeof LayoutImport;
+    };
+    '/_layout/': {
+      id: '/_layout/';
+      path: '/';
+      fullPath: '/';
+      preLoaderRoute: typeof LayoutIndexImport;
       parentRoute: typeof LayoutImport;
     };
     '/_layout/_auth/login/': {
@@ -101,19 +107,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutAuthSignupIndexLazyImport;
       parentRoute: typeof LayoutAuthImport;
     };
+    '/_layout/_protected/clubs/': {
+      id: '/_layout/_protected/clubs/';
+      path: '/clubs';
+      fullPath: '/clubs';
+      preLoaderRoute: typeof LayoutProtectedClubsIndexLazyImport;
+      parentRoute: typeof LayoutProtectedImport;
+    };
   }
 }
 
 // Create and export the route tree
 
 export const routeTree = rootRoute.addChildren({
-  IndexRoute,
   LayoutRoute: LayoutRoute.addChildren({
     LayoutAuthRoute: LayoutAuthRoute.addChildren({
       LayoutAuthLoginIndexLazyRoute,
       LayoutAuthSignupIndexLazyRoute,
     }),
-    LayoutAboutIndexRoute,
+    LayoutProtectedRoute: LayoutProtectedRoute.addChildren({
+      LayoutProtectedClubsIndexLazyRoute,
+    }),
+    LayoutIndexRoute,
   }),
 });
 
@@ -125,18 +140,15 @@ export const routeTree = rootRoute.addChildren({
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/",
         "/_layout"
       ]
-    },
-    "/": {
-      "filePath": "index.tsx"
     },
     "/_layout": {
       "filePath": "_layout.tsx",
       "children": [
         "/_layout/_auth",
-        "/_layout/about/"
+        "/_layout/_protected",
+        "/_layout/"
       ]
     },
     "/_layout/_auth": {
@@ -147,8 +159,15 @@ export const routeTree = rootRoute.addChildren({
         "/_layout/_auth/signup/"
       ]
     },
-    "/_layout/about/": {
-      "filePath": "_layout/about/index.tsx",
+    "/_layout/_protected": {
+      "filePath": "_layout/_protected.tsx",
+      "parent": "/_layout",
+      "children": [
+        "/_layout/_protected/clubs/"
+      ]
+    },
+    "/_layout/": {
+      "filePath": "_layout/index.tsx",
       "parent": "/_layout"
     },
     "/_layout/_auth/login/": {
@@ -158,6 +177,10 @@ export const routeTree = rootRoute.addChildren({
     "/_layout/_auth/signup/": {
       "filePath": "_layout/_auth/signup/index.lazy.tsx",
       "parent": "/_layout/_auth"
+    },
+    "/_layout/_protected/clubs/": {
+      "filePath": "_layout/_protected/clubs/index.lazy.tsx",
+      "parent": "/_layout/_protected"
     }
   }
 }

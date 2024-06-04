@@ -17,8 +17,8 @@ const AuthLayout = () => (
 export const Route = createFileRoute('/_layout/_auth')({
   validateSearch: z.object({ redirect: z.string().optional().catch('') }),
   beforeLoad: ({ context, search }) => {
-    if (context.user) {
-      throw redirect({ to: search.redirect || '/about' });
+    if (context.auth.isLoggedIn) {
+      throw redirect({ to: search.redirect || '/clubs' });
     }
   },
   component: AuthLayout,

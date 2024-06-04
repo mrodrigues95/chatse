@@ -1,4 +1,5 @@
 import { useNavigate, useRouter, useSearch } from '@tanstack/react-router';
+import { useRelayEnvironment } from 'react-relay';
 import { graphql } from 'relay-runtime';
 import { z } from 'zod';
 
@@ -21,6 +22,7 @@ export const useLoginAction = () => {
   const navigate = useNavigate();
   const router = useRouter();
   const search = useSearch({ from: '/_layout/_auth/login/' });
+  const env = useRelayEnvironment();
   const [commitAsync] = useMutationAsync<actionsLoginMutation>(graphql`
     mutation actionsLoginMutation($input: LoginInput!) {
       login(input: $input) {
@@ -45,10 +47,16 @@ export const useLoginAction = () => {
     }
 
     try {
-      const result = await commitAsync({ variables: { input: validationResult.data } });
+      const result = await commitAsync({
+        variables: { input: validationResult.data },
+        updater: store => {
+          store.invalidateStore();
+        },
+      });
+
       if (result.login.authPayload?.user) {
         await router.invalidate();
-        await navigate({ to: search.redirect || '/about' });
+        await navigate({ to: search.redirect || '/clubs' });
       }
 
       return { result };
@@ -69,7 +77,7 @@ export interface SignUpState {
 export const useSignUpAction = () => {
   const navigate = useNavigate();
   const router = useRouter();
-  const search = useSearch({ from: '/_layout/_auth/login/' });
+  const search = useSearch({ from: '/_layout/_auth/signup/' });
   const [commitAsync] = useMutationAsync<actionsSignUpMutation>(graphql`
     mutation actionsSignUpMutation($input: SignUpInput!) {
       signUp(input: $input) {
@@ -94,10 +102,16 @@ export const useSignUpAction = () => {
     }
 
     try {
-      const result = await commitAsync({ variables: { input: validationResult.data } });
+      const result = await commitAsync({
+        variables: { input: validationResult.data },
+        updater: store => {
+          store.invalidateStore();
+        },
+      });
+
       if (result.signUp.authPayload?.user) {
         await router.invalidate();
-        await navigate({ to: search.redirect || '/about' });
+        await navigate({ to: search.redirect || '/clubs' });
       }
 
       return { result };
