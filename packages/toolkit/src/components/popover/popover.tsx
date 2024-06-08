@@ -8,7 +8,7 @@ import {
 import { tv } from 'tailwind-variants';
 
 const popoverVariants = tv({
-  base: 'bborder-slate-300 rounded-md border bg-white bg-clip-padding text-slate-700 shadow-lg',
+  base: 'rounded-md border border-slate-300 bg-white bg-clip-padding text-slate-700 shadow-lg',
   variants: {
     isEntering: {
       true: 'animate-in fade-in placement-bottom:slide-in-from-top-1 placement-top:slide-in-from-bottom-1 placement-left:slide-in-from-right-1 placement-right:slide-in-from-left-1 duration-200 ease-out',

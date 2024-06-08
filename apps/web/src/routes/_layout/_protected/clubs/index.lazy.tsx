@@ -4,7 +4,7 @@ import { Seperator, Text } from '@chatse/toolkit';
 import { ActionBar } from './-action-bar';
 
 const Clubs = () => (
-  <article className="flex-1 px-6 py-4">
+  <article className="flex-1">
     {/* <BreadCrumbsForPath className="mb-4" /> */}
     <Text variant="title">Clubs</Text>
     <ActionBar />

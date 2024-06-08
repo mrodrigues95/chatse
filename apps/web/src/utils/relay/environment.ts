@@ -15,14 +15,11 @@ interface GraphQLPayloadError extends PayloadError {
   extensions?: Record<string, string>;
 }
 
-// TODO: make this an env variable.
-const HTTP_ENDPOINT = 'http://localhost:5000/api/graphql';
-
 const networkFetch = async (
   request: RequestParameters,
   variables: Variables,
 ): Promise<GraphQLResponse> => {
-  const resp = await fetch(HTTP_ENDPOINT, {
+  const resp = await fetch(import.meta.env.VITE_API_ENDPOINT, {
     cache: 'no-store',
     method: 'POST',
     credentials: 'include',

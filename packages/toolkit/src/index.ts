@@ -13,5 +13,8 @@ export * from './components/dialog/dialog';
 export * from './components/popover/popover';
 export * from './components/field/field';
 export * from './components/checkbox/checkbox';
+export * from './components/menu/menu';
+
+export { MenuTrigger } from 'react-aria-components';
 
 export { cn } from './utils/cn';
