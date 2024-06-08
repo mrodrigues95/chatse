@@ -1,5 +1,4 @@
-import { useNavigate, useRouter, useSearch } from '@tanstack/react-router';
-import { useRelayEnvironment } from 'react-relay';
+import { useRouter } from '@tanstack/react-router';
 import { graphql } from 'relay-runtime';
 import { z } from 'zod';
 
@@ -19,10 +18,7 @@ export interface LoginState {
 }
 
 export const useLoginAction = () => {
-  const navigate = useNavigate();
   const router = useRouter();
-  const search = useSearch({ from: '/_layout/_auth/login/' });
-  const env = useRelayEnvironment();
   const [commitAsync] = useMutationAsync<actionsLoginMutation>(graphql`
     mutation actionsLoginMutation($input: LoginInput!) {
       login(input: $input) {
@@ -55,8 +51,8 @@ export const useLoginAction = () => {
       });
 
       if (result.login.authPayload?.user) {
+        // Redirect will occur from the layout once invalidation is done.
         await router.invalidate();
-        await navigate({ to: search.redirect || '/clubs' });
       }
 
       return { result };
@@ -75,9 +71,7 @@ export interface SignUpState {
 }
 
 export const useSignUpAction = () => {
-  const navigate = useNavigate();
   const router = useRouter();
-  const search = useSearch({ from: '/_layout/_auth/signup/' });
   const [commitAsync] = useMutationAsync<actionsSignUpMutation>(graphql`
     mutation actionsSignUpMutation($input: SignUpInput!) {
       signUp(input: $input) {
@@ -110,8 +104,8 @@ export const useSignUpAction = () => {
       });
 
       if (result.signUp.authPayload?.user) {
+        // Redirect will occur from the layout once invalidation is done.
         await router.invalidate();
-        await navigate({ to: search.redirect || '/clubs' });
       }
 
       return { result };
