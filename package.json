@@ -27,7 +27,7 @@
     "typecheck": "pnpm -r typecheck",
     "commit": "commit",
     "api": "pnpm --filter @chatse/api",
-    "webv2": "pnpm --filter @chatse/webv2",
+    "web": "pnpm --filter @chatse/web",
     "toolkit": "pnpm --filter @chatse/toolkit"
   },
   "devDependencies": {

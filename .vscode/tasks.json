@@ -19,7 +19,7 @@
     {
       "label": "Web App",
       "type": "shell",
-      "command": "pnpm webv2 dev",
+      "command": "pnpm web dev",
       "isBackground": true,
       "problemMatcher": []
     },
