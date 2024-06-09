@@ -11,6 +11,7 @@ const router = createRouter({
   routeTree,
   // TODO: Create a more suitable fallback error component for general errors.
   defaultErrorComponent: ({ error }) => <ErrorComponent error={error} />,
+  // defaultNotFoundComponent: DefaultNotFound,
   context: { relay: relayEnvironment },
   defaultPreload: 'intent',
   // Since we're using Relay, we don't want loader calls to ever be stale.

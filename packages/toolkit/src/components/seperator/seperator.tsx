@@ -12,7 +12,7 @@ export const Seperator = ({ orientation = 'horizontal', className, ...props }: S
       aria-orientation={orientation === 'vertical' ? 'vertical' : undefined}
       className={cn(
         'bg-slate-200',
-        orientation === 'vertical' ? 'mx-2 h-full w-[2px]' : 'my-2 h-[2px] w-full',
+        orientation === 'vertical' ? 'mx-2 h-full w-[1px]' : 'my-2 h-[1px] w-full',
         className,
       )}
       {...props}

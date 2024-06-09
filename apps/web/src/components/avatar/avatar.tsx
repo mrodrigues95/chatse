@@ -99,7 +99,7 @@ export const Avatar = ({
         imageProps.onError?.(e);
         setError(true);
       }}
-      className={cn('object-cover', imageProps.className)}
+      className={cn('inline-block h-full w-full', imageProps.className)}
     />
   ) : null;
 

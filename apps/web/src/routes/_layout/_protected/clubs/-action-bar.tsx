@@ -28,12 +28,12 @@ export const ActionBar = () => {
         <IconButton
           aria-label="Begin searching for clubs"
           onPress={() => setShowSearch(true)}
-          variant="outline"
+          variant="ghost"
         >
           <LucideSearch />
         </IconButton>
       )}
-      <IconButton aria-label="Filter your clubs" variant="outline">
+      <IconButton aria-label="Filter your clubs" variant="ghost">
         <LucideFilter />
       </IconButton>
     </section>
