@@ -14,7 +14,6 @@ export * from './components/popover/popover';
 export * from './components/field/field';
 export * from './components/checkbox/checkbox';
 export * from './components/menu/menu';
-
-export { MenuTrigger } from 'react-aria-components';
+export * from './components/tooltip/tooltip';
 
 export { cn } from './utils/cn';

@@ -2,7 +2,7 @@ import { BookMarked, Earth } from 'lucide-react';
 
 import { cn } from '@chatse/toolkit';
 import { Icon } from '../icon/icon';
-import { Link, LinkProps } from '../link/link';
+import { Link, type LinkProps } from '../link/link';
 
 interface NavItemProps extends LinkProps {}
 

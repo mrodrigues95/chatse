@@ -14,7 +14,7 @@ export const inputVariants = tv({
   variants: {
     density: {
       loose: 'px-3 py-2',
-      compact: 'px-2 py-1.5',
+      compact: 'px-1.5 py-1',
     },
     isInvalid: {
       false: 'focus:border-blue-400 focus:ring-4 focus:ring-blue-200',

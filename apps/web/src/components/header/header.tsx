@@ -1,6 +1,15 @@
 import { Bell, Search } from 'lucide-react';
 
-import { AccessibleIcon, Button, IconButton, Menu, MenuItem, MenuTrigger } from '@chatse/toolkit';
+import {
+  AccessibleIcon,
+  Button,
+  IconButton,
+  Menu,
+  MenuItem,
+  MenuTrigger,
+  Tooltip,
+  TooltipTrigger,
+} from '@chatse/toolkit';
 import { Avatar } from '../avatar/avatar';
 import { Icon } from '../icon/icon';
 
@@ -60,9 +69,12 @@ export const Header = () => {
             Ctrl K
           </kbd>
         </Button>
-        <IconButton aria-label="Notifications" radius="full">
-          <Bell />
-        </IconButton>
+        <TooltipTrigger>
+          <IconButton aria-label="Notifications" radius="full">
+            <Bell />
+          </IconButton>
+          <Tooltip>Notifications</Tooltip>
+        </TooltipTrigger>
         <MenuTrigger>
           <Button aria-label="Open account menu" className="rounded-full p-0">
             <Avatar
@@ -75,7 +87,7 @@ export const Header = () => {
               size="md"
             />
           </Button>
-          <Menu>
+          <Menu placement="bottom right">
             <MenuItem>asdasd</MenuItem>
             <MenuItem>asdasd</MenuItem>
             <MenuItem>asdasd</MenuItem>

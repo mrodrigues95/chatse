@@ -35,7 +35,7 @@ const menuItemVariants = tv({
       true: 'text-slate-300',
     },
     isFocused: {
-      true: 'bg-blue-600 text-white',
+      true: 'bg-blue-700 text-white',
     },
   },
   compoundVariants: [
@@ -78,3 +78,5 @@ export const MenuItem = <T extends object>(props: MenuItemProps<T>) => {
 export const MenuSeparator = (props: SeparatorProps) => {
   return <Separator {...props} className="mx-3 my-1 border-b border-gray-300" />;
 };
+
+export { MenuTrigger } from 'react-aria-components';

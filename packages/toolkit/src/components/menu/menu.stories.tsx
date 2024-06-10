@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { MenuTrigger } from 'react-aria-components';
 
 import { Button } from '../button/button';
-import { Menu, MenuItem, MenuSeparator } from './menu';
+import { Menu, MenuItem, MenuSeparator, MenuTrigger } from './menu';
 
 const meta = {
   component: Menu,
