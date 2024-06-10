@@ -5,30 +5,33 @@
     "reveal": "always",
     "focus": true,
     "panel": "dedicated",
-    "showReuseMessage": false
+    "showReuseMessage": true,
+    "close": true
   },
   "tasks": [
     {
       "label": "Launch dev terminals",
-      "dependsOn": ["Web App", "API"],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      }
+      "dependsOn": ["Web App", "API"]
     },
     {
       "label": "Web App",
       "type": "shell",
       "command": "pnpm web dev",
       "isBackground": true,
-      "problemMatcher": []
+      "problemMatcher": [],
+      "presentation": {
+        "group": "main"
+      }
     },
     {
       "label": "API",
       "type": "shell",
       "command": "pnpm api watch",
       "isBackground": true,
-      "problemMatcher": []
+      "problemMatcher": [],
+      "presentation": {
+        "group": "main"
+      }
     }
   ]
 }

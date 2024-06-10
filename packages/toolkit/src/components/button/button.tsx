@@ -7,7 +7,7 @@ import { tv, type VariantProps } from 'tailwind-variants';
 
 export const buttonVariants = tv({
   base: [
-    'inline-flex select-none items-center justify-center gap-2 rounded-md text-sm font-semibold outline-none ring-offset-white transition duration-150',
+    'inline-flex select-none items-center justify-center gap-1.5 rounded-md text-sm font-semibold outline-none ring-offset-white transition duration-150',
     'disabled:pointer-events-none disabled:opacity-50',
     'focus-visible:outline-none focus-visible:ring',
   ],
@@ -33,7 +33,7 @@ export const buttonVariants = tv({
     },
     size: {
       xs: 'px-2 py-1 text-xs',
-      sm: 'px-3 py-2 text-sm',
+      sm: 'px-2.5 py-1.5 text-sm',
       md: 'px-3 py-2 text-base',
       lg: 'px-4 py-2 text-lg',
     },

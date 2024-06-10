@@ -73,6 +73,9 @@ importers:
       '@chatse/toolkit':
         specifier: workspace:*
         version: link:../../packages/toolkit
+      '@react-spring/web':
+        specifier: ^9.7.3
+        version: 9.7.3(react-dom@19.0.0-beta-26f2496093-20240514(react@19.0.0-beta-26f2496093-20240514))(react@19.0.0-beta-26f2496093-20240514)
       '@tanstack/react-router':
         specifier: ^1.34.9
         version: 1.34.9(react-dom@19.0.0-beta-26f2496093-20240514(react@19.0.0-beta-26f2496093-20240514))(react@19.0.0-beta-26f2496093-20240514)
@@ -1796,6 +1799,30 @@ packages:
     resolution: {integrity: sha512-np8c4wxdbE7ZrMv/bnjwEfpX0/nkWy9sELEb0sK8n4+HJ+WycoXXrVxBUb9tXgL/GCx5ReeDQChjQWwajm/z3A==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+
+  '@react-spring/animated@9.7.3':
+    resolution: {integrity: sha512-5CWeNJt9pNgyvuSzQH+uy2pvTg8Y4/OisoscZIR8/ZNLIOI+CatFBhGZpDGTF/OzdNFsAoGk3wiUYTwoJ0YIvw==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+
+  '@react-spring/core@9.7.3':
+    resolution: {integrity: sha512-IqFdPVf3ZOC1Cx7+M0cXf4odNLxDC+n7IN3MDcVCTIOSBfqEcBebSv+vlY5AhM0zw05PDbjKrNmBpzv/AqpjnQ==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+
+  '@react-spring/shared@9.7.3':
+    resolution: {integrity: sha512-NEopD+9S5xYyQ0pGtioacLhL2luflh6HACSSDUZOwLHoxA5eku1UPuqcJqjwSD6luKjjLfiLOspxo43FUHKKSA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+
+  '@react-spring/types@9.7.3':
+    resolution: {integrity: sha512-Kpx/fQ/ZFX31OtlqVEFfgaD1ACzul4NksrvIgYfIFq9JpDHFwQkMVZ10tbo0FU/grje4rcL4EIrjekl3kYwgWw==}
+
+  '@react-spring/web@9.7.3':
+    resolution: {integrity: sha512-BXt6BpS9aJL/QdVqEIX9YoUy8CE6TJrU0mNCqSoxdXlIeNcEBWOfIyE6B14ENNsyQKS3wOWkiJfco0tCr/9tUg==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
 
   '@react-stately/calendar@3.4.4':
     resolution: {integrity: sha512-f9ZOd096gGGD+3LmU1gkmfqytGyQtrgi+Qjn+70GbM2Jy65pwOR4I9YrobbmeAFov5Tff13mQEa0yqWvbcDLZQ==}
@@ -7992,6 +8019,35 @@ snapshots:
       '@react-types/shared': 3.22.1(react@18.2.0)
       '@swc/helpers': 0.5.8
       react: 18.2.0
+
+  '@react-spring/animated@9.7.3(react@19.0.0-beta-26f2496093-20240514)':
+    dependencies:
+      '@react-spring/shared': 9.7.3(react@19.0.0-beta-26f2496093-20240514)
+      '@react-spring/types': 9.7.3
+      react: 19.0.0-beta-26f2496093-20240514
+
+  '@react-spring/core@9.7.3(react@19.0.0-beta-26f2496093-20240514)':
+    dependencies:
+      '@react-spring/animated': 9.7.3(react@19.0.0-beta-26f2496093-20240514)
+      '@react-spring/shared': 9.7.3(react@19.0.0-beta-26f2496093-20240514)
+      '@react-spring/types': 9.7.3
+      react: 19.0.0-beta-26f2496093-20240514
+
+  '@react-spring/shared@9.7.3(react@19.0.0-beta-26f2496093-20240514)':
+    dependencies:
+      '@react-spring/types': 9.7.3
+      react: 19.0.0-beta-26f2496093-20240514
+
+  '@react-spring/types@9.7.3': {}
+
+  '@react-spring/web@9.7.3(react-dom@19.0.0-beta-26f2496093-20240514(react@19.0.0-beta-26f2496093-20240514))(react@19.0.0-beta-26f2496093-20240514)':
+    dependencies:
+      '@react-spring/animated': 9.7.3(react@19.0.0-beta-26f2496093-20240514)
+      '@react-spring/core': 9.7.3(react@19.0.0-beta-26f2496093-20240514)
+      '@react-spring/shared': 9.7.3(react@19.0.0-beta-26f2496093-20240514)
+      '@react-spring/types': 9.7.3
+      react: 19.0.0-beta-26f2496093-20240514
+      react-dom: 19.0.0-beta-26f2496093-20240514(react@19.0.0-beta-26f2496093-20240514)
 
   '@react-stately/calendar@3.4.4(react@18.2.0)':
     dependencies:
