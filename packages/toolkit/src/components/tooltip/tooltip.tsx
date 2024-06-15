@@ -9,13 +9,13 @@ import {
 import { tv } from 'tailwind-variants';
 
 const tooltipVariants = tv({
-  base: 'group rounded-md bg-slate-900 px-2 py-1 text-sm text-white shadow-[inset_0_1px_0_0_theme(colors.gray.900)] drop-shadow-lg will-change-transform',
+  base: 'group rounded-md bg-slate-900 px-2 py-1 text-sm text-white shadow-[inset_0_1px_0_0_theme(colors.gray.900)] drop-shadow-lg',
   variants: {
     isEntering: {
-      true: 'animate-in fade-in placement-bottom:slide-in-from-top-0.5 placement-top:slide-in-from-bottom-0.5 placement-left:slide-in-from-right-0.5 placement-right:slide-in-from-left-0.5 duration-200 ease-out',
+      true: 'animate-in fade-in zoom-in-95 duration-200 ease-out',
     },
     isExiting: {
-      true: 'animate-out fade-out placement-bottom:slide-out-to-top-0.5 placement-top:slide-out-to-bottom-0.5 placement-left:slide-out-to-right-0.5 placement-right:slide-out-to-left-0.5 duration-150 ease-in',
+      true: 'animate-out zoom-out-95 fade-out duration-100 ease-in',
     },
   },
 });
@@ -25,7 +25,7 @@ export interface TooltipProps extends Omit<AriaTooltipProps, 'children'> {
   children: React.ReactNode;
 }
 
-export function Tooltip({ children, showArrow = true, ...props }: TooltipProps) {
+export function Tooltip({ children, showArrow = false, ...props }: TooltipProps) {
   return (
     <AriaTooltip
       {...props}
@@ -54,5 +54,5 @@ export function Tooltip({ children, showArrow = true, ...props }: TooltipProps) 
 export interface TooltipTriggerProps extends AriaTooltipTriggerComponentProps {}
 
 export const TooltipTrigger = (props: TooltipTriggerProps) => {
-  return <AriaTooltipTrigger delay={500} {...props} />;
+  return <AriaTooltipTrigger delay={500} closeDelay={50} {...props} />;
 };

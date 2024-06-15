@@ -17,9 +17,9 @@ export const ActionBar = () => {
   });
 
   return (
-    <section className="flex h-8 items-center justify-end gap-1.5">
+    <section className="flex h-8 items-center justify-end gap-1">
       {transitions((style, showSearch) => (
-        <animated.div style={style}>
+        <animated.div style={style} className="inline-flex items-center">
           {showSearch ? (
             <Input
               type="search"
@@ -37,7 +37,7 @@ export const ActionBar = () => {
             />
           ) : (
             <IconButton
-              aria-label="Begin searching for clubs"
+              aria-label="Search for clubs"
               onPress={() => setShowSearch(true)}
               variant="ghost"
             >

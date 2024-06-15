@@ -11,7 +11,8 @@
   "tasks": [
     {
       "label": "Launch dev terminals",
-      "dependsOn": ["Web App", "API"]
+      "dependsOn": ["Web App", "API"],
+      "problemMatcher": []
     },
     {
       "label": "Web App",

@@ -5,6 +5,7 @@ import { AccessibleIcon, type AccessibleIconProps } from '@chatse/toolkit';
 const iconVariants = tv({
   variants: {
     size: {
+      xs: 'size-3.5',
       sm: 'size-4',
       md: 'size-6',
       lg: 'size-8',

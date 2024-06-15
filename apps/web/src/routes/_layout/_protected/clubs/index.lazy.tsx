@@ -1,6 +1,6 @@
 import { useId } from 'react';
 import { createLazyFileRoute } from '@tanstack/react-router';
-import { CirclePlus, Plus } from 'lucide-react';
+import { Pencil } from 'lucide-react';
 
 import { Button, Seperator, Text } from '@chatse/toolkit';
 import { Icon } from '../../../../components';
@@ -17,9 +17,9 @@ const Clubs = () => {
           <Text id={titleId} variant="title">
             Clubs
           </Text>
-          <Button variant="solidBlue" size="sm">
-            <Icon>
-              <CirclePlus />
+          <Button variant="solidBlue">
+            <Icon className="text-white/75" size="xs">
+              <Pencil />
             </Icon>
             New
           </Button>

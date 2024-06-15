@@ -1,4 +1,4 @@
-import { Bell, Search } from 'lucide-react';
+import { Bell, DoorOpen, Search, Settings } from 'lucide-react';
 
 import {
   AccessibleIcon,
@@ -6,6 +6,7 @@ import {
   IconButton,
   Menu,
   MenuItem,
+  MenuSeparator,
   MenuTrigger,
   Tooltip,
   TooltipTrigger,
@@ -70,7 +71,7 @@ export const Header = () => {
           </kbd>
         </Button>
         <TooltipTrigger>
-          <IconButton aria-label="Notifications" radius="full">
+          <IconButton aria-label="Notifications" radius="full" size="md" className="p-2">
             <Bell />
           </IconButton>
           <Tooltip>Notifications</Tooltip>
@@ -88,9 +89,19 @@ export const Header = () => {
             />
           </Button>
           <Menu placement="bottom right">
-            <MenuItem>asdasd</MenuItem>
-            <MenuItem>asdasd</MenuItem>
-            <MenuItem>asdasd</MenuItem>
+            <MenuItem>
+              <Icon size="xs">
+                <Settings />
+              </Icon>
+              Settings
+            </MenuItem>
+            <MenuSeparator />
+            <MenuItem>
+              <Icon size="xs">
+                <DoorOpen />
+              </Icon>
+              Sign out
+            </MenuItem>
           </Menu>
         </MenuTrigger>
       </div>

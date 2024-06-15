@@ -5,7 +5,7 @@ import { AccessibleIcon } from '../accessible-icon/accessible-icon';
 import { Button, type ButtonProps } from '../button/button';
 
 export const iconButtonVariants = tv({
-  base: 'p-2',
+  base: 'p-1',
   variants: {
     size: {
       xs: 'size-4',
@@ -20,7 +20,7 @@ export const iconButtonVariants = tv({
     },
   },
   defaultVariants: {
-    size: 'md',
+    size: 'sm',
     radius: 'md',
   },
 });

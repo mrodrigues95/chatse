@@ -21,21 +21,21 @@ export const Menu = <T extends object>(props: MenuProps<T>) => {
     <Popover placement={props.placement} className="min-w-[150px]">
       <AriaMenu
         {...props}
-        className="max-h-[inherit] overflow-auto p-1 outline outline-0 [clip-path:inset(0_0_0_0_round_.75rem)]"
+        className="max-h-[inherit] overflow-auto p-1 shadow-sm outline-none [clip-path:inset(0_0_0_0_round_.75rem)]"
       />
     </Popover>
   );
 };
 
 const menuItemVariants = tv({
-  base: 'group flex cursor-default select-none items-center gap-4 rounded-lg py-2 pl-3 pr-1 text-sm outline outline-0',
+  base: 'group flex cursor-default select-none items-center gap-2 rounded-md px-3 py-0.5 text-sm/6 outline-none',
   variants: {
     isDisabled: {
       false: 'text-slate-900',
       true: 'text-slate-300',
     },
     isFocused: {
-      true: 'bg-blue-700 text-white',
+      true: 'bg-slate-100 text-slate-950',
     },
   },
   compoundVariants: [
@@ -62,9 +62,7 @@ export const MenuItem = <T extends object>(props: MenuItemProps<T>) => {
       {composeRenderProps(props.children, (children, { selectionMode, isSelected }) => (
         <>
           {selectionMode !== 'none' && (
-            <span className="forced-colors: flex w-4 items-center">
-              {isSelected && props.selectedIcon}
-            </span>
+            <span className="flex w-4 items-center">{isSelected && props.selectedIcon}</span>
           )}
           <span className="group-selected:font-semibold flex flex-1 items-center gap-2 truncate font-normal">
             {children}
@@ -76,7 +74,7 @@ export const MenuItem = <T extends object>(props: MenuItemProps<T>) => {
 };
 
 export const MenuSeparator = (props: SeparatorProps) => {
-  return <Separator {...props} className="mx-3 my-1 border-b border-gray-300" />;
+  return <Separator {...props} className="my-1 h-px bg-slate-100" />;
 };
 
 export { MenuTrigger } from 'react-aria-components';

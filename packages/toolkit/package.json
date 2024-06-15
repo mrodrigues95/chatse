@@ -12,7 +12,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "storybook": "storybook dev -p 4400",
+    "storybook": "storybook dev -p 4600",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
