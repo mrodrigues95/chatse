@@ -5,6 +5,7 @@ import { Pencil } from 'lucide-react';
 import { Button, Seperator, Text } from '@chatse/toolkit';
 import { Icon } from '../../../../components';
 import { ActionBar } from './-action-bar';
+import { ActiveFilters } from './-active-filters';
 
 const Clubs = () => {
   const titleId = useId();
@@ -26,7 +27,7 @@ const Clubs = () => {
         </div>
         <ActionBar />
         <Seperator />
-        {/* <ActiveFilters /> */}
+        <ActiveFilters />
       </section>
     </div>
   );

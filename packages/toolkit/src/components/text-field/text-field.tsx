@@ -41,7 +41,7 @@ export const TextField = ({
   <AriaTextField
     isRequired={isRequired}
     {...props}
-    className={composeTwRenderProps('group flex w-full max-w-sm flex-col gap-2', props.className)}
+    className={composeTwRenderProps('group flex w-full max-w-sm flex-col gap-1', props.className)}
   >
     <Label {...labelProps}>
       {label} {isRequired && <i aria-hidden="true">*</i>}

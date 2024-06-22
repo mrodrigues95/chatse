@@ -31,6 +31,7 @@ export const LoginForm = () => {
           name="email"
           type="email"
           autoComplete="username"
+          inputProps={{ density: 'loose' }}
           isRequired
         />
         <Form.TextField
@@ -39,9 +40,10 @@ export const LoginForm = () => {
           type="password"
           autoComplete="current-password"
           minLength={6}
+          inputProps={{ density: 'loose' }}
           isRequired
         />
-        <SubmitButton className="w-full" variant="solid">
+        <SubmitButton className="w-full" variant="solid" size="md">
           Sign in to account
         </SubmitButton>
       </Form>

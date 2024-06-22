@@ -1,7 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from 'react-aria-components';
+import { ChevronsUpDown } from 'lucide-react';
 
+import { AccessibleIcon } from '../accessible-icon/accessible-icon';
+import { SelectItem } from '../select/select';
 import { Form } from './form';
+import { Button } from '../button/button';
 
 const meta = {
   component: Form,
@@ -19,6 +22,18 @@ export const Primary: Story = {
     <Form onSubmit={onSubmit}>
       <Form.TextField label="Name" name="name" isRequired />
       <Form.TextField label="Email" type="email" name="email" isRequired />
+      <Form.Select
+        label="Gender"
+        icon={
+          <AccessibleIcon>
+            <ChevronsUpDown className="size-4 text-gray-600 group-disabled:text-gray-200" />
+          </AccessibleIcon>
+        }
+        isRequired
+      >
+        <SelectItem id="male">Male</SelectItem>
+        <SelectItem id="female">Female</SelectItem>
+      </Form.Select>
       <Button type="submit">Submit</Button>
     </Form>
   ),

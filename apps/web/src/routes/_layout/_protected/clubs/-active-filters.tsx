@@ -1,66 +1,75 @@
-import { ChevronDown, MapPin, X } from 'lucide-react';
+import { useId } from 'react';
+import { MapPin, X } from 'lucide-react';
+import { tv } from 'tailwind-variants';
 
-// import {
-//   Checkbox,
-//   CheckboxGroup,
-//   composeRenderProps,
-//   DialogTrigger,
-//   Group,
-// } from 'react-aria-components';
+import { composeTwRenderProps, Group, IconButton, Select, SelectItem, Text } from '@chatse/toolkit';
+import { Icon } from '../../../../components';
 
-import { Button, buttonVariants, Dialog, IconButton, Label, Popover, Text } from '@chatse/toolkit';
-
-// import { Icon } from '../../../components/icon/icon';
+const filterVariants = tv({
+  slots: {
+    item: [
+      'p-0 last:rounded-r-md [&:not(:last-child)]:border-r [&:not(:last-child)]:border-slate-200',
+    ],
+    button: [
+      'min-w-min select-none border-none bg-transparent px-1.5 py-0 shadow-none ring-offset-0 transition-none',
+      'pressed:bg-gray-200 hover:bg-slate-100 hover:text-slate-950',
+      'focus-visible:ring',
+    ],
+  },
+  compoundSlots: [
+    {
+      slots: ['button', 'item'],
+      className: 'inline-flex items-center gap-1 rounded-none text-sm/6 font-normal text-slate-700',
+    },
+  ],
+});
 
 export const ActiveFilters = () => {
+  const { button, item } = filterVariants();
+  const id = useId();
+
   return (
-    <ul className="flex items-center gap-2" aria-label="Your current filters">
+    <ul className="flex items-center gap-2" aria-label="Current filters">
       <li>
-        {/* <Group
-          className={composeRenderProps(
-            'group gap-2.5 text-xs text-slate-500 hover:cursor-pointer hover:text-slate-900',
-            (className, renderProps) =>
-              buttonVariants({ ...renderProps, variant: 'outline', size: 'xs', className }),
-          )}
+        <Group
+          id={id}
+          aria-label="Locations filter"
+          className="group relative flex items-center rounded-md shadow-[0_0_0_1px_theme(colors.slate.200)]"
         >
-          <DialogTrigger>
-            <Button
-              size="xs"
-              variant="outline"
-              className="gap-1.5 border-0 p-0 font-semibold text-slate-500 shadow-none hover:text-slate-900 focus-visible:text-slate-900"
-            >
-              <Icon size="sm">
-                <MapPin />
-              </Icon>
-              Location
-              <Text
-                variant="body"
-                className="rounded-md bg-slate-100 px-1.5 py-0.5 text-center text-xs font-semibold text-slate-900 transition duration-150 group-hover:bg-slate-200"
-                aria-label="Four location filters selected"
-              >
-                4
-              </Text>
-              <Icon size="sm">
-                <ChevronDown />
-              </Icon>
-            </Button>
-            <Popover placement="bottom right" offset={10}>
-              <Dialog className="p-2 [[data-placement]>&]:p-2">
-                <CheckboxGroup>
-                  <Label className="font-medium">Location</Label>
-                  <Checkbox value="online">Online</Checkbox>
-                </CheckboxGroup>
-              </Dialog>
-            </Popover>
-          </DialogTrigger>
-          <IconButton
-            aria-label="Remove location filter"
-            className="rounded-sm bg-transparent p-0 opacity-60 hover:bg-transparent hover:opacity-100 focus-visible:opacity-100"
-            size="xs"
+          <Text className={item({ className: 'px-1.5 py-0' })}>
+            <Icon className="text-slate-500">
+              <MapPin />
+            </Icon>
+            Locations
+          </Text>
+          <Select
+            aria-label="Operator"
+            aria-describedby={id}
+            className={item()}
+            buttonProps={{ className: button() }}
+            defaultSelectedKey="is"
           >
-            <X />
+            <SelectItem id="is">Is</SelectItem>
+            <SelectItem id="is-not">Is not</SelectItem>
+          </Select>
+          <Select
+            aria-label="Current value"
+            aria-describedby={id}
+            className={item()}
+            buttonProps={{ className: button() }}
+            defaultSelectedKey="online"
+          >
+            <SelectItem id="online">Online</SelectItem>
+            <SelectItem id="meetup">Meetup</SelectItem>
+          </Select>
+          <IconButton
+            aria-label="Remove"
+            aria-describedby={id}
+            className={composeTwRenderProps(button(), item())}
+          >
+            <X size={15} />
           </IconButton>
-        </Group> */}
+        </Group>
       </li>
     </ul>
   );

@@ -30,17 +30,30 @@ export const SignUpForm = () => {
         </Alert>
       ) : null}
       <Form action={submit} validationErrors={validationErrors} className="w-full">
-        <Form.TextField label="Name" name="name" maxLength={70} isRequired />
-        <Form.TextField label="Email address" name="email" type="email" isRequired />
+        <Form.TextField
+          label="Name"
+          name="name"
+          maxLength={70}
+          inputProps={{ density: 'loose' }}
+          isRequired
+        />
+        <Form.TextField
+          label="Email address"
+          name="email"
+          type="email"
+          inputProps={{ density: 'loose' }}
+          isRequired
+        />
         <Form.TextField
           label="Password"
           name="password"
           type="password"
           autoComplete="current-password"
           minLength={6}
+          inputProps={{ density: 'loose' }}
           isRequired
         />
-        <SubmitButton className="w-full" variant="solid">
+        <SubmitButton className="w-full" variant="solid" size="md">
           Create your account
         </SubmitButton>
       </Form>

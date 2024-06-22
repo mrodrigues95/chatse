@@ -89,15 +89,15 @@ export const Header = () => {
             />
           </Button>
           <Menu placement="bottom right">
-            <MenuItem>
-              <Icon size="xs">
+            <MenuItem id="settings">
+              <Icon size="xs" className="text-slate-700">
                 <Settings />
               </Icon>
               Settings
             </MenuItem>
             <MenuSeparator />
-            <MenuItem>
-              <Icon size="xs">
+            <MenuItem id="sign-out">
+              <Icon size="xs" className="text-slate-700">
                 <DoorOpen />
               </Icon>
               Sign out

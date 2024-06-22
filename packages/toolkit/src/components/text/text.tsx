@@ -1,5 +1,6 @@
 import { forwardRef, type HTMLAttributes } from 'react';
 import { Slot } from '@radix-ui/react-slot';
+import { Text as AriaText, type TextProps as AriaTextProps } from 'react-aria-components';
 import { tv, type VariantProps } from 'tailwind-variants';
 
 const textVariants = tv({
@@ -27,15 +28,17 @@ const variantElementMap = {
   muted: 'p',
 } satisfies Record<NonNullable<VariantPropType['variant']>, string>;
 
-export interface TextProps extends HTMLAttributes<HTMLElement>, VariantProps<typeof textVariants> {
-  asChild?: boolean;
-}
+export interface TextProps extends AriaTextProps, VariantProps<typeof textVariants> {}
 
 export const Text = forwardRef<HTMLElement, TextProps>(
-  ({ className, variant = 'body', asChild, ...props }, ref) => {
-    const Component = asChild ? Slot : variant ? variantElementMap[variant] : 'span';
-    return <Component className={textVariants({ variant, className })} ref={ref} {...props} />;
-  },
+  ({ className, variant = 'body', elementType, ...props }, ref) => (
+    <AriaText
+      className={textVariants({ variant, className })}
+      ref={ref}
+      elementType={elementType ?? variantElementMap[variant] ?? 'span'}
+      {...props}
+    />
+  ),
 );
 
 Text.displayName = 'Text';

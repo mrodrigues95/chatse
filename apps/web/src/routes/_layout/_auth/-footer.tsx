@@ -27,7 +27,7 @@ export const Footer = () => {
   return (
     <footer className="flex shrink-0 flex-col items-center justify-center gap-4 sm:flex-row">
       <Text className="font-medium">{segment.text}</Text>
-      <Link variant="outline" to={segment.linkTo} search={prev => prev}>
+      <Link variant="outline" to={segment.linkTo} search={prev => prev} size="md">
         {segment.linkText}
       </Link>
     </footer>
