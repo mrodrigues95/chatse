@@ -2,9 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ChevronsUpDown } from 'lucide-react';
 
 import { AccessibleIcon } from '../accessible-icon/accessible-icon';
+import { Button } from '../button/button';
 import { SelectItem } from '../select/select';
 import { Form } from './form';
-import { Button } from '../button/button';
 
 const meta = {
   component: Form,

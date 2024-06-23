@@ -2,4 +2,4 @@ dist
 node_modules
 .eslintrc.cjs
 routeTree.gen.ts
-!.storybook
+.storybook

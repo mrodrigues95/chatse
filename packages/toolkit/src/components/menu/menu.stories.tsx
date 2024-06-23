@@ -148,20 +148,20 @@ export const Sections: Story = {
   render: props => (
     <MenuTrigger>
       <Button>Menu</Button>
-    <Menu {...props}>
-      <MenuSection title="Your Content">
-        <MenuItem id="repos">Repositories</MenuItem>
-        <MenuItem id="projects">Projects</MenuItem>
-        <MenuItem id="organizations">Organizations</MenuItem>
-        <MenuItem id="stars">Stars</MenuItem>
-        <MenuItem id="sponsors">Sponsors</MenuItem>
-      </MenuSection>
-      <MenuSection title="Your Account">
-        <MenuItem id="profile">Profile</MenuItem>
-        <MenuItem id="status">Set status</MenuItem>
-        <MenuItem id="sign-out">Sign out</MenuItem>
-      </MenuSection>
-    </Menu>
-  </MenuTrigger>
+      <Menu {...props}>
+        <MenuSection title="Your Content">
+          <MenuItem id="repos">Repositories</MenuItem>
+          <MenuItem id="projects">Projects</MenuItem>
+          <MenuItem id="organizations">Organizations</MenuItem>
+          <MenuItem id="stars">Stars</MenuItem>
+          <MenuItem id="sponsors">Sponsors</MenuItem>
+        </MenuSection>
+        <MenuSection title="Your Account">
+          <MenuItem id="profile">Profile</MenuItem>
+          <MenuItem id="status">Set status</MenuItem>
+          <MenuItem id="sign-out">Sign out</MenuItem>
+        </MenuSection>
+      </Menu>
+    </MenuTrigger>
   ),
 };

@@ -60,9 +60,7 @@ export const ListBoxItem = ({ ...props }: ListBoxItemProps) => {
     >
       {composeRenderProps(props.children, (children, { isSelected }) => (
         <>
-          <span className="flex flex-1 items-center gap-2 truncate font-normal">
-            {children}
-          </span>
+          <span className="flex flex-1 items-center gap-2 truncate font-normal">{children}</span>
           {isSelected && props.selectedIcon}
         </>
       ))}
