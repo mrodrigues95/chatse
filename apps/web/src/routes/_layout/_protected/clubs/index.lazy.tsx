@@ -12,7 +12,6 @@ const Clubs = () => {
 
   return (
     <div className="flex-1 bg-slate-50/50 px-4 py-10">
-      {/* <BreadCrumbsForPath className="mb-4" /> */}
       <section aria-labelledby={titleId} className="mx-auto w-full max-w-6xl">
         <div className="mb-4 flex items-center justify-between">
           <Text id={titleId} variant="title">

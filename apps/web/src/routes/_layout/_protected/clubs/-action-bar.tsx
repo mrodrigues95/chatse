@@ -1,101 +1,9 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { animated, useTransition } from '@react-spring/web';
-import {
-  ChevronRight,
-  Eye,
-  Filter,
-  Glasses,
-  Globe,
-  GlobeLock,
-  KeyRound,
-  Handshake,
-  Laptop,
-  MapPin,
-  Search,
-  Tag,
-  Users,
-} from 'lucide-react';
+import { Filter, Search } from 'lucide-react';
 
-import {
-  Button,
-  IconButton,
-  Input,
-  Menu,
-  MenuItem,
-  MenuTrigger,
-  Popover,
-  SubmenuTrigger,
-  Text,
-  type Selection,
-} from '@chatse/toolkit';
-import { Icon } from '../../../../components';
-
-const SubmenuIcon = (
-  <Icon size="xs">
-    <ChevronRight />
-  </Icon>
-);
-
-const FilterDropdown = () => {
-  return (
-    <MenuTrigger>
-      <IconButton aria-label="Filter clubs" variant="ghost">
-        <Filter />
-      </IconButton>
-      <Menu placement="bottom right">
-        {/* @ts-ignore: React19 not fully supported yet by RAC. */}
-        <SubmenuTrigger>
-          <MenuItem id="location" textValue="Locations" submenuIcon={SubmenuIcon}>
-            <Icon className="text-slate-500">
-              <MapPin />
-            </Icon>
-            Locations
-          </MenuItem>
-          <Popover>
-            <Menu onAction={key => console.log(key)}>
-              <MenuItem id="online">
-                <Icon className="text-slate-500">
-                  <Laptop />
-                </Icon>
-                Online
-              </MenuItem>
-              <MenuItem id="meetup">
-                <Icon className="text-slate-500">
-                  <Handshake />
-                </Icon>
-                Meetup
-              </MenuItem>
-            </Menu>
-          </Popover>
-        </SubmenuTrigger>
-        <SubmenuTrigger>
-          <MenuItem id="tags" textValue="Visibility" submenuIcon={SubmenuIcon}>
-            <Icon className="text-slate-500">
-              <Glasses />
-            </Icon>
-            Visibility
-          </MenuItem>
-          <Popover>
-            <Menu onAction={key => console.log(key)}>
-              <MenuItem id="public">
-                <Icon className="text-slate-500">
-                  <Globe />
-                </Icon>
-                Public
-              </MenuItem>
-              <MenuItem id="private">
-                <Icon className="text-slate-500">
-                  <GlobeLock />
-                </Icon>
-                Private
-              </MenuItem>
-            </Menu>
-          </Popover>
-        </SubmenuTrigger>
-      </Menu>
-    </MenuTrigger>
-  );
-};
+import { IconButton, Input } from '@chatse/toolkit';
+import { SelectFilterDropdown } from './-select-filter-dropdown';
 
 export const ActionBar = () => {
   const [search, setSearch] = useState('');
@@ -139,7 +47,11 @@ export const ActionBar = () => {
           )}
         </animated.div>
       ))}
-      <FilterDropdown />
+      <SelectFilterDropdown>
+        <IconButton aria-label="Filter your clubs" variant="ghost">
+          <Filter />
+        </IconButton>
+      </SelectFilterDropdown>
     </div>
   );
 };

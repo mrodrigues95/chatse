@@ -22,7 +22,12 @@ import {
   type FieldErrorProps,
   type LabelProps,
 } from '../field/field';
-import { DropdownItem, DropdownSection, type DropdownSectionProps } from '../list-box/list-box';
+import {
+  DropdownItem,
+  DropdownSection,
+  type DropdownSectionProps,
+  type ListBoxProps,
+} from '../list-box/list-box';
 import { Popover } from '../popover/popover';
 
 const selectButtonVariants = tv({
@@ -45,6 +50,7 @@ export interface SelectProps<T extends object> extends Omit<AriaSelectProps<T>, 
   fieldErrorProps?: FieldErrorProps;
   buttonProps?: ButtonProps;
   selectValueProps?: SelectValueProps<T>;
+  listboxProps?: ListBoxProps<T>;
   items?: Iterable<T>;
   icon?: ReactNode;
   children: React.ReactNode | ((item: T) => React.ReactNode);
@@ -61,6 +67,7 @@ export const Select = <T extends object>({
   fieldErrorProps,
   buttonProps,
   selectValueProps,
+  listboxProps,
   icon,
   items,
   children,
@@ -94,7 +101,14 @@ export const Select = <T extends object>({
       {description && <Description {...descriptionProps}>{description}</Description>}
       <FieldError {...fieldErrorProps}>{errorMessage}</FieldError>
       <Popover className="min-w-[--trigger-width]">
-        <ListBox items={items} className="max-h-[inherit] overflow-auto p-1 outline-none">
+        <ListBox
+          items={items}
+          className={composeTwRenderProps(
+            listboxProps?.className,
+            'max-h-[inherit] overflow-auto p-1 outline-none',
+          )}
+          {...listboxProps}
+        >
           {children}
         </ListBox>
       </Popover>

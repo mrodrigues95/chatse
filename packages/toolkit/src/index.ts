@@ -1,4 +1,4 @@
-export { Group } from 'react-aria-components';
+export { Group, type GroupProps } from 'react-aria-components';
 
 export * from './components/alert/alert';
 export * from './components/accessible-icon/accessible-icon';
