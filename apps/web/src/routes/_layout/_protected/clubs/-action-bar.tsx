@@ -3,7 +3,7 @@ import { animated, useTransition } from '@react-spring/web';
 import { Filter, Search } from 'lucide-react';
 
 import { IconButton, Input } from '@chatse/toolkit';
-import { SelectFilterDropdown } from './-select-filter-dropdown';
+import { SelectFilterDropdown } from './-active-filters';
 
 export const ActionBar = () => {
   const [search, setSearch] = useState('');

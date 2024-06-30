@@ -53,7 +53,7 @@ type TMultipleOperators =
   | 'exclude-if-any-of'
   | 'exclude-if-all';
 
-type TOperators = TSingleOperators | TMultipleOperators;
+export type TOperators = TSingleOperators | TMultipleOperators;
 
 const operatorsMap = {
   is: {
