@@ -43,7 +43,7 @@ public static class HotChocolateServiceExtensions
         public async override ValueTask OnCreateAsync(
             HttpContext context,
             IRequestExecutor requestExecutor,
-            IQueryRequestBuilder requestBuilder,
+            IRequestBuilder requestBuilder,
             CancellationToken cancellationToken)
         {
             int? userId = null;

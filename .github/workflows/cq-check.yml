@@ -17,7 +17,7 @@ jobs:
       - uses: pnpm/action-setup@v3
         name: Setup pnpm
         with:
-          version: 9
+          version: 10
 
       - uses: actions/setup-node@v4
         name: Setup Node
@@ -28,7 +28,7 @@ jobs:
       - uses: actions/setup-dotnet@v4
         name: Setup .NET
         with:
-          dotnet-version: 8.x
+          dotnet-version: 9.x
 
       - run: pnpm install --frozen-lockfile
       - run: pnpm format:check
