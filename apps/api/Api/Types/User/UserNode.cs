@@ -1,3 +1,6 @@
+using GreenDonut.Data;
+using HotChocolate.Execution.Processing;
+
 namespace Api.Types.User;
 
 public sealed class UserType : ObjectType<AppUser>
@@ -22,4 +25,14 @@ public sealed class UserNode
 {
     [ID]
     public string GetId([Parent] AppUser user) => user.PublicId.Value;
+
+    [NodeResolver]
+    public static async Task<AppUser?> GetUserByIdAsync(
+        [Parent] AppUser user,
+        IUserByIdDataLoader userByIdDataLoader,
+        ISelection selection,
+        CancellationToken cancellationToken)
+        => await userByIdDataLoader
+            .Select(selection)
+            .LoadAsync(user.PublicId.Value, cancellationToken);
 }
